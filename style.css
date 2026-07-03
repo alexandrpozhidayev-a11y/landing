@@ -526,6 +526,7 @@ img {
     border-radius: var(--border-radius-lg);
     min-height: 240px;
     position: relative;
+    z-index: 0;
     overflow: hidden;
 }
 
