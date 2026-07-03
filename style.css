@@ -143,9 +143,14 @@ img {
 
 .logo svg {
     color: var(--color-text);
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
+}
+
+.logo__dot {
+    font-style: normal;
+    color: #E8632C;
 }
 
 .logo span {
