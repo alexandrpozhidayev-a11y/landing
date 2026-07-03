@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Center Valley - Powering AI from the Heart of Eurasia</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__content">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <polygon points="0,0 24,0 12,24" fill="currentColor"/>
+                </svg>
+                <span>Data Center<br>Valley</span>
+            </a>
+
+            <nav class="nav">
+                <a href="#" class="nav__link">Platform</a>
+                <a href="#" class="nav__link">Campus</a>
+                <a href="#" class="nav__link">Solutions</a>
+                <a href="#" class="nav__link">Team</a>
+                <a href="#" class="nav__link">News</a>
+            </nav>
+
+            <div class="header__actions">
+                <a href="#contact" class="btn btn--primary btn--sm">Request meeting</a>
+                <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <a href="#" class="mobile-menu__link">Platform</a>
+        <a href="#" class="mobile-menu__link">Campus</a>
+        <a href="#" class="mobile-menu__link">Solutions</a>
+        <a href="#" class="mobile-menu__link">Team</a>
+        <a href="#" class="mobile-menu__link">News</a>
+        <a href="#contact" class="mobile-menu__link mobile-menu__link--cta">Request meeting</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero__title">Powering AI from the Heart of Eurasia.</h1>
+            <p class="hero__subtitle">
+                <span class="text-strong">Data Center Valley is Kazakhstan&rsquo;s giga-scale data center campus &ndash;</span>
+                <span class="text-muted">built to convert energy, land and connectivity into compute capacity for the global AI economy.</span>
+            </p>
+            <div class="hero__image">
+                <img src="asset/envato-labs-image-edit (24) 1 (1) 2.png" alt="Data Center Valley campus render">
+                <span class="hero__place">Ekibastuz &middot; Kazakhstan</span>
+                <span class="hero__coords">51.7250&deg;N 75.3225&deg;E</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location strip -->
+    <section class="location">
+        <div class="container">
+            <!-- Why Data Center Valley -->
+            <div class="why">
+                <div class="why__header">
+                    <span>Why</span>
+                    <span>Data</span>
+                    <span>Center</span>
+                    <span>Valley</span>
+                </div>
+
+                <div class="why__row">
+                    <div class="why__item">
+                        <h3>Energy<br>advantage</h3>
+                        <p>Access to scalable power infrastructure in one of the region&rsquo;s most important energy clusters.</p>
+                    </div>
+                    <div class="why__item">
+                        <h3>Time<br>to market</h3>
+                        <p>Fast-track infrastructure readiness: pre-identified sites, existing power connections and simplified regulatory procedures.</p>
+                    </div>
+                </div>
+
+                <div class="why__row">
+                    <div class="why__item">
+                        <h3>Strategic<br>geography</h3>
+                        <p>Positioned between Europe, Asia and the Middle East, with growing relevance as a digital and logistics corridor.</p>
+                    </div>
+                    <div class="why__item">
+                        <h3>Government<br>support</h3>
+                        <p>Supported through national digital transformation priorities, investment frameworks and infrastructure coordination.</p>
+                    </div>
+                </div>
+
+                <div class="why__row">
+                    <div class="why__item">
+                        <h3>Talent<br>and<br>ecosystem</h3>
+                        <p>A growing AI, engineering and digital talent base supported by national AI development initiatives.</p>
+                    </div>
+                    <div class="why__image">
+                        <img src="asset/Frame 2087326615.png" alt="Data Center Valley aerial view at night" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Built for Giga-Scale<br>AI Infrastructure</h2>
+
+            <div class="stats__grid">
+                <div class="stats__visual" id="campusMap" role="img" aria-label="Map zooming from Central Asia to Kazakhstan, Ekibastuz and the Data Center Valley campus"></div>
+
+                <div class="stats__list">
+                    <div class="stat-row">
+                        <span class="stat-row__label">Planned scalable power capacity</span>
+                        <span class="stat-row__value">up to 1 GW</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-row__label">Dedicated development territory</span>
+                        <span class="stat-row__value">~1,500 ha</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-row__label">Indicative competitive electricity cost</span>
+                        <span class="stat-row__value">$0.025/kWh</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-row__label">Land tax and VAT on imports</span>
+                        <span class="stat-row__value">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="stats__disclaimer">Final technical and commercial parameters are subject to project documentation, applicable agreements and regulatory approvals.</p>
+        </div>
+    </section>
+
+    <!-- Flexible models Section -->
+    <section class="models">
+        <div class="container">
+            <h2 class="section-title">Flexible models for hyperscalers, AI companies and investors</h2>
+            <p class="models__subtitle">
+                <span class="text-strong">From fast deployment in prepared capacity to large-scale greenfield development</span>
+                <span class="text-muted">and AI compute partnerships</span>
+            </p>
+
+            <div class="models__grid">
+                <div class="model-card model-card--active">
+                    <h3>Wholesale Colocation</h3>
+                    <p>Fast access to power, cooling and secure data center capacity for cloud providers, AI companies and GPU operators.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Build-to-Suit</h3>
+                    <p>Dedicated infrastructure built to specific technical and operational requirements for hyperscalers and sovereign AI platforms.</p>
+                </div>
+                <div class="model-card">
+                    <h3>Greenfield Development</h3>
+                    <p>Land, power, utilities and network access for large technology companies seeking direct development control.</p>
+                </div>
+                <div class="model-card">
+                    <h3>AI Compute Partnerships</h3>
+                    <p>Participation in the AI compute value chain for GPU-as-a-Service platforms and institutional investors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta__top">
+                <h2 class="cta__title">Start a conversation</h2>
+                <p class="cta__note">Build your AI infrastructure<br>in Data Center Valley.</p>
+            </div>
+
+            <div class="cta__row">
+                <p class="cta__text">Whether you are a hyperscaler, AI company, data center developer or infrastructure investor, the platform is ready to scale with you.</p>
+                <a href="#" class="btn btn--dark">Request Briefing &rarr;</a>
+            </div>
+        </div>
+
+        <div class="cta__decor" aria-hidden="true">
+            <img src="asset/111.png" alt="" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__content">
+            <div class="logo logo--white">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <polygon points="0,0 24,0 12,24" fill="white"/>
+                </svg>
+                <span>Data Center<br>Valley</span>
+            </div>
+            <p class="footer__rights">&commat;all rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>
