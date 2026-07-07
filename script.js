@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     const mapEl = document.getElementById('campusMap');
     if (mapEl && window.L) {
-        const campusCoords = [51.7250, 75.3225];
+        const campusCoords = [51.879541, 75.338572];
 
         const map = L.map(mapEl, {
             zoomControl: false,
