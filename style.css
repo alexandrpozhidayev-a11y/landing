@@ -359,6 +359,9 @@ img {
 .hero__image {
     margin-top: var(--spacing-2xl);
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .hero__image img {
@@ -369,8 +372,7 @@ img {
 
 .hero__place,
 .hero__coords {
-    position: absolute;
-    bottom: var(--spacing-md);
+    margin-top: var(--spacing-sm);
     color: var(--color-primary);
     font-size: 12px;
     font-weight: 600;
@@ -378,17 +380,11 @@ img {
     white-space: nowrap;
 }
 
-.hero__place {
-    left: var(--spacing-md);
-}
-
-.hero__coords {
-    right: var(--spacing-md);
-}
-
 @media (min-width: 640px) {
     .hero__place,
     .hero__coords {
+        position: absolute;
+        margin-top: 0;
         bottom: var(--spacing-lg);
         font-size: var(--font-size-sm);
     }
