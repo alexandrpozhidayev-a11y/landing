@@ -117,54 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Campus location map: zoom from Central Asia down to the campus
+     * Back to top button
      */
-    const mapEl = document.getElementById('campusMap');
-    if (mapEl && window.L) {
-        const campusCoords = [51.879541, 75.338572];
-
-        const map = L.map(mapEl, {
-            zoomControl: false,
-            dragging: false,
-            scrollWheelZoom: false,
-            doubleClickZoom: false,
-            boxZoom: false,
-            keyboard: false,
-            touchZoom: false
-        });
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors',
-            maxZoom: 18
-        }).addTo(map);
-
-        L.marker(campusCoords).addTo(map);
-
-        const zoomSteps = [
-            { center: [45, 63], zoom: 3 },            // Central Asia
-            { center: [48.0196, 66.9237], zoom: 5 },  // Kazakhstan
-            { center: campusCoords, zoom: 10 },       // Ekibastuz
-            { center: campusCoords, zoom: 15 }        // Campus
-        ];
-
-        map.setView(zoomSteps[0].center, zoomSteps[0].zoom);
-        setTimeout(function() { map.invalidateSize(); }, 200);
-
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        if (prefersReducedMotion) {
-            map.setView(campusCoords, zoomSteps[zoomSteps.length - 1].zoom);
-        } else {
-            let stepIndex = 0;
-            setInterval(function() {
-                stepIndex = (stepIndex + 1) % zoomSteps.length;
-                const step = zoomSteps[stepIndex];
-                map.flyTo(step.center, step.zoom, { duration: 2.2 });
-            }, 4000);
-        }
-
-        window.addEventListener('resize', function() {
-            map.invalidateSize();
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 });
