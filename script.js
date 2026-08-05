@@ -117,6 +117,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
+     * Accordion (About page — National Priority & Government Support)
+     */
+    const accordionItems = document.querySelectorAll('.accordion__item');
+    accordionItems.forEach(item => {
+        const trigger = item.querySelector('.accordion__trigger');
+        trigger.addEventListener('click', function() {
+            const isOpen = item.classList.contains('is-open');
+            accordionItems.forEach(other => {
+                other.classList.remove('is-open');
+                other.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                item.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    /**
      * Back to top button
      */
     const backToTop = document.getElementById('backToTop');
