@@ -60,6 +60,7 @@ body {
     background-color: var(--color-page);
     line-height: 1.5;
     font-size: var(--font-size-base);
+    overflow-x: hidden;
 }
 
 img {
@@ -1367,7 +1368,7 @@ img {
 
 @media (min-width: 768px) {
     .about-hero__lead {
-        max-width: 42%;
+        max-width: 380px;
     }
 }
 
@@ -1618,6 +1619,102 @@ img {
 
 .services__grid .model-card .btn {
     align-self: flex-start;
+}
+
+/* ============================================
+   AI INFRASTRUCTURE PAGE
+   ============================================ */
+.power {
+    padding: var(--spacing-xl) 0 var(--spacing-3xl);
+}
+
+.power__title {
+    font-family: var(--font-family-heading);
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+}
+
+.power__grid {
+    margin-top: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .power__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.power-stat {
+    background: var(--color-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+}
+
+.power-stat__label {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.power-stat__value {
+    display: block;
+    font-family: var(--font-family-heading);
+    font-weight: 800;
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+}
+
+.power__map {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-top: var(--spacing-xl);
+    background: var(--color-card);
+}
+
+.power__map img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.power__map-card {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    max-width: 260px;
+    background: var(--color-surface);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: 0 8px 24px rgba(20, 21, 26, 0.08);
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .power__map-card {
+        display: block;
+        right: var(--spacing-xl);
+    }
+}
+
+.power__map-card-title {
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.power__map-card-text {
+    margin-top: var(--spacing-xs);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-text-light);
 }
 
 /* ============================================
