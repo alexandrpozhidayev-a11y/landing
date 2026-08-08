@@ -136,6 +136,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
+     * Team page filter chip (visual toggle only — no filtering data yet)
+     */
+    const teamFilter = document.getElementById('teamFilter');
+    if (teamFilter) {
+        teamFilter.addEventListener('click', function() {
+            teamFilter.classList.toggle('is-open');
+        });
+    }
+
+    /**
      * Back to top button
      */
     const backToTop = document.getElementById('backToTop');

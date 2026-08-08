@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Built for Giga-Scale AI Infrastructure — Data Center Valley</title>
+    <title>FAQ — Data Center Valley</title>
     <link href="asset/favicon.jpg" rel="icon" type="image/jpeg" />
     <link href="style.css?v=5" rel="stylesheet" />
 </head>
@@ -12,26 +12,11 @@
     <header class="header">
         <div class="container header__content">
             <a class="logo" href="index.html">
-                <svg class="logo__mark"
-                     fill="none"
-                     height="48"
-                     viewBox="0 0 40 40"
-                     width="48">
-                    <rect height="37.5"
-                          stroke="currentColor"
-                          stroke-width="2.5"
-                          width="37.5"
-                          x="1.25"
-                          y="1.25" />
-                    
-
-                    <polygon fill="currentColor" points="6,2.5 34,2.5 20,26" />
+                <svg class="logo__mark" width="48" height="48" viewBox="0 0 40 40" fill="none">
+                    <rect x="1.25" y="1.25" width="37.5" height="37.5" stroke="currentColor" stroke-width="2.5"/>
+                    <polygon points="6,2.5 34,2.5 20,26" fill="currentColor"/>
                 </svg>
-                <span>
-                    Data Center
-                    <br />Valley
-                    <i class="logo__dot">.</i>
-                </span>
+                <span>Data Center<br>Valley<i class="logo__dot">.</i></span>
             </a>
 
             <nav class="nav">
@@ -43,10 +28,7 @@
             </nav>
 
             <div class="header__actions">
-                <a class="btn btn--primary btn--sm"
-                   href="mailto:commercial@dc-valley.com">
-                    Request meeting
-                </a>
+                <a class="btn btn--primary btn--sm" href="mailto:commercial@dc-valley.com">Request meeting</a>
                 <button aria-label="Toggle menu" class="menu-btn" id="menuBtn">
                     <span></span>
                     <span></span>
@@ -63,101 +45,85 @@
         <a class="mobile-menu__link" href="services.html">Solutions</a>
         <a class="mobile-menu__link" href="team.html">Team</a>
         <a class="mobile-menu__link" href="news.html">News</a>
-        <a class="mobile-menu__link mobile-menu__link--cta"
-           href="mailto:commercial@dc-valley.com">
-            Request meeting
-        </a>
+        <a class="mobile-menu__link mobile-menu__link--cta" href="mailto:commercial@dc-valley.com">Request meeting</a>
     </nav>
 
     <!-- Breadcrumb -->
     <div class="container breadcrumb">
         <a class="breadcrumb__back" href="index.html">&larr; Back</a>
-        <p class="breadcrumb__path">
-            <a href="index.html">Main</a> /
-            <span>Infrastructure</span>
-        </p>
+        <p class="breadcrumb__path"><a href="index.html">Main</a> / <span>Platform</span></p>
     </div>
 
-    <!-- AI Hero -->
-    <section class="about-hero">
-        <div class="container">
-            <div class="about-hero__card">
-                <h1 class="about-hero__title">Built for Giga-Scale AI Infrastructure</h1>
-                <p class="about-hero__lead">Engineered from the ground up to convert unprecedented power and territory into seamless compute capacity</p>
-                <img class="about-hero__image-mobile" src="asset/images/AI/ai1.png" alt="Data Center Valley campus render">
-            </div>
-        </div>
-    </section>
-
-    <!-- Power Cluster Advantage -->
-    <section class="power">
-        <div class="container">
-            <h2 class="power__title">The Power Cluster Advantage</h2>
-
-            <div class="power__grid">
-                <div class="power-stat">
-                    <span class="power-stat__label">Tier</span>
-                    <span class="power-stat__value">Tier III</span>
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container faq__row">
+            <div class="faq__aside">
+                <div>
+                    <p class="faq__note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl.</p>
+                    <a href="mailto:commercial@dc-valley.com" class="btn btn--dark">Request meeting</a>
                 </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Racks per module</span>
-                    <span class="power-stat__value">1,920</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Uptime</span>
-                    <span class="power-stat__value">99.982%</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Power redundancy</span>
-                    <span class="power-stat__value">N+1</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Power paths</span>
-                    <span class="power-stat__value">2</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Max rack density</span>
-                    <span class="power-stat__value">225 kW</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Cooling redundancy</span>
-                    <span class="power-stat__value">N+1</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Liquid cooling</span>
-                    <span class="power-stat__value">Supported</span>
-                </div>
+                <p class="faq__note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
             </div>
 
-        </div>
+            <div class="faq__body">
+                <h1 class="faq__title">Popular Questions</h1>
 
-        <div class="power__map">
-            <img src="asset/images/AI/map.png" alt="Latency map connecting Data Center Valley to major European, Central Asian and Hong Kong hubs" loading="lazy">
-            <div class="power__map-card">
-                <span class="power__map-card-title">Why Data Center Valley</span>
-                <p class="power__map-card-text">Final technical and commercial parameters are subject to project documentation and regulatory approvals.</p>
-            </div>
-        </div>
-    </section>
+                <div class="accordion">
+                    <div class="accordion__item">
+                        <button type="button" class="accordion__trigger" aria-expanded="false">
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <span class="accordion__icon"><svg width="12" height="15" viewBox="0 0 16 20" fill="none"><path d="M8.87747 19.1406L8.00049 20L7.12253 19.1406L1.37568e-06 12.1631L0.877961 11.2715L1.75592 10.3789L6.74766 15.2695L6.74766 -4.04433e-07L9.25332 -2.94907e-07L9.25332 15.2686L14.2441 10.3789L15.122 11.2715L16 12.1631L8.87747 19.1406Z" fill="#4797FF"/></svg></span>
+                        </button>
+                        <div class="accordion__panel">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
+                        </div>
+                    </div>
 
-    <!-- Why Data Center Valley -->
-    <section class="about-why">
-        <div class="container">
-            <div class="about-why__head">
-                <span class="about-why__label">Why Data Center Valley</span>
-                <p class="about-why__disclaimer">Final technical and commercial parameters are subject to project documentation and regulatory approvals.</p>
-            </div>
+                    <div class="accordion__item is-open">
+                        <button type="button" class="accordion__trigger" aria-expanded="true">
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <span class="accordion__icon"><svg width="12" height="15" viewBox="0 0 16 20" fill="none"><path d="M8.87747 19.1406L8.00049 20L7.12253 19.1406L1.37568e-06 12.1631L0.877961 11.2715L1.75592 10.3789L6.74766 15.2695L6.74766 -4.04433e-07L9.25332 -2.94907e-07L9.25332 15.2686L14.2441 10.3789L15.122 11.2715L16 12.1631L8.87747 19.1406Z" fill="#4797FF"/></svg></span>
+                        </button>
+                        <div class="accordion__panel">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
+                            <ul class="accordion__list">
+                                <li>Donec elementum dui ultricies</li>
+                                <li>blandit arcu vitae</li>
+                                <li>egestas orci.</li>
+                            </ul>
+                            <p>Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet augue. Maecenas quis arcu vel justo condimentum blandit.</p>
+                        </div>
+                    </div>
 
-            <div class="about-why__row">
-                <div class="about-why__image">
-                    <img src="asset/images/AI/ai2.png" alt="Data Center Valley aerial view" loading="lazy">
-                </div>
-                <div class="about-why__content">
-                    <p>
-                        <span class="text-muted">Data Center Valley is established with a clear and ambitious mission: to build a sovereign yet globally integrated artificial intelligence infrastructure hub.</span>
-                        <span class="text-strong">By strategic positioning in one of the region&rsquo;s most vital energy clusters, we convert abundant power and vast territory into secure, scalable, and highly efficient compute capacity tailored specifically for the global AI economy.</span>
-                    </p>
-                    <a href="mailto:commercial@dc-valley.com" class="btn btn--primary">Request meeting</a>
+                    <div class="accordion__item">
+                        <button type="button" class="accordion__trigger" aria-expanded="false">
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <span class="accordion__icon"><svg width="12" height="15" viewBox="0 0 16 20" fill="none"><path d="M8.87747 19.1406L8.00049 20L7.12253 19.1406L1.37568e-06 12.1631L0.877961 11.2715L1.75592 10.3789L6.74766 15.2695L6.74766 -4.04433e-07L9.25332 -2.94907e-07L9.25332 15.2686L14.2441 10.3789L15.122 11.2715L16 12.1631L8.87747 19.1406Z" fill="#4797FF"/></svg></span>
+                        </button>
+                        <div class="accordion__panel">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion__item">
+                        <button type="button" class="accordion__trigger" aria-expanded="false">
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <span class="accordion__icon"><svg width="12" height="15" viewBox="0 0 16 20" fill="none"><path d="M8.87747 19.1406L8.00049 20L7.12253 19.1406L1.37568e-06 12.1631L0.877961 11.2715L1.75592 10.3789L6.74766 15.2695L6.74766 -4.04433e-07L9.25332 -2.94907e-07L9.25332 15.2686L14.2441 10.3789L15.122 11.2715L16 12.1631L8.87747 19.1406Z" fill="#4797FF"/></svg></span>
+                        </button>
+                        <div class="accordion__panel">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion__item">
+                        <button type="button" class="accordion__trigger" aria-expanded="false">
+                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            <span class="accordion__icon"><svg width="12" height="15" viewBox="0 0 16 20" fill="none"><path d="M8.87747 19.1406L8.00049 20L7.12253 19.1406L1.37568e-06 12.1631L0.877961 11.2715L1.75592 10.3789L6.74766 15.2695L6.74766 -4.04433e-07L9.25332 -2.94907e-07L9.25332 15.2686L14.2441 10.3789L15.122 11.2715L16 12.1631L8.87747 19.1406Z" fill="#4797FF"/></svg></span>
+                        </button>
+                        <div class="accordion__panel">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,7 +144,7 @@
         </div>
     </section>
 
- <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container footer__grid">
             <div class="footer__brand">

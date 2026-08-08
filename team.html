@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Built for Giga-Scale AI Infrastructure — Data Center Valley</title>
+    <title>Team — Data Center Valley</title>
     <link href="asset/favicon.jpg" rel="icon" type="image/jpeg" />
     <link href="style.css?v=5" rel="stylesheet" />
 </head>
@@ -12,26 +12,11 @@
     <header class="header">
         <div class="container header__content">
             <a class="logo" href="index.html">
-                <svg class="logo__mark"
-                     fill="none"
-                     height="48"
-                     viewBox="0 0 40 40"
-                     width="48">
-                    <rect height="37.5"
-                          stroke="currentColor"
-                          stroke-width="2.5"
-                          width="37.5"
-                          x="1.25"
-                          y="1.25" />
-                    
-
-                    <polygon fill="currentColor" points="6,2.5 34,2.5 20,26" />
+                <svg class="logo__mark" width="48" height="48" viewBox="0 0 40 40" fill="none">
+                    <rect x="1.25" y="1.25" width="37.5" height="37.5" stroke="currentColor" stroke-width="2.5"/>
+                    <polygon points="6,2.5 34,2.5 20,26" fill="currentColor"/>
                 </svg>
-                <span>
-                    Data Center
-                    <br />Valley
-                    <i class="logo__dot">.</i>
-                </span>
+                <span>Data Center<br>Valley<i class="logo__dot">.</i></span>
             </a>
 
             <nav class="nav">
@@ -43,10 +28,7 @@
             </nav>
 
             <div class="header__actions">
-                <a class="btn btn--primary btn--sm"
-                   href="mailto:commercial@dc-valley.com">
-                    Request meeting
-                </a>
+                <a class="btn btn--primary btn--sm" href="mailto:commercial@dc-valley.com">Request meeting</a>
                 <button aria-label="Toggle menu" class="menu-btn" id="menuBtn">
                     <span></span>
                     <span></span>
@@ -63,102 +45,89 @@
         <a class="mobile-menu__link" href="services.html">Solutions</a>
         <a class="mobile-menu__link" href="team.html">Team</a>
         <a class="mobile-menu__link" href="news.html">News</a>
-        <a class="mobile-menu__link mobile-menu__link--cta"
-           href="mailto:commercial@dc-valley.com">
-            Request meeting
-        </a>
+        <a class="mobile-menu__link mobile-menu__link--cta" href="mailto:commercial@dc-valley.com">Request meeting</a>
     </nav>
 
     <!-- Breadcrumb -->
     <div class="container breadcrumb">
         <a class="breadcrumb__back" href="index.html">&larr; Back</a>
-        <p class="breadcrumb__path">
-            <a href="index.html">Main</a> /
-            <span>Infrastructure</span>
-        </p>
+        <p class="breadcrumb__path"><a href="index.html">Main</a> / <span>Team</span></p>
     </div>
 
-    <!-- AI Hero -->
-    <section class="about-hero">
+    <!-- Team -->
+    <section class="team-page">
         <div class="container">
-            <div class="about-hero__card">
-                <h1 class="about-hero__title">Built for Giga-Scale AI Infrastructure</h1>
-                <p class="about-hero__lead">Engineered from the ground up to convert unprecedented power and territory into seamless compute capacity</p>
-                <img class="about-hero__image-mobile" src="asset/images/AI/ai1.png" alt="Data Center Valley campus render">
-            </div>
-        </div>
-    </section>
-
-    <!-- Power Cluster Advantage -->
-    <section class="power">
-        <div class="container">
-            <h2 class="power__title">The Power Cluster Advantage</h2>
-
-            <div class="power__grid">
-                <div class="power-stat">
-                    <span class="power-stat__label">Tier</span>
-                    <span class="power-stat__value">Tier III</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Racks per module</span>
-                    <span class="power-stat__value">1,920</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Uptime</span>
-                    <span class="power-stat__value">99.982%</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Power redundancy</span>
-                    <span class="power-stat__value">N+1</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Power paths</span>
-                    <span class="power-stat__value">2</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Max rack density</span>
-                    <span class="power-stat__value">225 kW</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Cooling redundancy</span>
-                    <span class="power-stat__value">N+1</span>
-                </div>
-                <div class="power-stat">
-                    <span class="power-stat__label">Liquid cooling</span>
-                    <span class="power-stat__value">Supported</span>
-                </div>
+            <div class="team-page__head">
+                <h1 class="team-page__title">Team</h1>
+                <button type="button" class="team-page__filter" id="teamFilter">
+                    <span>Filters</span>
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
             </div>
 
-        </div>
+            <div class="team-page__grid">
+                <article class="team-page__card team-page__card--featured">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit.</p>
+                </article>
 
-        <div class="power__map">
-            <img src="asset/images/AI/map.png" alt="Latency map connecting Data Center Valley to major European, Central Asian and Hong Kong hubs" loading="lazy">
-            <div class="power__map-card">
-                <span class="power__map-card-title">Why Data Center Valley</span>
-                <p class="power__map-card-text">Final technical and commercial parameters are subject to project documentation and regulatory approvals.</p>
-            </div>
-        </div>
-    </section>
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
 
-    <!-- Why Data Center Valley -->
-    <section class="about-why">
-        <div class="container">
-            <div class="about-why__head">
-                <span class="about-why__label">Why Data Center Valley</span>
-                <p class="about-why__disclaimer">Final technical and commercial parameters are subject to project documentation and regulatory approvals.</p>
-            </div>
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
 
-            <div class="about-why__row">
-                <div class="about-why__image">
-                    <img src="asset/images/AI/ai2.png" alt="Data Center Valley aerial view" loading="lazy">
-                </div>
-                <div class="about-why__content">
-                    <p>
-                        <span class="text-muted">Data Center Valley is established with a clear and ambitious mission: to build a sovereign yet globally integrated artificial intelligence infrastructure hub.</span>
-                        <span class="text-strong">By strategic positioning in one of the region&rsquo;s most vital energy clusters, we convert abundant power and vast territory into secure, scalable, and highly efficient compute capacity tailored specifically for the global AI economy.</span>
-                    </p>
-                    <a href="mailto:commercial@dc-valley.com" class="btn btn--primary">Request meeting</a>
-                </div>
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
+
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
+
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
+
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
+
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
+
+                <article class="team-page__card">
+                    <img src="asset/face.png" alt="Фамилия Имя Отчество" loading="lazy">
+                    <h3>Фамилия<br>Имя<br>Отчество</h3>
+                    <p class="team-page__role">Должность</p>
+                    <p class="team-page__bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci.</p>
+                </article>
             </div>
         </div>
     </section>
@@ -178,7 +147,7 @@
         </div>
     </section>
 
- <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container footer__grid">
             <div class="footer__brand">

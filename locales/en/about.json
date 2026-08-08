@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "About Data Center Valley"
+  },
+  "breadcrumb": {
+    "back": "Back",
+    "main": "Main",
+    "current": "Platform"
+  },
+  "hero": {
+    "title": "About Data Center Valley",
+    "lead": "Building the foundational infrastructure for the next generation of global computing."
+  },
+  "why": {
+    "label": "Why Data Center Valley",
+    "disclaimer": "Final technical and commercial parameters are subject to project documentation and regulatory approvals.",
+    "textMuted": "Data Center Valley is established with a clear and ambitious mission: to build a sovereign yet globally integrated artificial intelligence infrastructure hub.",
+    "textStrong": "By strategic positioning in one of the region’s most vital energy clusters, we convert abundant power and vast territory into secure, scalable, and highly efficient compute capacity tailored specifically for the global AI economy.",
+    "cta": "Request meeting"
+  },
+  "geo": {
+    "title": "Strategic Geography & Corridor",
+    "text": "Positioned at the critical crossroads between Europe, Asia, and the Middle East, Kazakhstan is rapidly gaining immense relevance as a premier digital and logistics corridor. Data Center Valley capitalizes on this unique geographical advantage, offering hyperscalers and international enterprises an ultra-connected infrastructure node that seamlessly bridges major global markets with low-latency data pathways.",
+    "mapAlt": "Latency map connecting Data Center Valley to major European and Central Asian hubs"
+  },
+  "gov": {
+    "title": "National Priority & Government Support",
+    "emblemAlt": "Emblem of Kazakhstan",
+    "defaultOpenIndex": 1,
+    "accordion": [
+      {
+        "title": "Заголовок",
+        "text": "Data Center Valley operates in full coordination with national infrastructure planning bodies, ensuring predictable long-term access to power, land and network resources."
+      },
+      {
+        "title": "Заголовок",
+        "text": "The development of Data Center Valley is fully aligned with national digital transformation priorities and strategic investment frameworks. Backed by comprehensive infrastructure coordination at the highest state level, the platform ensures long-term regulatory predictability, robust investment protection, and a streamlined operational environment for our global partners and institutional investors."
+      },
+      {
+        "title": "Заголовок",
+        "text": "Investment protection is reinforced through established legal frameworks, offering international partners clarity and confidence in long-horizon infrastructure commitments."
+      },
+      {
+        "title": "Заголовок",
+        "text": "A dedicated coordination framework streamlines permitting, utility connections and regulatory approvals across all phases of campus development."
+      },
+      {
+        "title": "Заголовок",
+        "text": "Ongoing collaboration with national institutions supports workforce development and integration with the broader digital economy."
+      }
+    ]
+  }
+}
