@@ -4,9 +4,10 @@ services:
       context: ./nuxt-app
     restart: unless-stopped
     ports:
-      # Host port 3000 was already taken by another process on the server —
-      # 3001 on the host, container still listens on 3000 internally.
-      - "127.0.0.1:3001:3000"
+      # Shared host — 3000/3001/3002/3003 already taken by other projects'
+      # node processes. 3004 on the host, container still listens on 3000
+      # internally.
+      - "127.0.0.1:3004:3000"
     environment:
       NODE_ENV: production
 
