@@ -1,0 +1,226 @@
+{
+  "nav": {
+    "platform": "Platform",
+    "campus": "Campus",
+    "solutions": "Solutions",
+    "team": "Team",
+    "news": "News",
+    "requestMeeting": "Request meeting"
+  },
+  "brand": {
+    "name": "Data Center",
+    "name2": "Valley"
+  },
+  "footer": {
+    "desc": "Data Center Valley is Kazakhstan’s giga-scale data center campus",
+    "solutions": {
+      "title": "Solutions",
+      "colocation": "Wholesale Colocation",
+      "buildToSuit": "Build-to-Suit",
+      "greenfield": "Greenfield Development",
+      "partnerships": "AI Compute Partnerships"
+    },
+    "company": {
+      "title": "Company"
+    },
+    "brand": "Data center Valley",
+    "rights": "All rights reserved",
+    "backToTop": "Back To Top"
+  },
+  "breadcrumb": {
+    "back": "Back",
+    "main": "Main",
+    "platform": "Platform",
+    "services": "Solutions",
+    "infrastructure": "Infrastructure"
+  },
+  "home": {
+    "hero": {
+      "title": "Powering AI from the Heart of Eurasia.",
+      "leadStrong": "Data Center Valley is Kazakhstan’s giga-scale data center campus – ",
+      "leadMuted": "built to convert energy, land and connectivity into compute capacity for the global AI economy.",
+      "getStarted": "Get started",
+      "watchStream": "Watch Stream",
+      "place": "Ekibastuz · Kazakhstan",
+      "coords": "51.7250°N 75.3225°E",
+      "stats": {
+        "power": { "label": "Planned scalable power capacity", "value": "up to 1 GW" },
+        "territory": { "label": "Dedicated development territory", "value": "~1,500 ha" },
+        "tax": { "label": "Land tax and VAT on imports", "value": "0%" },
+        "cost": { "label": "Indicative competitive electricity cost", "value": "$0.025/kWh" }
+      }
+    },
+    "why": {
+      "headerWhy": "Why",
+      "headerData": "Data",
+      "headerCenter": "Center",
+      "headerValley": "Valley",
+      "items": [
+        { "title": "Energy<br>advantage", "text": "Access to scalable power infrastructure in one of the region’s most important energy clusters." },
+        { "title": "Time<br>to market", "text": "Fast-track infrastructure readiness: pre-identified sites, existing power connections and simplified regulatory procedures." },
+        { "title": "Strategic<br>geography", "text": "Positioned between Europe, Asia and the Middle East, with growing relevance as a digital and logistics corridor." },
+        { "title": "Government<br>support", "text": "Supported through national digital transformation priorities, investment frameworks and infrastructure coordination." },
+        { "title": "Talent<br>and<br>ecosystem", "text": "A growing AI, engineering and digital talent base supported by national AI development initiatives." }
+      ],
+      "imageAlt": "Data Center Valley aerial view at night"
+    },
+    "models": {
+      "title": "Flexible models for hyperscalers, AI companies and investors",
+      "subtitleStrong": "From fast deployment in prepared capacity to large-scale greenfield development ",
+      "subtitleMuted": "and AI compute partnerships",
+      "active": {
+        "title": "Wholesale Colocation",
+        "text": "Fast access to power, cooling and secure data center capacity for cloud providers, AI companies and GPU operators."
+      },
+      "list": ["Build-to-Suit", "Greenfield Development", "AI Compute Partnerships"],
+      "learnMore": "Learn More"
+    },
+    "camera": {
+      "title": "On-site Live Camera",
+      "subtitle": "Watch our team work with live footage updated continuously."
+    },
+    "team": {
+      "title": "Team",
+      "seeMore": "See more"
+    },
+    "news": {
+      "title": "News",
+      "seeMore": "See more",
+      "allNews": "All news",
+      "featured": {
+        "date": "02.07.2026",
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+      },
+      "rows": [
+        { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies" },
+        { "date": "12.06.2026", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+        { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at" }
+      ]
+    },
+    "cta": {
+      "title": "Start a conversation",
+      "note": "Build your AI infrastructure<br>in Data Center Valley.",
+      "text": "Whether you are a hyperscaler, AI company, data center developer or infrastructure investor, the platform is ready to scale with you.",
+      "button": "Request Briefing"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Data Center Valley",
+      "lead": "Building the foundational infrastructure for the next generation of global computing."
+    },
+    "why": {
+      "label": "Why Data Center Valley",
+      "disclaimer": "Final technical and commercial parameters are subject to project documentation and regulatory approvals.",
+      "textMuted": "Data Center Valley is established with a clear and ambitious mission: to build a sovereign yet globally integrated artificial intelligence infrastructure hub. ",
+      "textStrong": "By strategic positioning in one of the region’s most vital energy clusters, we convert abundant power and vast territory into secure, scalable, and highly efficient compute capacity tailored specifically for the global AI economy.",
+      "cta": "Request meeting"
+    },
+    "geo": {
+      "title": "Strategic Geography<br>&amp; Corridor",
+      "text": "Positioned at the critical crossroads between Europe, Asia, and the Middle East, Kazakhstan is rapidly gaining immense relevance as a premier digital and logistics corridor. Data Center Valley capitalizes on this unique geographical advantage, offering hyperscalers and international enterprises an ultra-connected infrastructure node that seamlessly bridges major global markets with low-latency data pathways.",
+      "mapAlt": "Latency map connecting Data Center Valley to major European and Central Asian hubs"
+    },
+    "gov": {
+      "title": "National Priority<br>&amp; Government Support",
+      "emblemAlt": "Emblem of Kazakhstan",
+      "accordion": [
+        { "title": "Заголовок", "text": "Data Center Valley operates in full coordination with national infrastructure planning bodies, ensuring predictable long-term access to power, land and network resources." },
+        { "title": "Заголовок", "text": "The development of Data Center Valley is fully aligned with national digital transformation priorities and strategic investment frameworks. Backed by comprehensive infrastructure coordination at the highest state level, the platform ensures long-term regulatory predictability, robust investment protection, and a streamlined operational environment for our global partners and institutional investors." },
+        { "title": "Заголовок", "text": "Investment protection is reinforced through established legal frameworks, offering international partners clarity and confidence in long-horizon infrastructure commitments." },
+        { "title": "Заголовок", "text": "A dedicated coordination framework streamlines permitting, utility connections and regulatory approvals across all phases of campus development." },
+        { "title": "Заголовок", "text": "Ongoing collaboration with national institutions supports workforce development and integration with the broader digital economy." }
+      ]
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "lead": "From fast deployment in prepared capacity to large-scale greenfield development and AI compute partnerships"
+    },
+    "cards": [
+      {
+        "title": "Wholesale Colocation",
+        "text": "Fast access to power, cooling and secure data center capacity for cloud providers, AI companies and GPU operators. Our wholesale colocation solutions offer rapidly deployable environments engineered to support high-density racks and advanced cooling methodologies required for modern AI workloads.",
+        "button": "Inquire About Colocation"
+      },
+      {
+        "title": "Build-to-Suit",
+        "text": "Dedicated infrastructure built to specific technical and operational requirements for hyperscalers and sovereign AI platforms. We collaborate closely with your engineering teams to design, construct, and deliver custom data center facilities optimized for your unique hardware architecture, redundancy specifications, and efficiency goals.",
+        "button": "Build-to-Suit"
+      },
+      {
+        "title": "Greenfield Development",
+        "text": "Land, power, utilities and network access for large technology companies seeking direct development control. Access pre-identified and permitted land parcels within our ecosystem, complete with high-voltage power connections and established fiber routes, allowing you to execute large-scale construction under your proprietary blueprints.",
+        "button": "Inquire About Greenfield"
+      },
+      {
+        "title": "AI Compute Partnerships",
+        "text": "Participation in the AI compute value chain for GPU-as-a-Service platforms and institutional investors. Beyond physical space, Data Center Valley acts as an ecosystem enabler, offering joint-venture models and strategic frameworks to deploy turn-key high-performance computing clusters geared for global AI demand.",
+        "button": "Inquire About Partnerships"
+      }
+    ],
+    "cta": {
+      "title": "Deploy Your Infrastructure<br>at Giga-Scale",
+      "text": "Our team is ready to analyze your technical requirements and prepare a tailored briefing.",
+      "button": "Request Briefing"
+    }
+  },
+  "ai": {
+    "hero": {
+      "title": "Built for Giga-Scale AI Infrastructure",
+      "lead": "Engineered from the ground up to convert unprecedented power and territory into seamless compute capacity"
+    },
+    "power": {
+      "title": "The Power Cluster Advantage",
+      "stats": [
+        { "label": "Tier", "value": "Tier III" },
+        { "label": "Racks per module", "value": "1,920" },
+        { "label": "Uptime", "value": "99.982%" },
+        { "label": "Power redundancy", "value": "N+1" },
+        { "label": "Power paths", "value": "2" },
+        { "label": "Max rack density", "value": "225 kW" },
+        { "label": "Cooling redundancy", "value": "N+1" },
+        { "label": "Liquid cooling", "value": "Supported" }
+      ]
+    },
+    "mapAlt": "Latency map connecting Data Center Valley to major European, Central Asian and Hong Kong hubs"
+  },
+  "team_page": {
+    "title": "Team",
+    "filter": "Filters",
+    "members": [
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
+      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." }
+    ]
+  },
+  "news_page": {
+    "title": "News",
+    "more": [
+      { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
+      { "date": "12.06.2026", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
+      { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." }
+    ]
+  },
+  "faq": {
+    "title": "Popular Questions",
+    "note1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl.",
+    "note2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+    "requestMeeting": "Request meeting",
+    "items": [
+      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
+      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "list": ["Donec elementum dui ultricies", "blandit arcu vitae", "egestas orci."] },
+      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
+      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
+      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." }
+    ]
+  }
+}
