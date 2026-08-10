@@ -1,0 +1,37 @@
+services:
+  web:
+    build:
+      context: ./nuxt-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NODE_ENV: production
+
+  # TODO: when the Laravel admin panel exists, add it here as its own service,
+  # e.g.:
+  #
+  # api:
+  #   build:
+  #     context: ./laravel-app
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8000:8000"
+  #   env_file: ./laravel-app/.env
+  #   depends_on:
+  #     - db
+  #
+  # db:
+  #   image: mysql:8
+  #   restart: unless-stopped
+  #   environment:
+  #     MYSQL_DATABASE: dcv
+  #     MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+  #   volumes:
+  #     - db-data:/var/lib/mysql
+  #
+  # Then point `web` at it internally (e.g. NUXT_PUBLIC_API_BASE: http://api:8000)
+  # and add an nginx proxy rule for /api -> api:8000 (see deploy/nginx.nuxt.conf).
+
+# volumes:
+#   db-data:

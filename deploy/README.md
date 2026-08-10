@@ -47,3 +47,35 @@ cd /var/www/landing && git pull
 ```
 
 No nginx reload needed — it just serves whatever files are on disk.
+
+## Cutting over to the Nuxt app (Docker)
+
+The static HTML above is still what's live. `nuxt-app/` is the rebuild in
+progress; once it's ready to go live, this is the switch:
+
+```bash
+cd /var/www/landing
+apt install -y docker.io docker-compose-plugin   # if not already installed
+
+docker compose up -d --build
+```
+
+This runs the Nuxt/Nitro server as a container on `127.0.0.1:3000` (see
+`docker-compose.yml` at the repo root and `nuxt-app/Dockerfile`). Host nginx
+still terminates TLS and just reverse-proxies to it — swap the config:
+
+```bash
+cp /var/www/landing/deploy/nginx.nuxt.conf /etc/nginx/sites-available/data-center-valley.com
+nginx -t && systemctl reload nginx
+```
+
+Redeploying after that point:
+
+```bash
+cd /var/www/landing && git pull && docker compose up -d --build
+```
+
+When the Laravel admin panel is built, it slots in as another service in
+`docker-compose.yml` (placeholder already there) with its own nginx
+`location /api/` proxy rule (placeholder in `nginx.nuxt.conf`) — no need to
+restructure any of this to add it.
