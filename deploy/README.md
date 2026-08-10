@@ -60,7 +60,7 @@ apt install -y docker.io docker-compose-plugin   # if not already installed
 docker compose up -d --build
 ```
 
-This runs the Nuxt/Nitro server as a container on `127.0.0.1:3000` (see
+This runs the Nuxt/Nitro server as a container on `127.0.0.1:3001` (see
 `docker-compose.yml` at the repo root and `nuxt-app/Dockerfile`). Host nginx
 still terminates TLS and just reverse-proxies to it — swap the config:
 
