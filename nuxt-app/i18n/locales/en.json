@@ -35,6 +35,14 @@
     "infrastructure": "Infrastructure"
   },
   "home": {
+    "heroPromo": {
+      "title": "Data Center Valley<br>at Digital Bridge<br>Kazakhstan 2026",
+      "textAccent": "Meet us on October 1, 2026",
+      "textMuted": " — we’ll share how we’re developing data center infrastructure in Kazakhstan.",
+      "cta": "Buy ticket",
+      "date": "October 1, 2026",
+      "imageAlt": "Data Center Valley at Digital Bridge Kazakhstan 2026"
+    },
     "hero": {
       "title": "Powering AI from the Heart of Eurasia.",
       "leadStrong": "Data Center Valley is Kazakhstan’s giga-scale data center campus – ",

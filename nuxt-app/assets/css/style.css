@@ -121,6 +121,39 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+/* На главной шапка вынута из потока и лежит поверх hero-promo,
+   пока страница не проскроллена (см. header--transparent). */
+.header--overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-page);
+}
+
+.header--transparent {
+    background: transparent;
+}
+
+.header--transparent .nav__link,
+.header--transparent .locale-switch__link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.header--transparent .locale-switch__link.is-active {
+    color: white;
+}
+
+.header--transparent .nav__link:hover,
+.header--transparent .locale-switch__link:hover {
+    color: white;
+}
+
+.header--transparent .menu-btn span {
+    background: white;
 }
 
 .header__content {
@@ -331,6 +364,15 @@ img {
     background-color: #000;
 }
 
+.btn--accent {
+    background: linear-gradient(135deg, #C026D3, #7C3AED);
+    color: white;
+}
+
+.btn--accent:hover {
+    background: linear-gradient(135deg, #A21CAF, #6D28D9);
+}
+
 /* ============================================
    HERO SECTION
    ============================================ */
@@ -483,6 +525,100 @@ img {
 @media (min-width: 768px) {
     .hero__stat-value {
         font-size: var(--font-size-xl);
+    }
+}
+
+/* ============================================
+   HERO PROMO (Digital Bridge Kazakhstan 2026)
+   ============================================ */
+.hero-promo {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-promo__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-promo__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 8, 16, 0.6) 0%, rgba(8, 8, 16, 0.25) 35%, rgba(8, 8, 16, 0.35) 65%, rgba(8, 8, 16, 0.75) 100%);
+}
+
+.hero-promo__inner {
+    position: relative;
+    padding: 140px 24px 64px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-promo__title {
+    font-family: var(--font-family-heading);
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+    .hero-promo__title {
+        font-size: 52px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-promo__title {
+        font-size: 64px;
+    }
+}
+
+.hero-promo__text {
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+    max-width: 560px;
+}
+
+.hero-promo__text-accent {
+    color: var(--color-primary);
+}
+
+.hero-promo__text-muted {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-promo__actions {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.hero-promo__date {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+@media (min-width: 900px) {
+    .hero-promo {
+        min-height: 640px;
     }
 }
 

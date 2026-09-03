@@ -11,7 +11,24 @@ const localePath = useLocalePath()
 
 <template>
   <div>
-    <!-- Hero -->
+    <!-- Hero: promo — Digital Bridge Kazakhstan 2026 -->
+    <!-- TODO: ссылка "Buy ticket" временная (#), подставить реальный URL продажи билетов -->
+    <section class="hero-promo" id="platform">
+      <img class="hero-promo__bg" src="/asset/herobackground.png" :alt="t('home.heroPromo.imageAlt')">
+      <div class="hero-promo__overlay" aria-hidden="true"></div>
+      <div class="container hero-promo__inner">
+        <h1 class="hero-promo__title" v-html="t('home.heroPromo.title')"></h1>
+        <p class="hero-promo__text">
+          <span class="hero-promo__text-accent">{{ t('home.heroPromo.textAccent') }}</span><span class="hero-promo__text-muted">{{ t('home.heroPromo.textMuted') }}</span>
+        </p>
+        <div class="hero-promo__actions">
+          <a href="#" class="btn btn--accent">{{ t('home.heroPromo.cta') }}</a>
+          <span class="hero-promo__date">{{ t('home.heroPromo.date') }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero (прежний, закомментирован — вернуть при необходимости)
     <section class="hero" id="platform">
       <div class="container">
         <h1 class="hero__title">{{ t('home.hero.title') }}</h1>
@@ -21,7 +38,6 @@ const localePath = useLocalePath()
         </p>
 
         <div class="hero__actions">
-          <!-- LINK: заявка -> почта -->
           <a href="mailto:commercial@dc-valley.com" class="btn btn--primary">{{ t('home.hero.getStarted') }} &rarr;</a>
         </div>
 
@@ -41,6 +57,7 @@ const localePath = useLocalePath()
         </div>
       </div>
     </section>
+    -->
 
     <!-- Why Data Center Valley -->
     <!-- LINK: якорь #campus — на него ведёт пункт меню "Campus" в AppHeader.vue -->
@@ -121,6 +138,7 @@ const localePath = useLocalePath()
 
     <!-- CTA -->
     <SectionCta
+      v-if="false"
       :title="t('home.cta.title')"
       :note="t('home.cta.note')"
       :text="t('home.cta.text')"

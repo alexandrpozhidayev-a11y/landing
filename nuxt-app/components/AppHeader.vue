@@ -2,6 +2,7 @@
 const { t, locales, locale } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
+const route = useRoute()
 
 const mobileOpen = ref(false)
 function toggleMobile() {
@@ -10,6 +11,22 @@ function toggleMobile() {
 function closeMobile() {
   mobileOpen.value = false
 }
+
+// Хиро-баннер на главной тёмный (herobackground.png) — пока не проскроллили,
+// шапка накладывается поверх него прозрачно, с белым текстом.
+const isHome = computed(() => route.path === localePath('/'))
+const scrolled = ref(false)
+function onScroll() {
+  scrolled.value = window.scrollY > 40
+}
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+const overlay = computed(() => isHome.value && !scrolled.value)
 
 const navLinks = computed(() => [
   { label: t('nav.platform'), to: localePath('/about') },
@@ -21,9 +38,9 @@ const navLinks = computed(() => [
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header--overlay': isHome, 'header--transparent': overlay }">
     <div class="container header__content">
-      <NuxtLink :to="localePath('/')" class="logo">
+      <NuxtLink :to="localePath('/')" class="logo" :class="{ 'logo--white': overlay }">
         <svg class="logo__mark" width="48" height="48" viewBox="0 0 40 40" fill="none">
           <rect x="1.25" y="1.25" width="37.5" height="37.5" stroke="currentColor" stroke-width="2.5"/>
           <polygon points="6,2.5 34,2.5 20,26" fill="currentColor"/>
