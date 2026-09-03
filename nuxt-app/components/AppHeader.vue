@@ -35,7 +35,9 @@ const navLinks = computed(() => [
   { label: t('nav.platform'), to: localePath('/about') },
   { label: t('nav.campus'), to: localePath('/') + '#campus' },
   { label: t('nav.solutions'), to: localePath('/services') },
-  { label: t('nav.team'), to: localePath('/team') },
+  // Team скрыт до наполнения контентом (в карточках пока «Фамилия/Имя/Отчество»).
+  // Вернуть — раскомментировать здесь и в AppFooter.vue.
+  // { label: t('nav.team'), to: localePath('/team') },
   { label: t('nav.news'), to: localePath('/news') }
 ])
 </script>

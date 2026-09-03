@@ -33,7 +33,8 @@ function scrollTop() {
         <h4>{{ t('footer.company.title') }}</h4>
         <NuxtLink :to="localePath('/about')">{{ t('nav.platform') }}</NuxtLink>
         <NuxtLink :to="localePath('/') + '#campus'">{{ t('nav.campus') }}</NuxtLink>
-        <NuxtLink :to="localePath('/team')">{{ t('nav.team') }}</NuxtLink>
+        <!-- Team скрыт до наполнения контентом, см. AppHeader.vue -->
+        <!-- <NuxtLink :to="localePath('/team')">{{ t('nav.team') }}</NuxtLink> -->
         <NuxtLink :to="localePath('/news')">{{ t('nav.news') }}</NuxtLink>
       </nav>
 
