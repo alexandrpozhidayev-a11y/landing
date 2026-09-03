@@ -2,6 +2,16 @@
 
 Site lives at `/var/www/landing` (already `git clone`d there).
 
+> **Живой домен — `dc-valley.com`**, конфиг на сервере называется
+> `/etc/nginx/sites-available/dc-valley.com` (симлинк на него в
+> `sites-enabled/`). Файлы `nginx.bootstrap.conf` / `nginx.conf` /
+> `nginx.nuxt.conf` ниже написаны под другой домен —
+> `data-center-valley.com` — и на этом сервере ничего не делают: если
+> скопировать их под именем `data-center-valley.com`, симлинка не будет,
+> nginx их не подхватит, и сайт продолжит работать по-старому.
+> Актуальный продакшен-конфиг — **`nginx.prod.conf`**, см. раздел
+> «Cutting over to the Nuxt app» в конце.
+
 ## 1. Bootstrap over HTTP (no cert yet)
 
 ```bash
@@ -62,10 +72,32 @@ docker compose up -d --build
 
 This runs the Nuxt/Nitro server as a container on `127.0.0.1:3004` (see
 `docker-compose.yml` at the repo root and `nuxt-app/Dockerfile`). Host nginx
-still terminates TLS and just reverse-proxies to it — swap the config:
+still terminates TLS and just reverse-proxies to it.
+
+Check the container answers before touching nginx — until you do, the old
+static site keeps serving and nothing is at risk:
 
 ```bash
-cp /var/www/landing/deploy/nginx.nuxt.conf /etc/nginx/sites-available/data-center-valley.com
+docker compose ps
+curl -I http://127.0.0.1:3004/en   # expect 200
+```
+
+Then swap the config (back it up first — this is the live site):
+
+```bash
+cp /etc/nginx/sites-available/dc-valley.com /root/dc-valley.com.static.bak
+cp /var/www/landing/deploy/nginx.prod.conf /etc/nginx/sites-available/dc-valley.com
+nginx -t && systemctl reload nginx
+```
+
+`nginx.prod.conf` is the file that was already on the server, with the
+static-serving `location /` replaced by a proxy to the container —
+`server_name`, certificates and redirects are untouched.
+
+Rollback to static:
+
+```bash
+cp /root/dc-valley.com.static.bak /etc/nginx/sites-available/dc-valley.com
 nginx -t && systemctl reload nginx
 ```
 
