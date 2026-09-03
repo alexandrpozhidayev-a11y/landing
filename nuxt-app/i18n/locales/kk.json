@@ -1,1 +1,321 @@
-{}
+{
+    "nav": {
+        "platform": "Біз туралы",
+        "campus": "Кампус",
+        "solutions": "Шешімдер",
+        "team": "Команда",
+        "news": "Жаңалықтар",
+        "requestMeeting": "Кездесуге өтініш беру"
+    },
+    "brand": {
+        "name": "Data Center",
+        "name2": "Valley"
+    },
+    "footer": {
+        "desc": "Data Center Valley — Қазақстандағы гига-масштабты деректер орталығы кампусы",
+        "solutions": {
+            "title": "Шешімдер",
+            "colocation": "Көтерме колокация",
+            "buildToSuit": "Жеке жоба бойынша салу",
+            "greenfield": "Нөлден бастап дамыту",
+            "partnerships": "AI есептеулері саласындағы серіктестік"
+        },
+        "company": {
+            "title": "Компания"
+        },
+        "brand": "Data Center Valley",
+        "rights": "Барлық құқықтар қорғалған",
+        "backToTop": "Жоғарыға оралу"
+    },
+    "breadcrumb": {
+        "back": "Артқа",
+        "main": "Басты бет",
+        "platform": "Платформа",
+        "services": "Шешімдер",
+        "infrastructure": "Инфрақұрылым"
+    },
+    "home": {
+        "heroPromo": {
+            "title": "Data Center Valley Digital Bridge<br>Қазақстан 2026 көрмесінде",
+            "text": "2026 жылғы 1 қазанда кездесеміз — Қазақстандағы деректер орталығы инфрақұрылымын қалай дамытып жатқанымыз туралы айтып береміз.",
+            "cta": "Билет сатып алу",
+            "date": "2026 жылғы 1 қазан",
+            "imageAlt": "Digital Bridge Kazakhstan 2026 көрмесіндегі Data Center Valley"
+        },
+        "hero": {
+            "title": "Еуразия жүрегінен AI қуатын арттырамыз.",
+            "leadStrong": "Data Center Valley — Қазақстандағы гига-масштабты деректер орталығы кампусы — ",
+            "leadMuted": "энергияны, жер ресурстарын және байланыс мүмкіндіктерін жаһандық AI экономикасына арналған есептеу қуатына айналдыру үшін құрылған.",
+            "getStarted": "Бастау",
+            "watchStream": "Трансляцияны көру",
+            "place": "Екібастұз · Қазақстан",
+            "coords": "51.7250°N 75.3225°E",
+            "stats": {
+                "power": {
+                    "label": "Жоспарланған масштабталатын қуаттылық",
+                    "value": "1 ГВт-қа дейін"
+                },
+                "territory": {
+                    "label": "Дамытуға бөлінген аумақ",
+                    "value": "~1 500 га"
+                },
+                "tax": {
+                    "label": "Жер салығы және импортқа ҚҚС",
+                    "value": "0%"
+                },
+                "cost": {
+                    "label": "Электр энергиясының болжамды бәсекеге қабілетті құны",
+                    "value": "$0.025/кВт·сағ"
+                }
+            }
+        },
+        "why": {
+            "headerWhy": "Неліктен",
+            "headerData": "Data",
+            "headerCenter": "Center",
+            "headerValley": "Valley",
+            "items": [{
+                    "title": "Энергетикалық<br>артықшылық",
+                    "text": "Аймақтағы маңызды энергетикалық кластерлердің біріндегі масштабталатын энергетикалық инфрақұрылымға қолжетімділік."
+                },
+                {
+                    "title": "Нарыққа<br>шығу жылдамдығы",
+                    "text": "Инфрақұрылымды жылдам іске қосу: алдын ала анықталған алаңдар, қолданыстағы электр желісіне қосылымдар және жеңілдетілген реттеуші рәсімдер."
+                },
+                {
+                    "title": "Стратегиялық<br>география",
+                    "text": "Еуропа, Азия және Таяу Шығыстың арасында орналасқан және цифрлық әрі логистикалық дәліз ретінде маңызы артып келе жатқан аймақ."
+                },
+                {
+                    "title": "Мемлекеттік<br>қолдау",
+                    "text": "Ұлттық цифрлық трансформация басымдықтары, инвестициялық тетіктер және инфрақұрылымды үйлестіру аясындағы қолдау."
+                },
+                {
+                    "title": "Кадрлар<br>және<br>экожүйе",
+                    "text": "Ұлттық AI дамыту бастамалары қолдайтын AI, инженерия және цифрлық технологиялар саласындағы өсіп келе жатқан мамандар базасы."
+                }
+            ],
+            "imageAlt": "Түнгі уақытта Data Center Valley аумағының әуеден көрінісі"
+        },
+        "models": {
+            "title": "Гиперскейлерлерге, AI компанияларына және инвесторларға арналған икемді модельдер",
+            "subtitleStrong": "Дайын қуаттарды жылдам іске қосудан бастап ауқымды нөлден дамытуға дейін ",
+            "subtitleMuted": "және AI есептеулері саласындағы серіктестік",
+            "active": {
+                "title": "Көтерме колокация",
+                "text": "Бұлттық провайдерлерге, AI компанияларына және GPU операторларына электр энергиясына, салқындатуға және қорғалған деректер орталығы қуатына жылдам қолжетімділік."
+            },
+            "list": [
+                "Жеке жоба бойынша салу",
+                "Нөлден бастап дамыту",
+                "AI есептеулері саласындағы серіктестік"
+            ],
+            "learnMore": "Толығырақ"
+        },
+        "camera": {
+            "title": "Нысандағы тікелей камера",
+            "subtitle": "Үнемі жаңартылып отыратын тікелей бейне арқылы командамыздың жұмысын бақылаңыз."
+        },
+        "team": {
+            "title": "Команда",
+            "seeMore": "Толығырақ"
+        },
+        "news": {
+            "title": "Жаңалықтар",
+            "seeMore": "Толығырақ",
+            "allNews": "Барлық жаңалықтар",
+            "featured": {
+                "date": "02.07.2026",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+            },
+            "rows": [{
+                    "date": "11.06.2025",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies"
+                },
+                {
+                    "date": "12.06.2026",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+                },
+                {
+                    "date": "11.06.2025",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at"
+                }
+            ]
+        },
+        "cta": {
+            "title": "Әңгіме бастайық",
+            "note": "AI инфрақұрылымыңызды<br>Data Center Valley аумағында құрыңыз.",
+            "text": "Сіз гиперскейлер, AI компаниясы, деректер орталығын әзірлеуші немесе инфрақұрылымдық инвестор болсаңыз да, платформа сізбен бірге масштабталуға дайын.",
+            "button": "Брифингке өтініш беру"
+        }
+    },
+    "about": {
+        "hero": {
+            "title": "Data Center Valley туралы",
+            "lead": "Жаһандық есептеулердің келесі буынына арналған базалық инфрақұрылымды қалыптастырамыз."
+        },
+        "why": {
+            "label": "Неліктен Data Center Valley",
+            "disclaimer": "Соңғы техникалық және коммерциялық параметрлер жобалық құжаттама мен реттеуші органдардың мақұлдауына байланысты анықталады.",
+            "textMuted": "Data Center Valley нақты әрі ауқымды мақсатпен құрылды: егемен, сонымен қатар жаһандық деңгейде интеграцияланған жасанды интеллект инфрақұрылымы хабын құру. ",
+            "textStrong": "Аймақтағы аса маңызды энергетикалық кластерлердің біріндегі стратегиялық орналасуымыздың арқасында біз қолжетімді энергия мен кең аумақты жаһандық AI экономикасына арнайы бейімделген қауіпсіз, масштабталатын және жоғары тиімді есептеу қуатына айналдырамыз.",
+            "cta": "Кездесуге өтініш беру"
+        },
+        "geo": {
+            "title": "Стратегиялық география<br>және дәліз",
+            "text": "Еуропа, Азия және Таяу Шығыс арасындағы маңызды тоғыста орналасқан Қазақстан жетекші цифрлық және логистикалық дәліз ретінде маңызын жылдам арттырып келеді. Data Center Valley осы бірегей географиялық артықшылықты пайдалана отырып, гиперскейлерлер мен халықаралық компанияларға негізгі жаһандық нарықтарды деректерді төмен кідіріс арқылы үздіксіз байланыстыратын ультра-байланысты инфрақұрылымдық торап ұсынады.",
+            "mapAlt": "Data Center Valley орталығын Еуропа мен Орталық Азияның негізгі хабтарымен байланыстыратын кідіріс картасы"
+        },
+        "gov": {
+            "title": "Ұлттық басымдық<br>және мемлекеттік қолдау",
+            "emblemAlt": "Қазақстан Республикасының елтаңбасы",
+            "accordion": [{
+                    "title": "Тақырып",
+                    "text": "Data Center Valley ұлттық инфрақұрылымды жоспарлауға жауапты мемлекеттік органдармен толық үйлесімді жұмыс істейді, бұл электр энергиясына, жер және желілік ресурстарға ұзақ мерзімді әрі болжамды қолжетімділікті қамтамасыз етеді."
+                },
+                {
+                    "title": "Тақырып",
+                    "text": "Data Center Valley дамуы ұлттық цифрлық трансформация басымдықтары мен стратегиялық инвестициялық тетіктерге толық сәйкес келеді. Мемлекеттік деңгейдегі кешенді инфрақұрылымдық үйлестірудің қолдауымен платформа ұзақ мерзімді реттеуші болжамдылықты, инвестицияларды сенімді қорғауды және жаһандық серіктестер мен институционалдық инвесторлар үшін оңтайландырылған операциялық ортаны қамтамасыз етеді."
+                },
+                {
+                    "title": "Тақырып",
+                    "text": "Инвестицияларды қорғау қолданыстағы құқықтық тетіктер арқылы күшейтіліп, халықаралық серіктестерге ұзақ мерзімді инфрақұрылымдық міндеттемелер бойынша айқындық пен сенімділік береді."
+                },
+                {
+                    "title": "Тақырып",
+                    "text": "Арнайы үйлестіру жүйесі кампусты дамытудың барлық кезеңдерінде рұқсаттарды алу, коммуналдық желілерге қосылу және реттеуші мақұлдауларды жеңілдетеді."
+                },
+                {
+                    "title": "Тақырып",
+                    "text": "Мемлекеттік институттармен тұрақты ынтымақтастық кадрларды дамытуға және кеңірек цифрлық экономикаға интеграциялануға ықпал етеді."
+                }
+            ]
+        }
+    },
+    "services": {
+        "hero": {
+            "title": "Біздің қызметтер",
+            "lead": "Дайын қуаттарды жылдам іске қосудан бастап ауқымды нөлден дамытуға және AI есептеулері саласындағы серіктестікке дейін"
+        },
+        "cards": [{
+                "title": "Көтерме колокация",
+                "text": "Бұлттық провайдерлерге, AI компанияларына және GPU операторларына электр энергиясына, салқындатуға және қорғалған деректер орталығы қуатына жылдам қолжетімділік. Біздің көтерме колокация шешімдеріміз заманауи AI жүктемелеріне қажетті жоғары тығыздықтағы серверлік сөрелер мен озық салқындату технологияларын қолдауға арналған, жылдам іске қосылатын ортаны ұсынады.",
+                "button": "Колокация туралы білу"
+            },
+            {
+                "title": "Жеке жоба бойынша салу",
+                "text": "Гиперскейлерлер мен егемен AI платформаларының нақты техникалық және операциялық талаптарына сәйкес салынатын арнайы инфрақұрылым. Біз сіздің инженерлік командаларыңызбен тығыз жұмыс істеп, бірегей аппараттық архитектураңызға, резервтеу талаптарыңызға және тиімділік мақсаттарыңызға оңтайландырылған деректер орталықтарын жобалаймыз, саламыз және пайдалануға береміз.",
+                "button": "Жеке жоба бойынша салу"
+            },
+            {
+                "title": "Нөлден бастап дамыту",
+                "text": "Өз жобасын тікелей бақылауды көздейтін ірі технологиялық компанияларға арналған жер, электр энергиясы, коммуналдық инфрақұрылым және желілік қолжетімділік. Экожүйеміздегі алдын ала анықталған және рұқсаттары рәсімделген жер учаскелеріне, жоғары кернеулі электр қосылымдары мен қалыптасқан талшықты-оптикалық бағыттарға қол жеткізіп, ауқымды құрылысты өз жобалық шешімдеріңіз бойынша жүзеге асыра аласыз.",
+                "button": "Нөлден дамыту туралы білу"
+            },
+            {
+                "title": "AI есептеулері саласындағы серіктестік",
+                "text": "GPU-as-a-Service платформалары мен институционалдық инвесторларға арналған AI есептеулерінің құн тізбегіне қатысу. Физикалық кеңістіктен бөлек, Data Center Valley экожүйені дамытуға мүмкіндік беретін серіктес ретінде бірлескен кәсіпорын модельдері мен жаһандық AI сұранысына бағытталған жоғары өнімді есептеу кластерлерін толық іске қосуға арналған стратегиялық тетіктер ұсынады.",
+                "button": "Серіктестік туралы білу"
+            }
+        ],
+        "cta": {
+            "title": "Инфрақұрылымыңызды<br>гига-масштабта орналастырыңыз",
+            "text": "Біздің команда техникалық талаптарыңызды талдап, сізге бейімделген брифинг дайындауға дайын.",
+            "button": "Брифингке өтініш беру"
+        }
+    },
+    "ai": {
+        "hero": {
+            "title": "Гига-масштабты AI инфрақұрылымы үшін жасалған",
+            "lead": "Орасан зор энергетикалық және аумақтық ресурстарды үздіксіз есептеу қуатына айналдыру үшін нөлден бастап жобаланған"
+        },
+        "power": {
+            "title": "Энергетикалық кластердің артықшылығы",
+            "stats": [{
+                    "label": "Деңгей",
+                    "value": "Tier III"
+                },
+                {
+                    "label": "Модульдегі сөрелер саны",
+                    "value": "1 920"
+                },
+                {
+                    "label": "Қолжетімділік",
+                    "value": "99.982%"
+                },
+                {
+                    "label": "Электр қуатын резервтеу",
+                    "value": "N+1"
+                },
+                {
+                    "label": "Электр қуаты желілері",
+                    "value": "2"
+                },
+                {
+                    "label": "Сөренің максималды тығыздығы",
+                    "value": "225 кВт"
+                },
+                {
+                    "label": "Салқындатуды резервтеу",
+                    "value": "N+1"
+                },
+                {
+                    "label": "Сұйықтықпен салқындату",
+                    "value": "Қолдау көрсетіледі"
+                }
+            ]
+        },
+        "mapAlt": "Data Center Valley орталығын Еуропа, Орталық Азия және Гонконгтың негізгі хабтарымен байланыстыратын кідіріс картасы"
+    },
+    "team_page": {
+        "title": "Команда",
+        "filter": "Сүзгілер",
+        "members": [{
+            "lastName": "Тегі",
+            "firstName": "Аты",
+            "middleName": "Әкесінің аты",
+            "role": "Лауазымы",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+        }]
+    },
+    "news_page": {
+        "title": "Жаңалықтар",
+        "more": [{
+                "date": "11.06.2025",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "date": "12.06.2026",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "date": "11.06.2025",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            }
+        ]
+    },
+    "faq": {
+        "title": "Жиі қойылатын сұрақтар",
+        "note1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl.",
+        "note2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+        "requestMeeting": "Кездесуге өтініш беру",
+        "items": [{
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                "list": [
+                    "Donec elementum dui ultricies",
+                    "blandit arcu vitae",
+                    "egestas orci."
+                ]
+            }
+        ]
+    }
+}

@@ -534,36 +534,43 @@ img {
 .hero-promo {
     position: relative;
     overflow: hidden;
-    min-height: 480px;
+    min-height: 520px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
     color: white;
-    text-align: center;
 }
 
 .hero-promo__bg {
     position: absolute;
     inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Отзеркалено: стойка уходит вправо, слева освобождается тёмное поле под текст. */
+    transform: scaleX(-1);
 }
 
+/* Два слоя: горизонтальный гасит левую часть кадра, где лежит текст,
+   вертикальный держит контраст под шапкой сверху и под кнопкой снизу.
+   Правая часть остаётся почти нетронутой, чтобы картинка не мутнела. */
 .hero-promo__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(8, 8, 16, 0.6) 0%, rgba(8, 8, 16, 0.25) 35%, rgba(8, 8, 16, 0.35) 65%, rgba(8, 8, 16, 0.75) 100%);
+    background:
+        linear-gradient(90deg, rgba(8, 8, 16, 0.85) 0%, rgba(8, 8, 16, 0.6) 30%, rgba(8, 8, 16, 0) 65%),
+        linear-gradient(180deg, rgba(8, 8, 16, 0.55) 0%, rgba(8, 8, 16, 0.15) 30%, rgba(8, 8, 16, 0.45) 70%, rgba(8, 8, 16, 0.8) 100%);
 }
 
+/* Горизонтальные отступы наследуются от .container — левый край текста
+   совпадает с логотипом и остальными секциями страницы. */
 .hero-promo__inner {
     position: relative;
-    padding: 140px 24px 64px;
-    max-width: 860px;
-    margin: 0 auto;
+    padding-top: 140px;
+    padding-bottom: 32px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero-promo__title {
@@ -587,25 +594,17 @@ img {
 }
 
 .hero-promo__text {
-    margin-top: var(--spacing-md);
+    margin-top: 12px;
     font-size: var(--font-size-lg);
     line-height: 1.5;
     max-width: 560px;
-}
-
-.hero-promo__text-accent {
-    color: var(--color-primary);
-}
-
-.hero-promo__text-muted {
-    color: rgba(255, 255, 255, 0.75);
+    color: #fff;
 }
 
 .hero-promo__actions {
     margin-top: var(--spacing-xl);
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     gap: var(--spacing-md);
 }
@@ -616,9 +615,13 @@ img {
     color: rgba(255, 255, 255, 0.85);
 }
 
+/* В макете герой во весь экран (1080px на full hd). 100vh даёт ровно это
+   и подстраивается под другие разрешения; svh — чтобы на мобильных
+   адресная строка не срезала низ блока. */
 @media (min-width: 900px) {
     .hero-promo {
-        min-height: 640px;
+        min-height: 100vh;
+        min-height: 100svh;
     }
 }
 
@@ -1245,6 +1248,38 @@ img {
     color: var(--color-text-light);
     max-width: 460px;
     line-height: 1.6;
+}
+
+/* Форма продолжает карточку .cta__row — тот же фон, верхнего паддинга нет,
+   чтобы стыковалось без шва. */
+.cta__form {
+    background: var(--color-card);
+    padding: 0 var(--spacing-xl) var(--spacing-xl);
+}
+
+.cta__textarea {
+    width: 100%;
+    max-width: 640px;
+    min-height: 120px;
+    padding: 14px 16px;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--border-radius);
+    resize: vertical;
+    transition: var(--transition);
+}
+
+.cta__textarea::placeholder {
+    color: var(--color-text-light);
+}
+
+.cta__textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
 }
 
 .cta__decor {

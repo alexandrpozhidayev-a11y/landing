@@ -10,10 +10,11 @@ export default defineNuxtConfig({
 
   i18n: {
     baseUrl: 'https://dc-valley.com',
+    // Порядок этого массива = порядок переключателя языков в шапке.
     locales: [
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
-      { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru.json' },
-      { code: 'kk', language: 'kk-KZ', name: 'Қазақша', file: 'kk.json' }
+      { code: 'kk', language: 'kk-KZ', name: 'Қазақша', file: 'kk.json' },
+      { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru.json' }
     ],
     defaultLocale: 'en',
     strategy: 'prefix',
@@ -39,7 +40,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/en', '/ru', '/kk']
+      routes: ['/en', '/kk', '/ru']
     }
   }
 })

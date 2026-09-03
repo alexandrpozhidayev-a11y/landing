@@ -1,15 +1,16 @@
 <script setup lang="ts">
-const { t, tm, messages } = useI18n()
+const { t, tm, rt, messages } = useI18n()
 
 const accordionItems = computed(() => {
   let items = tm('faq.items') as any[]
   if (!Array.isArray(items) || items.length === 0) {
     items = (messages.value.en as any)?.faq?.items || []
   }
+  // tm() отдаёт сообщения скомпилированными (AST) — в строку их разворачивает rt().
   return items.map((item: any) => ({
-    title: item.title,
-    text: item.text,
-    list: item.list ? (item.list as any[]) : undefined
+    title: rt(item.title),
+    text: rt(item.text),
+    list: item.list ? (item.list as any[]).map((li: any) => rt(li)) : undefined
   }))
 })
 </script>

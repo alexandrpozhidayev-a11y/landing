@@ -14,7 +14,10 @@ function closeMobile() {
 
 // Хиро-баннер на главной тёмный (herobackground.png) — пока не проскроллили,
 // шапка накладывается поверх него прозрачно, с белым текстом.
-const isHome = computed(() => route.path === localePath('/'))
+// По имени маршрута, а не по пути: при смене языка путь и локаль обновляются
+// не в один тик, и сравнение с localePath('/') на мгновение давало false —
+// шапка успевала мигнуть белым поверх хиро.
+const isHome = computed(() => String(route.name || '').split('___')[0] === 'index')
 const scrolled = ref(false)
 function onScroll() {
   scrolled.value = window.scrollY > 40

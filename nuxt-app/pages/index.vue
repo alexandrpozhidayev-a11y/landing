@@ -14,13 +14,21 @@ const localePath = useLocalePath()
     <!-- Hero: promo — Digital Bridge Kazakhstan 2026 -->
     <!-- TODO: ссылка "Buy ticket" временная (#), подставить реальный URL продажи билетов -->
     <section class="hero-promo" id="platform">
-      <img class="hero-promo__bg" src="/asset/herobackground.png" :alt="t('home.heroPromo.imageAlt')">
+      <!-- Фон декоративный: до загрузки видео показывается poster (png). -->
+      <video
+        class="hero-promo__bg"
+        src="/asset/herobackground.mp4"
+        poster="/asset/herobackground-poster.png"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      ></video>
       <div class="hero-promo__overlay" aria-hidden="true"></div>
       <div class="container hero-promo__inner">
         <h1 class="hero-promo__title" v-html="t('home.heroPromo.title')"></h1>
-        <p class="hero-promo__text">
-          <span class="hero-promo__text-accent">{{ t('home.heroPromo.textAccent') }}</span><span class="hero-promo__text-muted">{{ t('home.heroPromo.textMuted') }}</span>
-        </p>
+        <p class="hero-promo__text">{{ t('home.heroPromo.text') }}</p>
         <div class="hero-promo__actions">
           <a href="#" class="btn btn--accent">{{ t('home.heroPromo.cta') }}</a>
           <span class="hero-promo__date">{{ t('home.heroPromo.date') }}</span>

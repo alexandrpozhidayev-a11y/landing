@@ -1,6 +1,6 @@
 {
   "nav": {
-    "platform": "Platform",
+    "platform": "About us",
     "campus": "Campus",
     "solutions": "Solutions",
     "team": "Team",
@@ -27,6 +27,10 @@
     "rights": "All rights reserved",
     "backToTop": "Back To Top"
   },
+  "ctaForm": {
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project — required capacity, timeline and region."
+  },
   "breadcrumb": {
     "back": "Back",
     "main": "Main",
@@ -36,9 +40,8 @@
   },
   "home": {
     "heroPromo": {
-      "title": "Data Center Valley<br>at Digital Bridge<br>Kazakhstan 2026",
-      "textAccent": "Meet us on October 1, 2026",
-      "textMuted": " — we’ll share how we’re developing data center infrastructure in Kazakhstan.",
+      "title": "Data Center Valley at Digital<br>Bridge Kazakhstan 2026",
+      "text": "Meet us on October 1, 2026 — we’ll share how we’re developing data center infrastructure in Kazakhstan.",
       "cta": "Buy ticket",
       "date": "October 1, 2026",
       "imageAlt": "Data Center Valley at Digital Bridge Kazakhstan 2026"
@@ -52,10 +55,22 @@
       "place": "Ekibastuz · Kazakhstan",
       "coords": "51.7250°N 75.3225°E",
       "stats": {
-        "power": { "label": "Planned scalable power capacity", "value": "up to 1 GW" },
-        "territory": { "label": "Dedicated development territory", "value": "~1,500 ha" },
-        "tax": { "label": "Land tax and VAT on imports", "value": "0%" },
-        "cost": { "label": "Indicative competitive electricity cost", "value": "$0.025/kWh" }
+        "power": {
+          "label": "Planned scalable power capacity",
+          "value": "up to 1 GW"
+        },
+        "territory": {
+          "label": "Dedicated development territory",
+          "value": "~1,500 ha"
+        },
+        "tax": {
+          "label": "Land tax and VAT on imports",
+          "value": "0%"
+        },
+        "cost": {
+          "label": "Indicative competitive electricity cost",
+          "value": "$0.025/kWh"
+        }
       }
     },
     "why": {
@@ -63,12 +78,26 @@
       "headerData": "Data",
       "headerCenter": "Center",
       "headerValley": "Valley",
-      "items": [
-        { "title": "Energy<br>advantage", "text": "Access to scalable power infrastructure in one of the region’s most important energy clusters." },
-        { "title": "Time<br>to market", "text": "Fast-track infrastructure readiness: pre-identified sites, existing power connections and simplified regulatory procedures." },
-        { "title": "Strategic<br>geography", "text": "Positioned between Europe, Asia and the Middle East, with growing relevance as a digital and logistics corridor." },
-        { "title": "Government<br>support", "text": "Supported through national digital transformation priorities, investment frameworks and infrastructure coordination." },
-        { "title": "Talent<br>and<br>ecosystem", "text": "A growing AI, engineering and digital talent base supported by national AI development initiatives." }
+      "items": [{
+          "title": "Energy<br>advantage",
+          "text": "Access to scalable power infrastructure in one of the region’s most important energy clusters."
+        },
+        {
+          "title": "Time<br>to market",
+          "text": "Fast-track infrastructure readiness: pre-identified sites, existing power connections and simplified regulatory procedures."
+        },
+        {
+          "title": "Strategic<br>geography",
+          "text": "Positioned between Europe, Asia and the Middle East, with growing relevance as a digital and logistics corridor."
+        },
+        {
+          "title": "Government<br>support",
+          "text": "Supported through national digital transformation priorities, investment frameworks and infrastructure coordination."
+        },
+        {
+          "title": "Talent<br>and<br>ecosystem",
+          "text": "A growing AI, engineering and digital talent base supported by national AI development initiatives."
+        }
       ],
       "imageAlt": "Data Center Valley aerial view at night"
     },
@@ -100,10 +129,21 @@
         "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
       },
-      "rows": [
-        { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies" },
-        { "date": "12.06.2026", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-        { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at" }
+      "rows": [{
+          "date": "11.06.2025",
+          "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies"
+        },
+        {
+          "date": "12.06.2026",
+          "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+        },
+        {
+          "date": "11.06.2025",
+          "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at"
+        }
       ]
     },
     "cta": {
@@ -133,12 +173,26 @@
     "gov": {
       "title": "National Priority<br>&amp; Government Support",
       "emblemAlt": "Emblem of Kazakhstan",
-      "accordion": [
-        { "title": "Заголовок", "text": "Data Center Valley operates in full coordination with national infrastructure planning bodies, ensuring predictable long-term access to power, land and network resources." },
-        { "title": "Заголовок", "text": "The development of Data Center Valley is fully aligned with national digital transformation priorities and strategic investment frameworks. Backed by comprehensive infrastructure coordination at the highest state level, the platform ensures long-term regulatory predictability, robust investment protection, and a streamlined operational environment for our global partners and institutional investors." },
-        { "title": "Заголовок", "text": "Investment protection is reinforced through established legal frameworks, offering international partners clarity and confidence in long-horizon infrastructure commitments." },
-        { "title": "Заголовок", "text": "A dedicated coordination framework streamlines permitting, utility connections and regulatory approvals across all phases of campus development." },
-        { "title": "Заголовок", "text": "Ongoing collaboration with national institutions supports workforce development and integration with the broader digital economy." }
+      "accordion": [{
+          "title": "Заголовок",
+          "text": "Data Center Valley operates in full coordination with national infrastructure planning bodies, ensuring predictable long-term access to power, land and network resources."
+        },
+        {
+          "title": "Заголовок",
+          "text": "The development of Data Center Valley is fully aligned with national digital transformation priorities and strategic investment frameworks. Backed by comprehensive infrastructure coordination at the highest state level, the platform ensures long-term regulatory predictability, robust investment protection, and a streamlined operational environment for our global partners and institutional investors."
+        },
+        {
+          "title": "Заголовок",
+          "text": "Investment protection is reinforced through established legal frameworks, offering international partners clarity and confidence in long-horizon infrastructure commitments."
+        },
+        {
+          "title": "Заголовок",
+          "text": "A dedicated coordination framework streamlines permitting, utility connections and regulatory approvals across all phases of campus development."
+        },
+        {
+          "title": "Заголовок",
+          "text": "Ongoing collaboration with national institutions supports workforce development and integration with the broader digital economy."
+        }
       ]
     }
   },
@@ -147,8 +201,7 @@
       "title": "Our Services",
       "lead": "From fast deployment in prepared capacity to large-scale greenfield development and AI compute partnerships"
     },
-    "cards": [
-      {
+    "cards": [{
         "title": "Wholesale Colocation",
         "text": "Fast access to power, cooling and secure data center capacity for cloud providers, AI companies and GPU operators. Our wholesale colocation solutions offer rapidly deployable environments engineered to support high-density racks and advanced cooling methodologies required for modern AI workloads.",
         "button": "Inquire About Colocation"
@@ -182,15 +235,38 @@
     },
     "power": {
       "title": "The Power Cluster Advantage",
-      "stats": [
-        { "label": "Tier", "value": "Tier III" },
-        { "label": "Racks per module", "value": "1,920" },
-        { "label": "Uptime", "value": "99.982%" },
-        { "label": "Power redundancy", "value": "N+1" },
-        { "label": "Power paths", "value": "2" },
-        { "label": "Max rack density", "value": "225 kW" },
-        { "label": "Cooling redundancy", "value": "N+1" },
-        { "label": "Liquid cooling", "value": "Supported" }
+      "stats": [{
+          "label": "Tier",
+          "value": "Tier III"
+        },
+        {
+          "label": "Racks per module",
+          "value": "1,920"
+        },
+        {
+          "label": "Uptime",
+          "value": "99.982%"
+        },
+        {
+          "label": "Power redundancy",
+          "value": "N+1"
+        },
+        {
+          "label": "Power paths",
+          "value": "2"
+        },
+        {
+          "label": "Max rack density",
+          "value": "225 kW"
+        },
+        {
+          "label": "Cooling redundancy",
+          "value": "N+1"
+        },
+        {
+          "label": "Liquid cooling",
+          "value": "Supported"
+        }
       ]
     },
     "mapAlt": "Latency map connecting Data Center Valley to major European, Central Asian and Hong Kong hubs"
@@ -198,24 +274,85 @@
   "team_page": {
     "title": "Team",
     "filter": "Filters",
-    "members": [
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." },
-      { "lastName": "Фамилия", "firstName": "Имя", "middleName": "Отчество", "role": "Должность", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci." }
+    "members": [{
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      },
+      {
+        "lastName": "Фамилия",
+        "firstName": "Имя",
+        "middleName": "Отчество",
+        "role": "Должность",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+      }
     ]
   },
   "news_page": {
     "title": "News",
-    "more": [
-      { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
-      { "date": "12.06.2026", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
-      { "date": "11.06.2025", "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." }
+    "more": [{
+        "date": "11.06.2025",
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      },
+      {
+        "date": "12.06.2026",
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      },
+      {
+        "date": "11.06.2025",
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      }
     ]
   },
   "faq": {
@@ -223,12 +360,27 @@
     "note1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl.",
     "note2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
     "requestMeeting": "Request meeting",
-    "items": [
-      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
-      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.", "list": ["Donec elementum dui ultricies", "blandit arcu vitae", "egestas orci."] },
-      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
-      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." },
-      { "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at." }
+    "items": [{
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      },
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+        "list": ["Donec elementum dui ultricies", "blandit arcu vitae", "egestas orci."]
+      },
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      },
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      },
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+      }
     ]
   }
 }

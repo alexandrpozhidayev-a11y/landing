@@ -1,1 +1,321 @@
-{}
+{
+    "nav": {
+        "platform": "О нас",
+        "campus": "Кампус",
+        "solutions": "Решения",
+        "team": "Команда",
+        "news": "Новости",
+        "requestMeeting": "Запросить встречу"
+    },
+    "brand": {
+        "name": "Data Center",
+        "name2": "Valley"
+    },
+    "footer": {
+        "desc": "Data Center Valley — гига-масштабный кампус дата-центров в Казахстане",
+        "solutions": {
+            "title": "Решения",
+            "colocation": "Оптовая колокация",
+            "buildToSuit": "Строительство по индивидуальному проекту",
+            "greenfield": "Развитие с нуля",
+            "partnerships": "Партнёрства в сфере AI-вычислений"
+        },
+        "company": {
+            "title": "Компания"
+        },
+        "brand": "Data Center Valley",
+        "rights": "Все права защищены",
+        "backToTop": "Вернуться наверх"
+    },
+    "breadcrumb": {
+        "back": "Назад",
+        "main": "Главная",
+        "platform": "Платформа",
+        "services": "Решения",
+        "infrastructure": "Инфраструктура"
+    },
+    "home": {
+        "heroPromo": {
+            "title": "Data Center Valley на Digital<br>Bridge Казахстан 2026",
+            "text": "Встретимся 1 октября 2026 года — расскажем, как мы развиваем инфраструктуру дата-центров в Казахстане.",
+            "cta": "Купить билет",
+            "date": "1 октября 2026",
+            "imageAlt": "Data Center Valley на Digital Bridge Kazakhstan 2026"
+        },
+        "hero": {
+            "title": "Энергия для ИИ из сердца Евразии.",
+            "leadStrong": "Data Center Valley — гига-масштабный кампус дата-центров Казахстана — ",
+            "leadMuted": "создан для преобразования энергии, земельных ресурсов и связности в вычислительные мощности для глобальной AI-экономики.",
+            "getStarted": "Начать",
+            "watchStream": "Смотреть трансляцию",
+            "place": "Экибастуз · Казахстан",
+            "coords": "51.7250°N 75.3225°E",
+            "stats": {
+                "power": {
+                    "label": "Планируемая масштабируемая мощность",
+                    "value": "до 1 ГВт"
+                },
+                "territory": {
+                    "label": "Выделенная территория для развития",
+                    "value": "~1 500 га"
+                },
+                "tax": {
+                    "label": "Земельный налог и НДС на импорт",
+                    "value": "0%"
+                },
+                "cost": {
+                    "label": "Ориентировочная конкурентная стоимость электроэнергии",
+                    "value": "$0.025/кВт·ч"
+                }
+            }
+        },
+        "why": {
+            "headerWhy": "Почему",
+            "headerData": "Data",
+            "headerCenter": "Center",
+            "headerValley": "Valley",
+            "items": [{
+                    "title": "Энергетическое<br>преимущество",
+                    "text": "Доступ к масштабируемой энергетической инфраструктуре в одном из важнейших энергетических кластеров региона."
+                },
+                {
+                    "title": "Скорость<br>выхода на рынок",
+                    "text": "Ускоренная готовность инфраструктуры: заранее определённые площадки, существующие подключения к электросети и упрощённые регуляторные процедуры."
+                },
+                {
+                    "title": "Стратегическое<br>расположение",
+                    "text": "Расположение между Европой, Азией и Ближним Востоком с растущей ролью региона как цифрового и логистического коридора."
+                },
+                {
+                    "title": "Поддержка<br>государства",
+                    "text": "Поддержка в рамках национальных приоритетов цифровой трансформации, инвестиционных механизмов и координации инфраструктуры."
+                },
+                {
+                    "title": "Кадры<br>и<br>экосистема",
+                    "text": "Растущая база специалистов в сфере ИИ, инженерии и цифровых технологий, поддерживаемая национальными инициативами по развитию искусственного интеллекта."
+                }
+            ],
+            "imageAlt": "Аэрофотосъёмка Data Center Valley ночью"
+        },
+        "models": {
+            "title": "Гибкие модели для гиперскейлеров, AI-компаний и инвесторов",
+            "subtitleStrong": "От быстрого развёртывания в подготовленных мощностях до масштабного развития с нуля ",
+            "subtitleMuted": "и партнёрств в сфере AI-вычислений",
+            "active": {
+                "title": "Оптовая колокация",
+                "text": "Быстрый доступ к электроэнергии, охлаждению и защищённым мощностям дата-центра для облачных провайдеров, AI-компаний и операторов GPU."
+            },
+            "list": [
+                "Строительство по индивидуальному проекту",
+                "Развитие с нуля",
+                "Партнёрства в сфере AI-вычислений"
+            ],
+            "learnMore": "Подробнее"
+        },
+        "camera": {
+            "title": "Онлайн-камера на площадке",
+            "subtitle": "Наблюдайте за работой нашей команды с помощью видеопотока, который постоянно обновляется."
+        },
+        "team": {
+            "title": "Команда",
+            "seeMore": "Подробнее"
+        },
+        "news": {
+            "title": "Новости",
+            "seeMore": "Подробнее",
+            "allNews": "Все новости",
+            "featured": {
+                "date": "02.07.2026",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+            },
+            "rows": [{
+                    "date": "11.06.2025",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies"
+                },
+                {
+                    "date": "12.06.2026",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci."
+                },
+                {
+                    "date": "11.06.2025",
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at"
+                }
+            ]
+        },
+        "cta": {
+            "title": "Начать разговор",
+            "note": "Создайте свою AI-инфраструктуру<br>в Data Center Valley.",
+            "text": "Независимо от того, являетесь ли вы гиперскейлером, AI-компанией, разработчиком дата-центров или инфраструктурным инвестором, платформа готова масштабироваться вместе с вами.",
+            "button": "Запросить брифинг"
+        }
+    },
+    "about": {
+        "hero": {
+            "title": "О Data Center Valley",
+            "lead": "Создаём фундаментальную инфраструктуру для следующего поколения глобальных вычислений."
+        },
+        "why": {
+            "label": "Почему Data Center Valley",
+            "disclaimer": "Окончательные технические и коммерческие параметры зависят от проектной документации и получения необходимых разрешений.",
+            "textMuted": "Cтратегический инфраструктурный проект по созданию в г. Экибастуз (Казахстан) крупного регионального центра обработки данных и развития цифровых сервисов.",
+            "textStrong": "Проект направлен на формирование современной технологической экосистемы для размещения вычислительных мощностей, облачной инфраструктуры, систем хранения и обработки данных, а также решений в области искусственного интеллект для международных технологических компаний, облачных провайдеров, операторов AI-инфраструктуры и других участников цифровой экономики.",
+            "cta": "Запросить встречу"
+        },
+        "geo": {
+            "title": "Стратегическая география<br>и коридор",
+            "text": "Расположенный на важнейшем перекрёстке между Европой, Азией и Ближним Востоком, Казахстан стремительно приобретает значение ведущего цифрового и логистического коридора. Data Center Valley использует это уникальное географическое преимущество, предлагая гиперскейлерам и международным компаниям ультрасвязанный инфраструктурный узел, который обеспечивает бесшовное соединение крупнейших мировых рынков благодаря каналам передачи данных с низкой задержкой.",
+            "mapAlt": "Карта задержки соединения Data Center Valley с крупнейшими европейскими и центральноазиатскими узлами"
+        },
+        "gov": {
+            "title": "Национальный приоритет<br>и государственная поддержка",
+            "emblemAlt": "Герб Казахстана",
+            "accordion": [{
+                    "title": "Заголовок",
+                    "text": "Data Center Valley работает в полной координации с государственными органами, отвечающими за планирование национальной инфраструктуры, обеспечивая предсказуемый долгосрочный доступ к электроэнергии, земельным и сетевым ресурсам."
+                },
+                {
+                    "title": "Заголовок",
+                    "text": "Развитие Data Center Valley полностью соответствует национальным приоритетам цифровой трансформации и стратегическим инвестиционным механизмам. При поддержке комплексной инфраструктурной координации на высшем государственном уровне платформа обеспечивает долгосрочную регуляторную предсказуемость, надёжную защиту инвестиций и оптимизированную операционную среду для глобальных партнёров и институциональных инвесторов."
+                },
+                {
+                    "title": "Заголовок",
+                    "text": "Защита инвестиций обеспечивается действующими правовыми механизмами, предоставляя международным партнёрам ясность и уверенность при реализации долгосрочных инфраструктурных проектов."
+                },
+                {
+                    "title": "Заголовок",
+                    "text": "Специальная координационная система упрощает получение разрешений, подключение коммунальных ресурсов и регуляторные согласования на всех этапах развития кампуса."
+                },
+                {
+                    "title": "Заголовок",
+                    "text": "Постоянное сотрудничество с государственными учреждениями способствует развитию кадрового потенциала и интеграции с более широкой цифровой экономикой."
+                }
+            ]
+        }
+    },
+    "services": {
+        "hero": {
+            "title": "Наши услуги",
+            "lead": "От быстрого развёртывания в подготовленных мощностях до масштабного развития с нуля и партнёрств в сфере AI-вычислений"
+        },
+        "cards": [{
+                "title": "Оптовая колокация",
+                "text": "Быстрый доступ к электроэнергии, охлаждению и защищённым мощностям дата-центра для облачных провайдеров, AI-компаний и операторов GPU. Наши решения в области оптовой колокации предлагают быстро развёртываемые среды, рассчитанные на стойки высокой плотности и передовые системы охлаждения, необходимые для современных AI-нагрузок.",
+                "button": "Узнать о колокации"
+            },
+            {
+                "title": "Строительство по индивидуальному проекту",
+                "text": "Выделенная инфраструктура, построенная в соответствии с конкретными техническими и операционными требованиями гиперскейлеров и суверенных AI-платформ. Мы тесно сотрудничаем с вашими инженерными командами для проектирования, строительства и передачи индивидуальных дата-центров, оптимизированных под вашу аппаратную архитектуру, требования к резервированию и показатели эффективности.",
+                "button": "Индивидуальное строительство"
+            },
+            {
+                "title": "Развитие с нуля",
+                "text": "Земля, электроэнергия, коммунальная инфраструктура и сетевой доступ для крупных технологических компаний, стремящихся самостоятельно контролировать развитие проекта. Получите доступ к заранее определённым и согласованным земельным участкам в рамках нашей экосистемы, оснащённым высоковольтными подключениями и существующими оптоволоконными маршрутами, что позволяет реализовывать масштабное строительство по вашим собственным проектным решениям.",
+                "button": "Узнать о развитии с нуля"
+            },
+            {
+                "title": "Партнёрства в сфере AI-вычислений",
+                "text": "Участие в цепочке создания стоимости AI-вычислений для платформ GPU-as-a-Service и институциональных инвесторов. Помимо физической инфраструктуры, Data Center Valley выступает катализатором экосистемы, предлагая модели совместных предприятий и стратегические механизмы для развёртывания готовых высокопроизводительных вычислительных кластеров, ориентированных на глобальный спрос на AI.",
+                "button": "Узнать о партнёрствах"
+            }
+        ],
+        "cta": {
+            "title": "Разверните свою инфраструктуру<br>в гига-масштабе",
+            "text": "Наша команда готова проанализировать ваши технические требования и подготовить индивидуальный брифинг.",
+            "button": "Запросить брифинг"
+        }
+    },
+    "ai": {
+        "hero": {
+            "title": "Создано для гига-масштабной AI-инфраструктуры",
+            "lead": "Спроектировано с нуля для преобразования огромных энергетических и территориальных ресурсов в бесшовные вычислительные мощности"
+        },
+        "power": {
+            "title": "Преимущество энергетического кластера",
+            "stats": [{
+                    "label": "Уровень",
+                    "value": "Tier III"
+                },
+                {
+                    "label": "Стоек на модуль",
+                    "value": "1 920"
+                },
+                {
+                    "label": "Доступность",
+                    "value": "99.982%"
+                },
+                {
+                    "label": "Резервирование питания",
+                    "value": "N+1"
+                },
+                {
+                    "label": "Линии электропитания",
+                    "value": "2"
+                },
+                {
+                    "label": "Максимальная плотность стойки",
+                    "value": "225 кВт"
+                },
+                {
+                    "label": "Резервирование охлаждения",
+                    "value": "N+1"
+                },
+                {
+                    "label": "Жидкостное охлаждение",
+                    "value": "Поддерживается"
+                }
+            ]
+        },
+        "mapAlt": "Карта задержки соединения Data Center Valley с крупнейшими европейскими, центральноазиатскими и гонконгскими узлами"
+    },
+    "team_page": {
+        "title": "Команда",
+        "filter": "Фильтры",
+        "members": [{
+            "lastName": "Фамилия",
+            "firstName": "Имя",
+            "middleName": "Отчество",
+            "role": "Должность",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at. Donec elementum dui ultricies, blandit arcu vitae, egestas orci. Etiam purus augue, euismod sit amet rutrum nec, imperdiet sit amet lacinia at. Maecenas quis arcu vel justo condimentum blandit."
+        }]
+    },
+    "news_page": {
+        "title": "Новости",
+        "more": [{
+                "date": "11.06.2025",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "date": "12.06.2026",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "date": "11.06.2025",
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            }
+        ]
+    },
+    "faq": {
+        "title": "Популярные вопросы",
+        "note1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl.",
+        "note2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+        "requestMeeting": "Запросить встречу",
+        "items": [{
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at."
+            },
+            {
+                "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu diam nisl. Aliquam egestas velit ex, eu placerat est lacinia at.",
+                "list": [
+                    "Donec elementum dui ultricies",
+                    "blandit arcu vitae",
+                    "egestas orci."
+                ]
+            }
+        ]
+    }
+}
