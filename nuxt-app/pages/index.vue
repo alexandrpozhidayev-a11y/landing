@@ -30,7 +30,7 @@ const localePath = useLocalePath()
         <h1 class="hero-promo__title" v-html="t('home.heroPromo.title')"></h1>
         <p class="hero-promo__text">{{ t('home.heroPromo.text') }}</p>
         <div class="hero-promo__actions">
-          <a href="#" class="btn btn--accent">{{ t('home.heroPromo.cta') }}</a>
+          <a href="https://digitalbridge.ai/ru/#tickets" target="_blank" class="btn btn--accent">{{ t('home.heroPromo.cta') }}</a>
           <span class="hero-promo__date">{{ t('home.heroPromo.date') }}</span>
         </div>
       </div>
