@@ -67,7 +67,7 @@ const navLinks = computed(() => [
             :class="{ 'is-active': loc.code === locale }"
           >{{ loc.code.toUpperCase() }}</NuxtLink>
         </div>
-        <a class="btn btn--primary btn--sm" href="mailto:commercial@dc-valley.com">{{ t('nav.requestMeeting') }}</a>
+        <NuxtLink class="btn btn--primary btn--sm" :to="localePath('/about') + '#contact'">{{ t('nav.requestMeeting') }}</NuxtLink>
         <button aria-label="Toggle menu" class="menu-btn" :class="{ active: mobileOpen }" @click="toggleMobile">
           <span></span>
           <span></span>
