@@ -10,13 +10,16 @@ return new class extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name');
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('role')->nullable();
-            $table->text('bio')->nullable();
+            // Переводимые поля: {"en": ..., "kk": ..., "ru": ...}
+            $table->json('last_name');
+            $table->json('first_name');
+            $table->json('middle_name')->nullable();
+            $table->json('department')->nullable();
+            $table->json('role')->nullable();
+            $table->json('bio')->nullable();
             $table->string('photo')->nullable();
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_published')->default(true);
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });

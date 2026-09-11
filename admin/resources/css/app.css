@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Alpine: скрытые вкладки языков не мигают до инициализации */
+[x-cloak] {
+    display: none !important;
+}

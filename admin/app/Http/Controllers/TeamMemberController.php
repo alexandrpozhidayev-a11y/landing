@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\TranslatableFields;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TeamMemberController extends Controller
 {
+    use TranslatableFields;
+
     public function index()
     {
         $members = TeamMember::orderBy('sort_order')->orderBy('id')->paginate(20);
@@ -67,22 +70,45 @@ class TeamMemberController extends Controller
 
     private function validated(Request $request): array
     {
+        $default = TeamMember::defaultLocale();
+
         $validated = $request->validate([
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['nullable', 'string', 'max:255'],
-            'role' => ['nullable', 'string', 'max:255'],
-            'bio' => ['nullable', 'string'],
+            'first_name' => ['required', 'array'],
+            "first_name.{$default}" => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'array'],
+            "last_name.{$default}" => ['required', 'string', 'max:255'],
+            'first_name.*' => ['nullable', 'string', 'max:255'],
+            'last_name.*' => ['nullable', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'array'],
+            'middle_name.*' => ['nullable', 'string', 'max:255'],
+            'department' => ['nullable', 'array'],
+            'department.*' => ['nullable', 'string', 'max:255'],
+            'role' => ['nullable', 'array'],
+            'role.*' => ['nullable', 'string', 'max:255'],
+            'bio' => ['nullable', 'array'],
+            'bio.*' => ['nullable', 'string', 'max:5000'],
             'is_featured' => ['sometimes', 'boolean'],
-            'sort_order' => ['nullable', 'integer'],
-            'photo' => ['nullable', 'image', 'max:4096'],
-        ]);
+            'is_published' => ['sometimes', 'boolean'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+        ], [], $this->translatableAttributes([
+            'first_name' => 'First name',
+            'last_name' => 'Last name',
+            'middle_name' => 'Middle name',
+            'department' => 'Department',
+            'role' => 'Position',
+            'bio' => 'Short bio',
+        ]));
 
-        $validated['is_featured'] = $request->boolean('is_featured');
-        $validated['sort_order'] = $validated['sort_order'] ?? 0;
+        $data = [];
+        foreach (['first_name', 'last_name', 'middle_name', 'department', 'role', 'bio'] as $field) {
+            $data[$field] = TeamMember::cleanTranslations($validated[$field] ?? []);
+        }
 
-        unset($validated['photo']);
-
-        return $validated;
+        return $data + [
+            'is_featured' => $request->boolean('is_featured'),
+            'is_published' => $request->boolean('is_published'),
+            'sort_order' => $validated['sort_order'] ?? 0,
+        ];
     }
 }

@@ -10,13 +10,15 @@ return new class extends Migration
     {
         Schema::create('news_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            // title / excerpt / body — переводимые: {"en": ..., "kk": ..., "ru": ...}
+            $table->json('title');
             $table->string('slug')->unique();
-            $table->text('excerpt')->nullable();
-            $table->longText('body')->nullable();
+            $table->json('excerpt')->nullable();
+            $table->json('body')->nullable();
             $table->string('image')->nullable();
             $table->date('published_at')->nullable();
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }

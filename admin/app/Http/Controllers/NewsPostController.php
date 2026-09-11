@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\TranslatableFields;
 use App\Models\NewsPost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsPostController extends Controller
 {
+    use TranslatableFields;
+
     public function index()
     {
         $posts = NewsPost::orderByDesc('published_at')->orderByDesc('id')->paginate(15);
@@ -25,13 +28,14 @@ class NewsPostController extends Controller
     {
         $data = $this->validated($request);
 
-        $data['slug'] = $this->uniqueSlug($data['title']);
+        $data['slug'] = $this->uniqueSlug($data['title'][NewsPost::defaultLocale()]);
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('news', 'public');
         }
 
-        NewsPost::create($data);
+        $post = NewsPost::create($data);
+        $this->keepSingleFeatured($post);
 
         return redirect()->route('news.index')->with('status', 'News post created.');
     }
@@ -45,8 +49,9 @@ class NewsPostController extends Controller
     {
         $data = $this->validated($request);
 
-        if ($data['title'] !== $news->title) {
-            $data['slug'] = $this->uniqueSlug($data['title'], $news->id);
+        $title = $data['title'][NewsPost::defaultLocale()];
+        if ($title !== $news->translate('title')) {
+            $data['slug'] = $this->uniqueSlug($title, $news->id);
         }
 
         if ($request->hasFile('image')) {
@@ -57,6 +62,7 @@ class NewsPostController extends Controller
         }
 
         $news->update($data);
+        $this->keepSingleFeatured($news);
 
         return redirect()->route('news.index')->with('status', 'News post updated.');
     }
@@ -74,20 +80,42 @@ class NewsPostController extends Controller
 
     private function validated(Request $request): array
     {
+        $default = NewsPost::defaultLocale();
+
         $validated = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'excerpt' => ['nullable', 'string'],
-            'body' => ['nullable', 'string'],
+            'title' => ['required', 'array'],
+            "title.{$default}" => ['required', 'string', 'max:255'],
+            'title.*' => ['nullable', 'string', 'max:255'],
+            'excerpt' => ['nullable', 'array'],
+            'excerpt.*' => ['nullable', 'string', 'max:1000'],
+            'body' => ['nullable', 'array'],
+            'body.*' => ['nullable', 'string', 'max:50000'],
             'published_at' => ['nullable', 'date'],
             'is_published' => ['sometimes', 'boolean'],
-            'image' => ['nullable', 'image', 'max:4096'],
-        ]);
+            'is_featured' => ['sometimes', 'boolean'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+        ], [], $this->translatableAttributes([
+            'title' => 'Title',
+            'excerpt' => 'Short text',
+            'body' => 'Full text',
+        ]));
 
-        $validated['is_published'] = $request->boolean('is_published');
+        return [
+            'title' => NewsPost::cleanTranslations($validated['title']),
+            'excerpt' => NewsPost::cleanTranslations($validated['excerpt'] ?? []),
+            'body' => NewsPost::cleanTranslations($validated['body'] ?? []),
+            'published_at' => $validated['published_at'] ?? null,
+            'is_published' => $request->boolean('is_published'),
+            'is_featured' => $request->boolean('is_featured'),
+        ];
+    }
 
-        unset($validated['image']);
-
-        return $validated;
+    /** Главная новость (крупная карточка на сайте) — только одна. */
+    private function keepSingleFeatured(NewsPost $post): void
+    {
+        if ($post->is_featured) {
+            NewsPost::whereKeyNot($post->id)->where('is_featured', true)->update(['is_featured' => false]);
+        }
     }
 
     private function uniqueSlug(string $title, ?int $ignoreId = null): string
@@ -101,7 +129,7 @@ class NewsPostController extends Controller
                 ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
                 ->exists()
         ) {
-            $slug = "{$base}-" . $i++;
+            $slug = "{$base}-".$i++;
         }
 
         return $slug;

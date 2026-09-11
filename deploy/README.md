@@ -26,6 +26,35 @@ ssh root@94.247.128.150 bash /var/www/landing/deploy/setup-server.sh
 запуске — временный HTTP-конфиг и выпуск сертификата Let's Encrypt, затем
 кладёт `nginx.prod.conf` и перечитывает nginx. Повторный запуск безопасен.
 
+## Админка: https://dc-valley.com/admin
+
+Laravel-приложение из папки `admin/`, сервис `admin` в `docker-compose.yml`
+(контейнер на `127.0.0.1:3005`). Разделы: **News** и **Team**, тексты на
+EN (обязательно) / KK / RU. Публичное API для сайта (только опубликованное):
+`/admin/api/news`, `/admin/api/news/{slug}`, `/admin/api/team`, параметр
+`?locale=en|kk|ru`.
+
+Первый запуск на сервере (после `git pull`):
+
+```bash
+cd /var/www/DCV
+docker compose up -d --build
+# nginx: добавился location /admin/ — обновить конфиг и перечитать
+cp deploy/nginx.prod.conf /etc/nginx/sites-available/dc-valley.com
+nginx -t && systemctl reload nginx
+curl -I https://dc-valley.com/admin/login   # ждём 200
+```
+
+При каждом старте контейнер сам применяет миграции и создаёт тестового
+пользователя `admin@dc-valley.com`, если его ещё нет (`AdminUserSeeder`,
+в репозитории только хеш пароля). Регистрации нет. База SQLite, загруженные
+фото и APP_KEY лежат в томе `admin-storage` и переживают пересборку.
+Бэкап данных админки:
+
+```bash
+docker run --rm -v dcv_admin-storage:/data -v /root:/backup alpine   tar czf /backup/admin-storage-$(date +%F).tgz -C /data .
+```
+
 `/v2` (черновик новой главной) открывается только по прямой ссылке:
 ссылок на неё с сайта нет, в `<head>` стоит `noindex, nofollow`.
 

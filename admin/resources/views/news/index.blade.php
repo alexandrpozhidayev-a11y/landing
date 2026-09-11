@@ -16,13 +16,14 @@
                 </div>
             @endif
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
                     <thead class="bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         <tr>
                             <th class="px-6 py-3 w-16"></th>
                             <th class="px-6 py-3">Title</th>
-                            <th class="px-6 py-3">Published</th>
+                            <th class="px-6 py-3">Languages</th>
+                            <th class="px-6 py-3">Date</th>
                             <th class="px-6 py-3">Status</th>
                             <th class="px-6 py-3 text-right">Actions</th>
                         </tr>
@@ -32,21 +33,28 @@
                             <tr>
                                 <td class="px-6 py-3">
                                     @if ($post->image)
-                                        <img src="{{ Storage::url($post->image) }}" class="w-10 h-10 rounded object-cover" alt="">
+                                        <img src="{{ asset('storage/'.$post->image) }}" class="w-12 h-9 rounded object-cover" alt="">
                                     @else
-                                        <div class="w-10 h-10 rounded bg-gray-100"></div>
+                                        <div class="w-12 h-9 rounded bg-gray-100"></div>
                                     @endif
                                 </td>
-                                <td class="px-6 py-3 text-gray-900 font-medium max-w-sm truncate">{{ $post->title }}</td>
-                                <td class="px-6 py-3 text-gray-500">{{ $post->published_at?->format('d.m.Y') ?? '—' }}</td>
-                                <td class="px-6 py-3">
+                                <td class="px-6 py-3 max-w-sm">
+                                    <div class="text-gray-900 font-medium truncate">{{ $post->translate('title') }}</div>
+                                    <div class="text-xs text-gray-400 truncate">/{{ $post->slug }}</div>
+                                </td>
+                                <td class="px-6 py-3"><x-locale-badges :filled="$post->filledLocales()" /></td>
+                                <td class="px-6 py-3 text-gray-500 whitespace-nowrap">{{ $post->published_at?->format('d.m.Y') ?? '—' }}</td>
+                                <td class="px-6 py-3 space-x-1 whitespace-nowrap">
                                     @if ($post->is_published)
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Published</span>
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Published</span>
                                     @else
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">Draft</span>
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">Draft</span>
+                                    @endif
+                                    @if ($post->is_featured)
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">Main</span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-3 text-right space-x-3">
+                                <td class="px-6 py-3 text-right space-x-3 whitespace-nowrap">
                                     <a href="{{ route('news.edit', $post) }}" class="text-indigo-600 hover:text-indigo-800">Edit</a>
                                     <form action="{{ route('news.destroy', $post) }}" method="POST" class="inline" onsubmit="return confirm('Delete this post?');">
                                         @csrf
@@ -57,7 +65,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-8 text-center text-gray-400">No news posts yet.</td>
+                                <td colspan="6" class="px-6 py-8 text-center text-gray-400">No news posts yet.</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -16,15 +16,16 @@
                 </div>
             @endif
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
                     <thead class="bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         <tr>
                             <th class="px-6 py-3 w-16"></th>
                             <th class="px-6 py-3">Name</th>
-                            <th class="px-6 py-3">Role</th>
-                            <th class="px-6 py-3">Featured</th>
+                            <th class="px-6 py-3">Department / position</th>
+                            <th class="px-6 py-3">Languages</th>
                             <th class="px-6 py-3">Order</th>
+                            <th class="px-6 py-3">Status</th>
                             <th class="px-6 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
@@ -33,22 +34,29 @@
                             <tr>
                                 <td class="px-6 py-3">
                                     @if ($member->photo)
-                                        <img src="{{ Storage::url($member->photo) }}" class="w-10 h-10 rounded-full object-cover" alt="">
+                                        <img src="{{ asset('storage/'.$member->photo) }}" class="w-10 h-10 rounded object-cover" alt="">
                                     @else
-                                        <div class="w-10 h-10 rounded-full bg-gray-100"></div>
+                                        <div class="w-10 h-10 rounded bg-gray-100"></div>
                                     @endif
                                 </td>
-                                <td class="px-6 py-3 text-gray-900 font-medium">{{ trim("{$member->last_name} {$member->first_name} {$member->middle_name}") }}</td>
-                                <td class="px-6 py-3 text-gray-500">{{ $member->role }}</td>
-                                <td class="px-6 py-3">
-                                    @if ($member->is_featured)
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">Featured</span>
-                                    @else
-                                        <span class="text-gray-300">—</span>
-                                    @endif
+                                <td class="px-6 py-3 text-gray-900 font-medium">{{ $member->fullName() }}</td>
+                                <td class="px-6 py-3 text-gray-500 max-w-xs">
+                                    <div class="truncate uppercase text-xs tracking-wide">{{ $member->translate('department') ?? '—' }}</div>
+                                    <div class="truncate">{{ $member->translate('role') }}</div>
                                 </td>
+                                <td class="px-6 py-3"><x-locale-badges :filled="$member->filledLocales()" /></td>
                                 <td class="px-6 py-3 text-gray-500">{{ $member->sort_order }}</td>
-                                <td class="px-6 py-3 text-right space-x-3">
+                                <td class="px-6 py-3 space-x-1 whitespace-nowrap">
+                                    @if ($member->is_published)
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Visible</span>
+                                    @else
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">Hidden</span>
+                                    @endif
+                                    @if ($member->is_featured)
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">Featured</span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-3 text-right space-x-3 whitespace-nowrap">
                                     <a href="{{ route('team.edit', $member) }}" class="text-indigo-600 hover:text-indigo-800">Edit</a>
                                     <form action="{{ route('team.destroy', $member) }}" method="POST" class="inline" onsubmit="return confirm('Delete this member?');">
                                         @csrf
@@ -59,7 +67,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-8 text-center text-gray-400">No team members yet.</td>
+                                <td colspan="7" class="px-6 py-8 text-center text-gray-400">No team members yet.</td>
                             </tr>
                         @endforelse
                     </tbody>
