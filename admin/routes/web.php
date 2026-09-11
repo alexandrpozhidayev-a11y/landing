@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\FaqItemController;
 use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamMemberController;
@@ -18,7 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('news', NewsPostController::class)->except('show');
-    Route::resource('faq', FaqItemController::class)->except('show');
     Route::resource('team', TeamMemberController::class)->parameters(['team' => 'member'])->except('show');
 });
 
