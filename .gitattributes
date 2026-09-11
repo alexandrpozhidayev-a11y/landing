@@ -1,0 +1,3 @@
+# Shell-скрипты всегда с LF, в том числе в Windows-копии: скрипты из deploy/
+# копируются на Linux-сервер напрямую (scp), и CRLF ломает bash ($'\r').
+*.sh text eol=lf
