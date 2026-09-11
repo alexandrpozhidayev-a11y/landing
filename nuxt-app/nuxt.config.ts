@@ -40,7 +40,9 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/en', '/kk', '/ru']
+      // /v2 — черновик новой главной на согласование. На него никто не ссылается,
+      // поэтому crawlLinks его не найдёт — перечисляем явно.
+      routes: ['/en', '/kk', '/ru', '/en/v2', '/kk/v2', '/ru/v2']
     }
   }
 })
