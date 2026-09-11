@@ -22,6 +22,9 @@ const switchLocalePath = useSwitchLocalePath()
 
 useHead({
   title: 'Data Center Valley — Ekibastuz, Kazakhstan',
+  // Черновик: открывается только по прямой ссылке. Ссылок на /v2 с сайта нет,
+  // а noindex не даёт поисковикам проиндексировать её, если ссылка утечёт.
+  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
   bodyAttrs: { class: 'v2-body' },
   // Класс v2-js ставится до первой отрисовки: без него .v2-reveal не прячутся,
   // и без JS (или у поисковика) весь текст виден сразу.

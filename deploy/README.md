@@ -1,4 +1,39 @@
-# Deploy: nginx + certbot on hvitl1
+# Deploy
+
+## Новый сервер: 94.247.128.150 (dc-valley.com), Docker
+
+Основной репозиторий — https://github.com/sasha26548996565/DCV (remote `origin`).
+Сайт — Nuxt в контейнере на `127.0.0.1:3004`, nginx на хосте терминирует HTTPS
+и проксирует на него (`nginx.prod.conf`).
+
+Первичная настройка и любой следующий передеплой — один скрипт, под root.
+Репозиторий приватный, поэтому в первый раз скрипт кладём на сервер сами:
+
+```bash
+scp deploy/setup-server.sh root@94.247.128.150:/root/
+ssh root@94.247.128.150 bash /root/setup-server.sh
+# дальше, когда репозиторий уже на месте:
+ssh root@94.247.128.150 bash /var/www/landing/deploy/setup-server.sh
+```
+
+Код сервер забирает по **deploy key** (только чтение). При первом запуске
+скрипт создаст ключ `/root/.ssh/dcv_deploy`, напечатает его и остановится —
+добавить его в GitHub: DCV → Settings → Deploy keys → Add deploy key
+(галочку *Allow write access* не ставить), и запустить скрипт ещё раз.
+
+Что он делает: ставит git/nginx/certbot и Docker, клонирует (или `git pull`)
+репозиторий в `/var/www/landing`, `docker compose up -d --build`, при первом
+запуске — временный HTTP-конфиг и выпуск сертификата Let's Encrypt, затем
+кладёт `nginx.prod.conf` и перечитывает nginx. Повторный запуск безопасен.
+
+`/v2` (черновик новой главной) открывается только по прямой ссылке:
+ссылок на неё с сайта нет, в `<head>` стоит `noindex, nofollow`.
+
+---
+
+Ниже — история: деплой на старом сервере hvitl1 (статика, затем переход на Docker).
+
+## Старый сервер: nginx + certbot on hvitl1
 
 Site lives at `/var/www/landing` (already `git clone`d there).
 
