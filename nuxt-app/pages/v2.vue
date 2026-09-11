@@ -25,6 +25,10 @@ useHead({
   // Черновик: открывается только по прямой ссылке. Ссылок на /v2 с сайта нет,
   // а noindex не даёт поисковикам проиндексировать её, если ссылка утечёт.
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+  link: [
+    { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/asset/fonts/v2/roboto-condensed-latin.woff2' },
+    { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: 'anonymous', href: '/asset/fonts/v2/space-grotesk-latin.woff2' }
+  ],
   bodyAttrs: { class: 'v2-body' },
   // Класс v2-js ставится до первой отрисовки: без него .v2-reveal не прячутся,
   // и без JS (или у поисковика) весь текст виден сразу.
@@ -331,7 +335,19 @@ onBeforeUnmount(() => {
       <div class="v2-hero__stage">
         <!-- Картинка от линии шапки до правого края экрана -->
         <figure class="v2-hero__media">
-          <img src="/asset/v2/hero.png" width="1020" height="820" alt="Data Center Valley campus facade" fetchpriority="high">
+          <!-- LCP: грузится сразу, с preload высокого приоритета -->
+          <NuxtPicture
+            src="/asset/v2/hero.png"
+            width="1020"
+            height="820"
+            format="webp"
+            sizes="xs:100vw sm:100vw md:72vw lg:72vw xl:72vw"
+            legacy-format="jpeg"
+            loading="eager"
+            :preload="{ fetchPriority: 'high' }"
+            :img-attrs="{ fetchpriority: 'high' }"
+            alt="Data Center Valley campus facade"
+          />
         </figure>
 
         <div class="v2-container v2-hero__overlay">
@@ -374,7 +390,7 @@ onBeforeUnmount(() => {
 
         <!-- Подпись «ENERGY INFRASTRUCTURE / CONCEPT VISUALIZATION» вшита в изображение -->
         <figure class="v2-figure">
-          <img src="/asset/v2/1block.png" width="1344" height="470" alt="Existing 215 MW substation near the Ekibastuz site" loading="lazy">
+          <NuxtPicture src="/asset/v2/1block.png" format="webp" width="1344" height="470" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Existing 215 MW substation near the Ekibastuz site" />
         </figure>
 
         <div class="v2-cols v2-cols--3">
@@ -400,7 +416,7 @@ onBeforeUnmount(() => {
 
         <!-- На десктопе — слой под текстом почти на всю секцию, заголовок наезжает на плату -->
         <figure class="v2-engineered__media">
-          <img src="/asset/v2/2.png" width="1440" height="960" alt="Exploded view of a liquid-cooled compute module" loading="lazy">
+          <NuxtPicture src="/asset/v2/2.png" format="webp" width="1440" height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" legacy-format="jpeg" loading="lazy" alt="Exploded view of a liquid-cooled compute module" />
         </figure>
 
         <div class="v2-engineered__bottom">
@@ -430,7 +446,7 @@ onBeforeUnmount(() => {
 
         <!-- Плашки «PHASE ONE / 191.8 HA» и «EXPANSION / ~1,300 HA» вшиты в изображение -->
         <figure class="v2-figure">
-          <img src="/asset/v2/3.png" width="1440" height="520" alt="Aerial visualization of the Data Center Valley campus" loading="lazy">
+          <NuxtPicture src="/asset/v2/3.png" format="webp" width="1440" height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Aerial visualization of the Data Center Valley campus" />
         </figure>
 
         <div class="v2-place__note">
@@ -585,7 +601,7 @@ onBeforeUnmount(() => {
         <!-- TODO: кнопка «PLAY THE FILM» пока часть изображения; при появлении ролика
              заменить <figure> на видеоплеер и вынести кнопку в разметку. -->
         <figure class="v2-figure">
-          <img src="/asset/v2/6block.png" width="1344" height="756" alt="Data hall interior — concept film still" loading="lazy">
+          <NuxtPicture src="/asset/v2/6block.png" format="webp" width="1344" height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Data hall interior — concept film still" />
           <figcaption class="v2-film__caption v2-reveal">
             <span class="v2-label">Inside the infrastructure / concept film</span>
             <span class="v2-label">Concept film &mdash; architecture &amp; compute</span>

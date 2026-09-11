@@ -6,7 +6,23 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/style.css'],
 
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@nuxt/image'],
+
+  // Картинки v2 через <NuxtPicture>: WebP + запасной JPEG, размеры под экран (srcset).
+  // AVIF не используем: на этих фото при том же качестве он выходил тяжелее WebP.
+  // ipxStatic — варианты генерируются ОДИН раз при сборке (пререндер страниц),
+  // рабочий сервер отдаёт готовые файлы из .output/public/_ipx и ничего не
+  // пережимает на лету. Годится, пока все страницы с NuxtPicture пререндерятся
+  // (сейчас это только /v2 — см. nitro.prerender.routes).
+  // sizes у картинок — только в виде "экран:размер" (ключ = нижняя граница, как в
+  // Tailwind); запись без ключа (просто "100vw") модуль разбирает неверно.
+  image: {
+    provider: 'ipxStatic',
+    quality: 70,
+    format: ['webp'],
+    densities: [1, 2],
+    screens: { xs: 390, sm: 640, md: 900, lg: 1440, xl: 1920 }
+  },
 
   i18n: {
     baseUrl: 'https://dc-valley.com',
@@ -35,6 +51,14 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/jpeg', href: '/asset/favicon.jpg' }
       ]
     }
+  },
+
+  // Кэш в браузере: картинки из _ipx и /asset — неделя (имена без хеша, поэтому
+  // не «навсегда»), шрифты v2 не меняются — год.
+  routeRules: {
+    '/_ipx/**': { headers: { 'cache-control': 'public, max-age=604800' } },
+    '/asset/**': { headers: { 'cache-control': 'public, max-age=604800' } },
+    '/asset/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
   },
 
   nitro: {
