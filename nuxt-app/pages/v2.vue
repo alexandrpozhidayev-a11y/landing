@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { h, type FunctionalComponent } from 'vue'
+
 // V2 — новая главная, черновик на согласование (макет "DCV / Final for approval / Desktop").
 // Живёт отдельной страницей /v2, боевая главная (pages/index.vue) не тронута.
 //
-// ВАЖНО про тексты: копирайт пока зашит по-английски прямо в разметку — как в макете.
-// Это осознанно: страница показывается на согласование, а раскладывать ~60 строк
-// по en/kk/ru есть смысл только после того, как текст утвердят.
-// Переключатель языков в шапке при этом рабочий (switchLocalePath), просто
-// содержимое страницы на всех локалях одинаковое.
+// Тексты — в отдельных файлах i18n/locales/v2/{en,kk,ru}.json (ключи v2.*),
+// подключены в nuxt.config.ts рядом с основными. Переносы строк в переводах — "\n"
+// (см. Lines ниже). Название бренда (Data Center Valley) не переводится.
 //
 // Картинки: /public/asset/v2/*. Подписи-плашки (ENERGY INFRASTRUCTURE, PHASE ONE / 191.8 HA,
 // PLAY THE FILM) вшиты в сами изображения, поэтому оверлеев в разметке нет —
@@ -16,12 +16,18 @@ definePageMeta({
   layout: false
 })
 
-const { locales, locale } = useI18n()
+const { t, locales, locale } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
-useHead({
-  title: 'Data Center Valley — Ekibastuz, Kazakhstan',
+// Строка перевода с "\n" -> текст с <br> (без v-html).
+const Lines: FunctionalComponent<{ text: string }> = props =>
+  props.text.split('\n').flatMap((line, i) => (i ? [h('br'), line] : [line]))
+Lines.props = ['text']
+
+useHead(() => ({
+  title: t('v2.meta.title'),
+  htmlAttrs: { lang: locale.value },
   // Черновик: открывается только по прямой ссылке. Ссылок на /v2 с сайта нет,
   // а noindex не даёт поисковикам проиндексировать её, если ссылка утечёт.
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
@@ -33,65 +39,42 @@ useHead({
   // Класс v2-js ставится до первой отрисовки: без него .v2-reveal не прячутся,
   // и без JS (или у поисковика) весь текст виден сразу.
   script: [{ key: 'v2-js', innerHTML: "document.documentElement.classList.add('v2-js')" }]
-})
+}))
 
-const stats = [
-  {
-    label: 'Land & expansion',
-    rows: [
-      { value: '191.8 ha', note: 'Allocated for phase one' },
-      { value: '~1,300 ha', note: 'Reserved for cluster expansion' }
-    ]
-  },
-  {
-    label: 'Phase one',
-    rows: [
-      { value: '50 MW', note: 'First-phase capacity' },
-      { value: 'Q2 2027', note: 'Planned commissioning' }
-    ]
-  },
-  {
-    label: 'Energy infrastructure',
-    rows: [
-      { value: '215 MW', note: 'Existing substation' },
-      { value: 'Up to 1 GW', note: 'Phased infrastructure upgrade' }
-    ]
-  }
-]
+const num = (i: number) => String(i + 1).padStart(2, '0')
 
-const energySteps = [
-  { title: 'Connect.', text: 'An existing substation anchors the energy strategy.' },
-  { title: 'Build.', text: 'Establish the campus through a defined first phase.' },
-  { title: 'Expand.', text: 'Modernize infrastructure in stages as the cluster develops.' }
-]
+const stats = computed(() => (['land', 'phase', 'energy'] as const).map(id => ({
+  label: t(`v2.hero.stats.${id}.label`),
+  rows: [1, 2].map(n => ({
+    value: t(`v2.hero.stats.${id}.value${n}`),
+    note: t(`v2.hero.stats.${id}.note${n}`)
+  }))
+})))
 
-const engineeredMeta = ['01 — High-density compute', '02 — Liquid-cooling concept', '03 — Modular architecture']
+const energySteps = computed(() => (['connect', 'build', 'expand'] as const).map(id => ({
+  title: t(`v2.energy.steps.${id}.title`),
+  text: t(`v2.energy.steps.${id}.text`)
+})))
 
-const placeFacts = [
-  { label: '01 / Phase one', lines: ['50 MW · 191.8 ha', 'Planned commissioning: Q2 2027'] },
-  { label: '02 / Cluster expansion', lines: ['~1,300 ha reserved', 'Further phases: schedule to be confirmed'] },
-  { label: '03 / Energy modernization', lines: ['215 MW existing substation', 'Potential expansion: up to 1 GW'] }
-]
+const engineeredMeta = computed(() => (['density', 'cooling', 'modular'] as const)
+  .map((id, i) => `${num(i)} — ${t(`v2.engineered.meta.${id}`)}`))
+
+const placeFacts = computed(() => (['phase', 'expansion', 'energy'] as const).map((id, i) => ({
+  label: `${num(i)} / ${t(`v2.place.facts.${id}.label`)}`,
+  lines: [t(`v2.place.facts.${id}.line1`), t(`v2.place.facts.${id}.line2`)]
+})))
 
 // 7 опор проекта: в макете 01–04 в левой колонке, 05–07 в правой.
 // more — раскрывающееся описание (наведение / тап). В макете его нет:
 // ЧЕРНОВИК, собран только из фактов этой же страницы — заменить на утверждённый текст.
-const foundations = [
-  { num: '01', title: 'Power', text: 'Energy at the centre of the plan.',
-    more: 'An existing 215 MW substation anchors the first phase, with a staged upgrade path of up to 1 GW as the cluster grows.' },
-  { num: '02', title: 'Scale', text: 'Land and capacity for phased growth.',
-    more: '191.8 hectares allocated for phase one and approximately 1,300 hectares reserved for the cluster’s future expansion.' },
-  { num: '03', title: 'Location', text: 'A Eurasian base for global compute.',
-    more: 'An industrial location in Ekibastuz, Kazakhstan, between Europe and Asia — with the space to grow in phases.' },
-  { num: '04', title: 'Connectivity', text: 'An ecosystem designed to connect.',
-    more: 'Power, land and partners planned together as one ecosystem, so new capacity connects to where it is needed.' },
-  { num: '05', title: 'Flexibility', text: 'Multiple ways to build and operate.',
-    more: 'Wholesale colocation, build-to-suit, greenfield development or AI compute partnerships — the model adapts to each partner.' },
-  { num: '06', title: 'Partnership', text: 'Public and private ambition aligned.',
-    more: 'Public and private stakeholders working to one plan — from land and energy to long-term development of the cluster.' },
-  { num: '07', title: 'Horizon', text: 'Infrastructure for the long term.',
-    more: 'Phase one with 50 MW is planned for commissioning in Q2 2027; further phases follow as the cluster develops.' }
-]
+const foundationIds = ['power', 'scale', 'location', 'connectivity', 'flexibility', 'partnership', 'horizon'] as const
+
+const foundations = computed(() => foundationIds.map((id, i) => ({
+  num: num(i),
+  title: t(`v2.foundations.items.${id}.title`),
+  text: t(`v2.foundations.items.${id}.text`),
+  more: t(`v2.foundations.items.${id}.more`)
+})))
 
 // Раскрытие описаний. На устройствах с мышью — по наведению (чистый CSS :hover),
 // по клику/тапу/Enter — закрепить или закрыть, как в FAQ: открыт один пункт.
@@ -108,27 +91,29 @@ function onFoundationEnter(num: string) {
   if (openFoundation.value && openFoundation.value !== num) openFoundation.value = null
 }
 
-const foundationsLeft = foundations.slice(0, 4)
-const foundationsRight = foundations.slice(4)
+const foundationsLeft = computed(() => foundations.value.slice(0, 4))
+const foundationsRight = computed(() => foundations.value.slice(4))
 
 // Портреты и биографии заказчик добавит позже — пока карточки-заглушки D / C / V.
+// role — ключ в v2.people.roles.
 const basePeople = [
-  { tag: 'DCV / Team 01', letter: 'D', role: 'Project leadership' },
-  { tag: 'DCV / Team 02', letter: 'C', role: 'Engineering & operations' },
-  { tag: 'DCV / Team 03', letter: 'V', role: 'Partnerships' }
+  { n: '01', letter: 'D', role: 'leadership' },
+  { n: '02', letter: 'C', role: 'engineering' },
+  { n: '03', letter: 'V', role: 'partnerships' }
 ]
 
 // TEST: временные карточки, чтобы проверить слайдер (при трёх на десктопе он стоит).
-// Удалить, когда появятся реальные профили.
+// Удалить, когда появятся реальные профили (и их роли в v2/*.json).
 const testPeople = [
-  { tag: 'DCV / Team 04', letter: 'D', role: 'Energy & power (test)' },
-  { tag: 'DCV / Team 05', letter: 'C', role: 'Finance (test)' },
-  { tag: 'DCV / Team 06', letter: 'V', role: 'Legal & compliance (test)' }
+  { n: '04', letter: 'D', role: 'energy' },
+  { n: '05', letter: 'C', role: 'finance' },
+  { n: '06', letter: 'V', role: 'legal' }
 ]
 
 const people = [...basePeople, ...testPeople]
 
-const services = ['Wholesale colocation', 'Build-to-suit', 'Greenfield development', 'AI compute partnerships']
+const services = computed(() => (['colocation', 'buildToSuit', 'greenfield', 'partnerships'] as const)
+  .map(id => t(`v2.next.services.${id}`)))
 
 const contactMail = 'mailto:commercial@dc-valley.com'
 
@@ -148,9 +133,14 @@ let peopleObserver: ResizeObserver | null = null
 let settleTimer: ReturnType<typeof setTimeout> | undefined
 
 const peopleSlides = computed(() => {
-  const originals = people.map(p => ({ ...p, key: p.tag, clone: false }))
+  const cards = people.map(p => ({
+    ...p,
+    tag: t('v2.people.tag', { n: p.n }),
+    role: t(`v2.people.roles.${p.role}`)
+  }))
+  const originals = cards.map(p => ({ ...p, key: p.n, clone: false }))
   if (!peopleLoop.value) return originals
-  const copies = (prefix: string) => people.map(p => ({ ...p, key: `${prefix}:${p.tag}`, clone: true }))
+  const copies = (prefix: string) => cards.map(p => ({ ...p, key: `${prefix}:${p.n}`, clone: true }))
   return [...copies('before'), ...originals, ...copies('after')]
 })
 
@@ -323,9 +313,9 @@ onBeforeUnmount(() => {
 
           <span class="v2-header__sep" aria-hidden="true"></span>
 
-          <NuxtLink :to="localePath('/team')" class="v2-header__link">Team</NuxtLink>
+          <NuxtLink :to="localePath('/team')" class="v2-header__link">{{ t('v2.header.team') }}</NuxtLink>
 
-          <a :href="contactMail" class="v2-btn v2-btn--orange">Contact us <span aria-hidden="true">&#8599;</span></a>
+          <a :href="contactMail" class="v2-btn v2-btn--orange">{{ t('v2.header.contact') }} <span aria-hidden="true">&#8599;</span></a>
         </nav>
       </div>
     </header>
@@ -346,18 +336,15 @@ onBeforeUnmount(() => {
             loading="eager"
             :preload="{ fetchPriority: 'high' }"
             :img-attrs="{ fetchpriority: 'high' }"
-            alt="Data Center Valley campus facade"
+            :alt="t('v2.hero.imageAlt')"
           />
         </figure>
 
         <div class="v2-container v2-hero__overlay">
           <div class="v2-hero__copy">
-            <p class="v2-label">Ekibastuz, Kazakhstan / 51&deg;43&prime; N</p>
+            <p class="v2-label">{{ t('v2.location') }} / 51&deg;43&prime; N</p>
             <h1 class="v2-display v2-display--xl v2-hero__title">Data<br>Center<br>Valley.</h1>
-            <p class="v2-lead v2-hero__lead">
-              Giga-scale ambition.<br>
-              A clear first phase.
-            </p>
+            <p class="v2-lead v2-hero__lead"><Lines :text="t('v2.hero.lead')" /></p>
           </div>
 
           <!-- Показатели проекта: панель лежит на низу картинки -->
@@ -378,19 +365,16 @@ onBeforeUnmount(() => {
     <section class="v2-section" id="energy">
       <div class="v2-container">
         <div class="v2-section__head">
-          <p class="v2-label v2-reveal"><span class="v2-label__num">01</span> / Energy strategy</p>
+          <p class="v2-label v2-reveal"><span class="v2-label__num">01</span> / {{ t('v2.energy.label') }}</p>
           <div>
-            <h2 class="v2-display v2-reveal v2-display--lg">Power.<br>With a plan.</h2>
-            <p class="v2-lead v2-reveal" style="margin-top: 22px;">
-              Start with existing infrastructure.<br>
-              Develop capacity as the cluster grows.
-            </p>
+            <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.energy.title')" /></h2>
+            <p class="v2-lead v2-reveal" style="margin-top: 22px;"><Lines :text="t('v2.energy.lead')" /></p>
           </div>
         </div>
 
         <!-- Подпись «ENERGY INFRASTRUCTURE / CONCEPT VISUALIZATION» вшита в изображение -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/1block.png" format="webp" width="1344" height="470" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Existing 215 MW substation near the Ekibastuz site" />
+          <NuxtPicture src="/asset/v2/1block.png" format="webp" width="1344" height="470" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.energy.imageAlt')" />
         </figure>
 
         <div class="v2-cols v2-cols--3">
@@ -406,17 +390,14 @@ onBeforeUnmount(() => {
     <section class="v2-section v2-dark v2-fade-top v2-fade-bottom v2-engineered">
       <div class="v2-container v2-engineered__inner">
         <div class="v2-engineered__copy">
-          <p class="v2-label v2-reveal"><span class="v2-label__num">02</span> / Engineered for what comes next</p>
-          <h2 class="v2-display v2-reveal v2-display--lg v2-engineered__title" style="margin-top: 22px;">Every<br>detail.<br>Greater<br>possibility.</h2>
-          <p class="v2-lead v2-reveal v2-engineered__lead">
-            Infrastructure for the next generation<br>
-            of high-density computing.
-          </p>
+          <p class="v2-label v2-reveal"><span class="v2-label__num">02</span> / {{ t('v2.engineered.label') }}</p>
+          <h2 class="v2-display v2-reveal v2-display--lg v2-engineered__title" style="margin-top: 22px;"><Lines :text="t('v2.engineered.title')" /></h2>
+          <p class="v2-lead v2-reveal v2-engineered__lead"><Lines :text="t('v2.engineered.lead')" /></p>
         </div>
 
         <!-- На десктопе — слой под текстом почти на всю секцию, заголовок наезжает на плату -->
         <figure class="v2-engineered__media">
-          <NuxtPicture src="/asset/v2/2.png" format="webp" width="1440" height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" legacy-format="jpeg" loading="lazy" alt="Exploded view of a liquid-cooled compute module" />
+          <NuxtPicture src="/asset/v2/2.png" format="webp" width="1440" height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" legacy-format="jpeg" loading="lazy" :alt="t('v2.engineered.imageAlt')" />
         </figure>
 
         <div class="v2-engineered__bottom">
@@ -424,7 +405,7 @@ onBeforeUnmount(() => {
             <p v-for="item in engineeredMeta" :key="item" class="v2-label v2-reveal">{{ item }}</p>
           </div>
 
-          <p class="v2-label v2-reveal v2-engineered__caption">Conceptual visualization</p>
+          <p class="v2-label v2-reveal v2-engineered__caption">{{ t('v2.engineered.caption') }}</p>
         </div>
       </div>
     </section>
@@ -433,28 +414,21 @@ onBeforeUnmount(() => {
     <section class="v2-section" id="campus">
       <div class="v2-container">
         <div class="v2-place__head">
-          <h2 class="v2-display v2-reveal v2-display--lg">A place<br>to scale.</h2>
+          <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.place.title')" /></h2>
           <div>
-            <p class="v2-label v2-reveal"><span class="v2-label__num">03</span> / Ekibastuz, Kazakhstan</p>
-            <p class="v2-place__intro v2-reveal">
-              191.8 hectares allocated for phase one.
-              Approximately 1,300 hectares reserved
-              for the cluster&rsquo;s future expansion.
-            </p>
+            <p class="v2-label v2-reveal"><span class="v2-label__num">03</span> / {{ t('v2.location') }}</p>
+            <p class="v2-place__intro v2-reveal">{{ t('v2.place.intro') }}</p>
           </div>
         </div>
 
         <!-- Плашки «PHASE ONE / 191.8 HA» и «EXPANSION / ~1,300 HA» вшиты в изображение -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/3.png" format="webp" width="1440" height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Aerial visualization of the Data Center Valley campus" />
+          <NuxtPicture src="/asset/v2/3.png" format="webp" width="1440" height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.place.imageAlt')" />
         </figure>
 
         <div class="v2-place__note">
-          <p class="v2-label v2-reveal">Power. Land. A long-term horizon.</p>
-          <p class="v2-place__note-text v2-reveal">
-            An industrial location between Europe and Asia,
-            with the space to grow in phases.
-          </p>
+          <p class="v2-label v2-reveal">{{ t('v2.place.noteLabel') }}</p>
+          <p class="v2-place__note-text v2-reveal">{{ t('v2.place.noteText') }}</p>
         </div>
 
         <div class="v2-cols v2-cols--3">
@@ -471,8 +445,8 @@ onBeforeUnmount(() => {
     <section class="v2-section">
       <div class="v2-container">
         <div class="v2-section__head">
-          <p class="v2-label v2-reveal"><span class="v2-label__num">04</span> / The foundations</p>
-          <h2 class="v2-display v2-reveal v2-display--lg">Built on<br>more than land.</h2>
+          <p class="v2-label v2-reveal"><span class="v2-label__num">04</span> / {{ t('v2.foundations.label') }}</p>
+          <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.foundations.title')" /></h2>
         </div>
 
         <div class="v2-foundations">
@@ -546,10 +520,10 @@ onBeforeUnmount(() => {
     <section class="v2-section" id="team">
       <div class="v2-container">
         <div class="v2-section__head">
-          <p class="v2-label v2-reveal"><span class="v2-label__num">05</span> / The people behind DCV</p>
+          <p class="v2-label v2-reveal"><span class="v2-label__num">05</span> / {{ t('v2.people.label') }}</p>
           <div>
-            <h2 class="v2-display v2-reveal v2-display--lg">A shared<br>ambition.</h2>
-            <p class="v2-lead v2-reveal" style="margin-top: 22px;">The people shaping the next phase of compute.</p>
+            <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.people.title')" /></h2>
+            <p class="v2-lead v2-reveal" style="margin-top: 22px;">{{ t('v2.people.lead') }}</p>
           </div>
         </div>
 
@@ -560,7 +534,7 @@ onBeforeUnmount(() => {
           :class="{ 'is-scrollable': peopleLoop, 'is-dragging': peopleDragging }"
           tabindex="0"
           role="region"
-          aria-label="The people behind DCV"
+          :aria-label="t('v2.people.label')"
           @pointerdown="onPeopleDown"
           @pointermove="onPeopleMove"
           @pointerup="onPeopleUp"
@@ -577,16 +551,16 @@ onBeforeUnmount(() => {
               <span class="v2-person__watermark" aria-hidden="true">{{ person.letter }}</span>
               <span class="v2-person__tag v2-person__tag--top">{{ person.tag }}</span>
               <span class="v2-person__plus" aria-hidden="true">+</span>
-              <span class="v2-person__tag v2-person__tag--bottom">Portrait to follow</span>
+              <span class="v2-person__tag v2-person__tag--bottom">{{ t('v2.people.portrait') }}</span>
             </div>
             <p class="v2-label v2-person__role">{{ person.role }}</p>
-            <h3 class="v2-person__name">Name to follow</h3>
-            <p class="v2-person__bio">Role and short biography</p>
+            <h3 class="v2-person__name">{{ t('v2.people.name') }}</h3>
+            <p class="v2-person__bio">{{ t('v2.people.bio') }}</p>
           </article>
         </div>
         </div>
 
-        <p class="v2-label v2-reveal v2-people__footnote">Portraits &amp; profiles / content to be provided</p>
+        <p class="v2-label v2-reveal v2-people__footnote">{{ t('v2.people.footnote') }}</p>
       </div>
     </section>
 
@@ -594,17 +568,17 @@ onBeforeUnmount(() => {
     <section class="v2-section v2-dark v2-fade-top">
       <div class="v2-container">
         <div class="v2-section__head">
-          <p class="v2-label v2-reveal"><span class="v2-label__num">06</span> / A closer look</p>
-          <h2 class="v2-display v2-reveal v2-display--lg">From power.<br>To possibility.</h2>
+          <p class="v2-label v2-reveal"><span class="v2-label__num">06</span> / {{ t('v2.film.label') }}</p>
+          <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.film.title')" /></h2>
         </div>
 
         <!-- TODO: кнопка «PLAY THE FILM» пока часть изображения; при появлении ролика
              заменить <figure> на видеоплеер и вынести кнопку в разметку. -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/6block.png" format="webp" width="1344" height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" alt="Data hall interior — concept film still" />
+          <NuxtPicture src="/asset/v2/6block.png" format="webp" width="1344" height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.film.imageAlt')" />
           <figcaption class="v2-film__caption v2-reveal">
-            <span class="v2-label">Inside the infrastructure / concept film</span>
-            <span class="v2-label">Concept film &mdash; architecture &amp; compute</span>
+            <span class="v2-label">{{ t('v2.film.caption1') }}</span>
+            <span class="v2-label">{{ t('v2.film.caption2') }}</span>
           </figcaption>
         </figure>
       </div>
@@ -615,8 +589,8 @@ onBeforeUnmount(() => {
       <div class="v2-container" style="position: relative; z-index: 2;">
         <div class="v2-next__top">
           <div>
-            <p class="v2-label v2-reveal"><span class="v2-label__num">07</span> / Your next move</p>
-            <h2 class="v2-display v2-reveal v2-display--xl v2-next__title">Build<br>what&rsquo;s next.</h2>
+            <p class="v2-label v2-reveal"><span class="v2-label__num">07</span> / {{ t('v2.next.label') }}</p>
+            <h2 class="v2-display v2-reveal v2-display--xl v2-next__title"><Lines :text="t('v2.next.title')" /></h2>
           </div>
 
           <svg class="v2-next__arrow v2-reveal" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" aria-hidden="true">
@@ -627,11 +601,8 @@ onBeforeUnmount(() => {
 
         <div class="v2-next__body">
           <div>
-            <p class="v2-next__lead v2-reveal">
-              Start the conversation.<br>
-              Shape the next phase of compute.
-            </p>
-            <a :href="contactMail" class="v2-btn v2-btn--ink v2-reveal">Let&rsquo;s talk <span aria-hidden="true">&#8599;</span></a>
+            <p class="v2-next__lead v2-reveal"><Lines :text="t('v2.next.lead')" /></p>
+            <a :href="contactMail" class="v2-btn v2-btn--ink v2-reveal">{{ t('v2.next.cta') }} <span aria-hidden="true">&#8599;</span></a>
           </div>
 
           <div class="v2-next__services">
@@ -652,14 +623,14 @@ onBeforeUnmount(() => {
 
           <p class="v2-label">
             Data Center Valley<br>
-            Ekibastuz, Kazakhstan
+            {{ t('v2.location') }}
           </p>
 
           <div class="v2-footer__right v2-footer__links">
             <p class="v2-label">
-              <a href="#energy">Vision</a> /
-              <a href="#campus">Campus</a> /
-              <a :href="contactMail">Contact</a>
+              <a href="#energy">{{ t('v2.footer.vision') }}</a> /
+              <a href="#campus">{{ t('v2.footer.campus') }}</a> /
+              <a :href="contactMail">{{ t('v2.footer.contact') }}</a>
             </p>
             <p class="v2-label">&copy; Data Center Valley</p>
           </div>

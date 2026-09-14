@@ -1,0 +1,178 @@
+{
+    "v2": {
+        "meta": {
+            "title": "Data Center Valley — Ekibastuz, Kazakhstan"
+        },
+        "location": "Ekibastuz, Kazakhstan",
+        "header": {
+            "team": "Team",
+            "contact": "Contact us"
+        },
+        "hero": {
+            "imageAlt": "Data Center Valley campus facade",
+            "lead": "Giga-scale ambition.\nA clear first phase.",
+            "stats": {
+                "land": {
+                    "label": "Land & expansion",
+                    "value1": "191.8 ha",
+                    "note1": "Allocated for phase one",
+                    "value2": "~1,300 ha",
+                    "note2": "Reserved for cluster expansion"
+                },
+                "phase": {
+                    "label": "Phase one",
+                    "value1": "50 MW",
+                    "note1": "First-phase capacity",
+                    "value2": "Q2 2027",
+                    "note2": "Planned commissioning"
+                },
+                "energy": {
+                    "label": "Energy infrastructure",
+                    "value1": "215 MW",
+                    "note1": "Existing substation",
+                    "value2": "Up to 1 GW",
+                    "note2": "Phased infrastructure upgrade"
+                }
+            }
+        },
+        "energy": {
+            "label": "Energy strategy",
+            "title": "Power.\nWith a plan.",
+            "lead": "Start with existing infrastructure.\nDevelop capacity as the cluster grows.",
+            "imageAlt": "Existing 215 MW substation near the Ekibastuz site",
+            "steps": {
+                "connect": {
+                    "title": "Connect.",
+                    "text": "An existing substation anchors the energy strategy."
+                },
+                "build": {
+                    "title": "Build.",
+                    "text": "Establish the campus through a defined first phase."
+                },
+                "expand": {
+                    "title": "Expand.",
+                    "text": "Modernize infrastructure in stages as the cluster develops."
+                }
+            }
+        },
+        "engineered": {
+            "label": "Engineered for what comes next",
+            "title": "Every\ndetail.\nGreater\npossibility.",
+            "lead": "Infrastructure for the next generation\nof high-density computing.",
+            "imageAlt": "Exploded view of a liquid-cooled compute module",
+            "meta": {
+                "density": "High-density compute",
+                "cooling": "Liquid-cooling concept",
+                "modular": "Modular architecture"
+            },
+            "caption": "Conceptual visualization"
+        },
+        "place": {
+            "title": "A place\nto scale.",
+            "intro": "191.8 hectares allocated for phase one. Approximately 1,300 hectares reserved for the cluster’s future expansion.",
+            "imageAlt": "Aerial visualization of the Data Center Valley campus",
+            "noteLabel": "Power. Land. A long-term horizon.",
+            "noteText": "An industrial location between Europe and Asia, with the space to grow in phases.",
+            "facts": {
+                "phase": {
+                    "label": "Phase one",
+                    "line1": "50 MW · 191.8 ha",
+                    "line2": "Planned commissioning: Q2 2027"
+                },
+                "expansion": {
+                    "label": "Cluster expansion",
+                    "line1": "~1,300 ha reserved",
+                    "line2": "Further phases: schedule to be confirmed"
+                },
+                "energy": {
+                    "label": "Energy modernization",
+                    "line1": "215 MW existing substation",
+                    "line2": "Potential expansion: up to 1 GW"
+                }
+            }
+        },
+        "foundations": {
+            "label": "The foundations",
+            "title": "Built on\nmore than land.",
+            "items": {
+                "power": {
+                    "title": "Power",
+                    "text": "Energy at the centre of the plan.",
+                    "more": "An existing 215 MW substation anchors the first phase, with a staged upgrade path of up to 1 GW as the cluster grows."
+                },
+                "scale": {
+                    "title": "Scale",
+                    "text": "Land and capacity for phased growth.",
+                    "more": "191.8 hectares allocated for phase one and approximately 1,300 hectares reserved for the cluster’s future expansion."
+                },
+                "location": {
+                    "title": "Location",
+                    "text": "A Eurasian base for global compute.",
+                    "more": "An industrial location in Ekibastuz, Kazakhstan, between Europe and Asia — with the space to grow in phases."
+                },
+                "connectivity": {
+                    "title": "Connectivity",
+                    "text": "An ecosystem designed to connect.",
+                    "more": "Power, land and partners planned together as one ecosystem, so new capacity connects to where it is needed."
+                },
+                "flexibility": {
+                    "title": "Flexibility",
+                    "text": "Multiple ways to build and operate.",
+                    "more": "Wholesale colocation, build-to-suit, greenfield development or AI compute partnerships — the model adapts to each partner."
+                },
+                "partnership": {
+                    "title": "Partnership",
+                    "text": "Public and private ambition aligned.",
+                    "more": "Public and private stakeholders working to one plan — from land and energy to long-term development of the cluster."
+                },
+                "horizon": {
+                    "title": "Horizon",
+                    "text": "Infrastructure for the long term.",
+                    "more": "Phase one with 50 MW is planned for commissioning in Q2 2027; further phases follow as the cluster develops."
+                }
+            }
+        },
+        "people": {
+            "label": "The people behind DCV",
+            "title": "A shared\nambition.",
+            "lead": "The people shaping the next phase of compute.",
+            "tag": "DCV / Team {n}",
+            "portrait": "Portrait to follow",
+            "name": "Name to follow",
+            "bio": "Role and short biography",
+            "footnote": "Portraits & profiles / content to be provided",
+            "roles": {
+                "leadership": "Project leadership",
+                "engineering": "Engineering & operations",
+                "partnerships": "Partnerships",
+                "energy": "Energy & power (test)",
+                "finance": "Finance (test)",
+                "legal": "Legal & compliance (test)"
+            }
+        },
+        "film": {
+            "label": "A closer look",
+            "title": "From power.\nTo possibility.",
+            "imageAlt": "Data hall interior — concept film still",
+            "caption1": "Inside the infrastructure / concept film",
+            "caption2": "Concept film — architecture & compute"
+        },
+        "next": {
+            "label": "Your next move",
+            "title": "Build\nwhat’s next.",
+            "lead": "Start the conversation.\nShape the next phase of compute.",
+            "cta": "Let’s talk",
+            "services": {
+                "colocation": "Wholesale colocation",
+                "buildToSuit": "Build-to-suit",
+                "greenfield": "Greenfield development",
+                "partnerships": "AI compute partnerships"
+            }
+        },
+        "footer": {
+            "vision": "Vision",
+            "campus": "Campus",
+            "contact": "Contact"
+        }
+    }
+}

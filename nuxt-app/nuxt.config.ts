@@ -27,10 +27,12 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl: 'https://dc-valley.com',
     // Порядок этого массива = порядок переключателя языков в шапке.
+    // v2/*.json — тексты страницы /v2 (ключи v2.*), отдельно от основного сайта;
+    // сливаются с основным файлом локали.
     locales: [
-      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
-      { code: 'kk', language: 'kk-KZ', name: 'Қазақша', file: 'kk.json' },
-      { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru.json' }
+      { code: 'en', language: 'en-US', name: 'English', files: ['en.json', 'v2/en.json'] },
+      { code: 'kk', language: 'kk-KZ', name: 'Қазақша', files: ['kk.json', 'v2/kk.json'] },
+      { code: 'ru', language: 'ru-RU', name: 'Русский', files: ['ru.json', 'v2/ru.json'] }
     ],
     defaultLocale: 'en',
     strategy: 'prefix',
