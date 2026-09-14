@@ -237,12 +237,21 @@
    ШАПКА
    ============================================================ */
 
+/* Шапка всегда наверху при скролле. fixed, а не sticky: у body стоит
+   overflow-x: hidden (style.css), из-за него sticky ненадёжен.
+   Место под неё уже зарезервировано padding-top у .v2-hero. */
 .v2-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 20;
+    z-index: 50;
+    background: var(--v2-bg);
+}
+
+/* Якоря (#energy и т.п.) не прячутся под фиксированной шапкой. */
+.v2 [id] {
+    scroll-margin-top: var(--v2-header-h);
 }
 
 .v2-header__inner {
