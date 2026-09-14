@@ -37,7 +37,7 @@ class NewsPostController extends Controller
         $post = NewsPost::create($data);
         $this->keepSingleFeatured($post);
 
-        return redirect()->route('news.index')->with('status', 'News post created.');
+        return redirect()->route('news.index')->with('status', __('News post created.'));
     }
 
     public function edit(NewsPost $news)
@@ -64,7 +64,7 @@ class NewsPostController extends Controller
         $news->update($data);
         $this->keepSingleFeatured($news);
 
-        return redirect()->route('news.index')->with('status', 'News post updated.');
+        return redirect()->route('news.index')->with('status', __('News post updated.'));
     }
 
     public function destroy(NewsPost $news)
@@ -75,7 +75,7 @@ class NewsPostController extends Controller
 
         $news->delete();
 
-        return redirect()->route('news.index')->with('status', 'News post deleted.');
+        return redirect()->route('news.index')->with('status', __('News post deleted.'));
     }
 
     private function validated(Request $request): array

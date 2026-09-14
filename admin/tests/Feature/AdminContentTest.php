@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\SetAdminLocale;
 use App\Models\NewsPost;
 use App\Models\TeamMember;
 use App\Models\User;
@@ -138,5 +139,64 @@ class AdminContentTest extends TestCase
             ->assertJsonCount(1, 'data')
             ->assertJsonPath('data.0.last_name', 'Садықова')
             ->assertJsonPath('data.0.first_name', 'Dana');
+    }
+
+    public function test_interface_language_can_be_switched(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->get('/news')->assertSee('No news posts yet.');
+
+        $this->actingAs($user)->from('/news')->get('/locale/ru')
+            ->assertRedirect('/news')
+            ->assertCookie(SetAdminLocale::COOKIE, 'ru');
+
+        $this->actingAs($user)->withCookie(SetAdminLocale::COOKIE, 'ru')->get('/news')
+            ->assertSee('lang="ru"', false)
+            ->assertSee('Новостей пока нет.');
+
+        $this->get('/locale/de')->assertNotFound();
+    }
+
+    public function test_login_page_uses_chosen_language(): void
+    {
+        $this->withCookie(SetAdminLocale::COOKIE, 'kk')->get('/login')
+            ->assertSee('Мені есте сақта')
+            ->assertSee(route('locale.switch', 'ru'), false);
+    }
+
+    public function test_browser_language_is_used_until_one_is_chosen(): void
+    {
+        $this->withHeader('Accept-Language', 'ru-RU,ru;q=0.9,en;q=0.8')->get('/login')->assertSee('Запомнить меня');
+        $this->withHeader('Accept-Language', 'de-DE,de;q=0.9')->get('/login')->assertSee('Remember me');
+    }
+
+    public function test_validation_errors_follow_interface_language(): void
+    {
+        $this->actingAs(User::factory()->create())
+            ->withCookie(SetAdminLocale::COOKIE, 'ru')
+            ->post(route('news.store'), ['title' => ['ru' => 'Только русский']])
+            ->assertSessionHasErrors(['title.en' => 'Поле Заголовок (EN) обязательно для заполнения.']);
+    }
+
+    public function test_every_interface_string_has_kk_and_ru_translations(): void
+    {
+        $en = [];
+        foreach (['resources/views', 'app'] as $dir) {
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(base_path($dir)));
+            foreach ($files as $file) {
+                if ($file->isFile() && str_ends_with($file->getFilename(), '.php')) {
+                    preg_match_all("/__\\('((?:[^'\\\\]|\\\\.)+)'/", file_get_contents($file), $m);
+                    preg_match_all('/__\\("([^"]+)"/', file_get_contents($file), $m2);
+                    array_push($en, ...array_map('stripslashes', $m[1]), ...$m2[1]);
+                }
+            }
+        }
+        $en = array_filter(array_unique($en), fn ($key) => ! preg_match('/^(auth|passwords|validation|pagination)\./', $key));
+
+        foreach (['kk', 'ru'] as $locale) {
+            $json = json_decode(file_get_contents(lang_path("{$locale}.json")), true);
+            $this->assertSame([], array_values(array_diff($en, array_keys($json))), "Missing in {$locale}.json");
+        }
     }
 }

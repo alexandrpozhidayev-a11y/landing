@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\SetAdminLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Админка стоит за nginx хоста (HTTPS на нём): доверяем X-Forwarded-*,
         // чтобы ссылки и редиректы строились как https://dc-valley.com/admin/...
         $middleware->trustProxies(at: '*');
+
+        // Язык интерфейса админки (EN / KK / RU); API сайта берёт язык из ?locale=
+        $middleware->web(append: [SetAdminLocale::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

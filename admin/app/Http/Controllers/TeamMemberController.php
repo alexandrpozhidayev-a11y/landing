@@ -33,7 +33,7 @@ class TeamMemberController extends Controller
 
         TeamMember::create($data);
 
-        return redirect()->route('team.index')->with('status', 'Team member created.');
+        return redirect()->route('team.index')->with('status', __('Team member created.'));
     }
 
     public function edit(TeamMember $member)
@@ -54,7 +54,7 @@ class TeamMemberController extends Controller
 
         $member->update($data);
 
-        return redirect()->route('team.index')->with('status', 'Team member updated.');
+        return redirect()->route('team.index')->with('status', __('Team member updated.'));
     }
 
     public function destroy(TeamMember $member)
@@ -65,7 +65,7 @@ class TeamMemberController extends Controller
 
         $member->delete();
 
-        return redirect()->route('team.index')->with('status', 'Team member deleted.');
+        return redirect()->route('team.index')->with('status', __('Team member deleted.'));
     }
 
     private function validated(Request $request): array

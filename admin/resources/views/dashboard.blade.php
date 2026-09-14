@@ -15,14 +15,14 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <a href="{{ route('news.index') }}" class="block bg-white shadow-sm sm:rounded-lg p-6 hover:shadow-md transition">
-                    <div class="text-sm text-gray-500">News</div>
+                    <div class="text-sm text-gray-500">{{ __('News') }}</div>
                     <div class="mt-1 text-3xl font-semibold text-gray-900">{{ \App\Models\NewsPost::count() }}</div>
-                    <div class="mt-2 text-sm text-indigo-600">Manage posts &rarr;</div>
+                    <div class="mt-2 text-sm text-indigo-600">{{ __('Manage posts') }} &rarr;</div>
                 </a>
                 <a href="{{ route('team.index') }}" class="block bg-white shadow-sm sm:rounded-lg p-6 hover:shadow-md transition">
-                    <div class="text-sm text-gray-500">Team</div>
+                    <div class="text-sm text-gray-500">{{ __('Team') }}</div>
                     <div class="mt-1 text-3xl font-semibold text-gray-900">{{ \App\Models\TeamMember::count() }}</div>
-                    <div class="mt-2 text-sm text-indigo-600">Manage members &rarr;</div>
+                    <div class="mt-2 text-sm text-indigo-600">{{ __('Manage members') }} &rarr;</div>
                 </a>
             </div>
         </div>

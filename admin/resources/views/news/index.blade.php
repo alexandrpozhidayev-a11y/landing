@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">News</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('News') }}</h2>
             <a href="{{ route('news.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700">
-                + Add post
+                + {{ __('Add post') }}
             </a>
         </div>
     </x-slot>
@@ -21,11 +21,11 @@
                     <thead class="bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         <tr>
                             <th class="px-6 py-3 w-16"></th>
-                            <th class="px-6 py-3">Title</th>
-                            <th class="px-6 py-3">Languages</th>
-                            <th class="px-6 py-3">Date</th>
-                            <th class="px-6 py-3">Status</th>
-                            <th class="px-6 py-3 text-right">Actions</th>
+                            <th class="px-6 py-3">{{ __('Title') }}</th>
+                            <th class="px-6 py-3">{{ __('Languages') }}</th>
+                            <th class="px-6 py-3">{{ __('Date') }}</th>
+                            <th class="px-6 py-3">{{ __('Status') }}</th>
+                            <th class="px-6 py-3 text-right">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -46,26 +46,26 @@
                                 <td class="px-6 py-3 text-gray-500 whitespace-nowrap">{{ $post->published_at?->format('d.m.Y') ?? '—' }}</td>
                                 <td class="px-6 py-3 space-x-1 whitespace-nowrap">
                                     @if ($post->is_published)
-                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Published</span>
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">{{ __('Published') }}</span>
                                     @else
-                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">Draft</span>
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">{{ __('Draft') }}</span>
                                     @endif
                                     @if ($post->is_featured)
-                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">Main</span>
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">{{ __('Main') }}</span>
                                     @endif
                                 </td>
                                 <td class="px-6 py-3 text-right space-x-3 whitespace-nowrap">
-                                    <a href="{{ route('news.edit', $post) }}" class="text-indigo-600 hover:text-indigo-800">Edit</a>
-                                    <form action="{{ route('news.destroy', $post) }}" method="POST" class="inline" onsubmit="return confirm('Delete this post?');">
+                                    <a href="{{ route('news.edit', $post) }}" class="text-indigo-600 hover:text-indigo-800">{{ __('Edit') }}</a>
+                                    <form action="{{ route('news.destroy', $post) }}" method="POST" class="inline" onsubmit="return confirm(@js(__('Delete this post?')));">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                                        <button type="submit" class="text-red-600 hover:text-red-800">{{ __('Delete') }}</button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-8 text-center text-gray-400">No news posts yet.</td>
+                                <td colspan="6" class="px-6 py-8 text-center text-gray-400">{{ __('No news posts yet.') }}</td>
                             </tr>
                         @endforelse
                     </tbody>

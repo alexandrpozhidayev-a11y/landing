@@ -23,10 +23,10 @@
                 {{ strtoupper($code) }}
                 <span class="hidden sm:inline text-xs text-gray-400">{{ $label }}</span>
                 @if ($code === $default)
-                    <span class="text-red-500" title="Required">*</span>
+                    <span class="text-red-500" title="{{ __('Required') }}">*</span>
                 @endif
                 @if ($hasErrors($code))
-                    <span class="ms-1 inline-block w-2 h-2 rounded-full bg-red-500" title="Has errors"></span>
+                    <span class="ms-1 inline-block w-2 h-2 rounded-full bg-red-500" title="{{ __('Has errors') }}"></span>
                 @endif
             </button>
         @endforeach
@@ -35,7 +35,7 @@
     @foreach ($locales as $code => $label)
         <div x-show="tab === '{{ $code }}'" @if ($code !== $open) x-cloak @endif class="p-4 space-y-6">
             @if ($code !== $default)
-                <p class="text-xs text-gray-500">Optional. Empty fields are shown in English on the site.</p>
+                <p class="text-xs text-gray-500">{{ __('Optional. Empty fields are shown in English on the site.') }}</p>
             @endif
             {!! $render($code, $code === $default) !!}
         </div>
