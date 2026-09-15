@@ -55,6 +55,19 @@ export default defineNuxtConfig({
     }
   },
 
+  // Модалка «Let’s talk» (v2) -> POST /api/contact -> письмо через Microsoft Graph.
+  // Значения задаются только на сервере через env (NUXT_CONTACT_TENANT_ID и т.д.,
+  // см. docker-compose.yml и .env.example), в репозитории пусто.
+  runtimeConfig: {
+    contact: {
+      tenantId: '',
+      clientId: '',
+      clientSecret: '',
+      sender: '',
+      to: 'info@dc-valley.com'
+    }
+  },
+
   // Кэш в браузере: картинки из _ipx и /asset — неделя (имена без хеша, поэтому
   // не «навсегда»), шрифты v2 не меняются — год.
   routeRules: {

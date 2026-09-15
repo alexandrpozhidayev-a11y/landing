@@ -8,9 +8,11 @@ import { h, type FunctionalComponent } from 'vue'
 // подключены в nuxt.config.ts рядом с основными. Переносы строк в переводах — "\n"
 // (см. Lines ниже). Название бренда (Data Center Valley) не переводится.
 //
-// Картинки: /public/asset/v2/*. Подписи-плашки (ENERGY INFRASTRUCTURE, PHASE ONE / 191.8 HA,
-// PLAY THE FILM) вшиты в сами изображения, поэтому оверлеев в разметке нет —
-// если плашки понадобится сделать живыми, их нужно будет убрать из картинок.
+// Картинки: /public/asset/v2/* (десктоп) и /public/asset/v2/mobile/* (свои кадры
+// для телефона, до 599px) — выводятся через <V2Picture>. Подписи-плашки
+// (ENERGY INFRASTRUCTURE, PHASE ONE / 191.8 HA, PLAY THE FILM) вшиты в десктопные
+// изображения, поэтому оверлеев в разметке нет — если плашки понадобится сделать
+// живыми, их нужно будет убрать из картинок. В мобильных кадрах плашек нет.
 
 definePageMeta({
   layout: false
@@ -115,7 +117,17 @@ const people = [...basePeople, ...testPeople]
 const services = computed(() => (['colocation', 'buildToSuit', 'greenfield', 'partnerships'] as const)
   .map(id => t(`v2.next.services.${id}`)))
 
-const contactMail = 'mailto:commercial@dc-valley.com'
+// Contact us / Let’s talk / Contact открывают модалку с формой (V2ContactModal,
+// письмо уходит на info@ через /api/contact). mailto — запасной путь, пока
+// страница не ожила (JS ещё не загрузился или выключен).
+const contactMail = 'mailto:info@dc-valley.com'
+const contactModal = ref<{ open: () => void } | null>(null)
+
+function openContact(event: MouseEvent) {
+  if (!contactModal.value) return
+  event.preventDefault()
+  contactModal.value.open()
+}
 
 // Слайдер команды — нативный горизонтальный скролл со scroll-snap, без стрелок:
 // листается свайпом, колесом/тачпадом, клавиатурой (фокус на ленте) и перетаскиванием мышью.
@@ -315,7 +327,7 @@ onBeforeUnmount(() => {
 
           <NuxtLink :to="localePath('/team')" class="v2-header__link">{{ t('v2.header.team') }}</NuxtLink>
 
-          <a :href="contactMail" class="v2-btn v2-btn--orange">{{ t('v2.header.contact') }} <span aria-hidden="true">&#8599;</span></a>
+          <a :href="contactMail" class="v2-btn v2-btn--orange" @click="openContact">{{ t('v2.header.contact') }} <span aria-hidden="true">&#8599;</span></a>
         </nav>
       </div>
     </header>
@@ -326,16 +338,15 @@ onBeforeUnmount(() => {
         <!-- Картинка от линии шапки до правого края экрана -->
         <figure class="v2-hero__media">
           <!-- LCP: грузится сразу, с preload высокого приоритета -->
-          <NuxtPicture
+          <V2Picture
             src="/asset/v2/hero.png"
-            width="1020"
-            height="820"
-            format="webp"
+            :width="1020"
+            :height="820"
             sizes="xs:100vw sm:100vw md:72vw lg:72vw xl:72vw"
-            legacy-format="jpeg"
-            loading="eager"
-            :preload="{ fetchPriority: 'high' }"
-            :img-attrs="{ fetchpriority: 'high' }"
+            mobile-src="/asset/v2/mobile/hero.png"
+            :mobile-width="250"
+            :mobile-height="400"
+            priority
             :alt="t('v2.hero.imageAlt')"
           />
         </figure>
@@ -374,7 +385,7 @@ onBeforeUnmount(() => {
 
         <!-- Подпись «ENERGY INFRASTRUCTURE / CONCEPT VISUALIZATION» вшита в изображение -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/1block.png" format="webp" width="1344" height="470" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.energy.imageAlt')" />
+          <V2Picture src="/asset/v2/1block.png" :width="1344" :height="470" sizes="xs:100vw sm:100vw md:100vw lg:1344px" mobile-src="/asset/v2/mobile/1block.png" :mobile-width="342" :mobile-height="320" :alt="t('v2.energy.imageAlt')" />
         </figure>
 
         <div class="v2-cols v2-cols--3">
@@ -397,7 +408,7 @@ onBeforeUnmount(() => {
 
         <!-- На десктопе — слой под текстом почти на всю секцию, заголовок наезжает на плату -->
         <figure class="v2-engineered__media">
-          <NuxtPicture src="/asset/v2/2.png" format="webp" width="1440" height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" legacy-format="jpeg" loading="lazy" :alt="t('v2.engineered.imageAlt')" />
+          <V2Picture src="/asset/v2/2.png" :width="1440" :height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" mobile-src="/asset/v2/mobile/2.png" :mobile-width="342" :mobile-height="360" :alt="t('v2.engineered.imageAlt')" />
         </figure>
 
         <div class="v2-engineered__bottom">
@@ -423,7 +434,7 @@ onBeforeUnmount(() => {
 
         <!-- Плашки «PHASE ONE / 191.8 HA» и «EXPANSION / ~1,300 HA» вшиты в изображение -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/3.png" format="webp" width="1440" height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.place.imageAlt')" />
+          <V2Picture src="/asset/v2/3.png" :width="1440" :height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" mobile-src="/asset/v2/mobile/3.png" :mobile-width="342" :mobile-height="280" :alt="t('v2.place.imageAlt')" />
         </figure>
 
         <div class="v2-place__note">
@@ -575,7 +586,7 @@ onBeforeUnmount(() => {
         <!-- TODO: кнопка «PLAY THE FILM» пока часть изображения; при появлении ролика
              заменить <figure> на видеоплеер и вынести кнопку в разметку. -->
         <figure class="v2-figure">
-          <NuxtPicture src="/asset/v2/6block.png" format="webp" width="1344" height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" legacy-format="jpeg" loading="lazy" :alt="t('v2.film.imageAlt')" />
+          <V2Picture src="/asset/v2/6block.png" :width="1344" :height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" mobile-src="/asset/v2/mobile/6block.png" :mobile-width="342" :mobile-height="240" :alt="t('v2.film.imageAlt')" />
           <figcaption class="v2-film__caption v2-reveal">
             <span class="v2-label">{{ t('v2.film.caption1') }}</span>
             <span class="v2-label">{{ t('v2.film.caption2') }}</span>
@@ -602,7 +613,7 @@ onBeforeUnmount(() => {
         <div class="v2-next__body">
           <div>
             <p class="v2-next__lead v2-reveal"><Lines :text="t('v2.next.lead')" /></p>
-            <a :href="contactMail" class="v2-btn v2-btn--ink v2-reveal">{{ t('v2.next.cta') }} <span aria-hidden="true">&#8599;</span></a>
+            <a :href="contactMail" class="v2-btn v2-btn--ink v2-reveal" @click="openContact">{{ t('v2.next.cta') }} <span aria-hidden="true">&#8599;</span></a>
           </div>
 
           <div class="v2-next__services">
@@ -630,13 +641,15 @@ onBeforeUnmount(() => {
             <p class="v2-label">
               <a href="#energy">{{ t('v2.footer.vision') }}</a> /
               <a href="#campus">{{ t('v2.footer.campus') }}</a> /
-              <a :href="contactMail">{{ t('v2.footer.contact') }}</a>
+              <a :href="contactMail" @click="openContact">{{ t('v2.footer.contact') }}</a>
             </p>
             <p class="v2-label">&copy; Data Center Valley</p>
           </div>
         </div>
       </div>
     </section>
+
+    <V2ContactModal ref="contactModal" />
   </div>
 </template>
 

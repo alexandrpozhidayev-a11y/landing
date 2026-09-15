@@ -93,7 +93,10 @@
     display: block;
 }
 
-.v2 img {
+/* :deep — <img> рисует дочерний компонент (V2Picture), scoped-атрибута у него нет.
+   Без :deep картинка остаётся с width/height из атрибутов и на телефоне
+   вытягивается по высоте. */
+.v2 :deep(img) {
     display: block;
     width: 100%;
     height: auto;
@@ -431,7 +434,7 @@
 }
 
 /* Кадр режем сверху (небо), низ с оранжевым цоколем и асфальтом оставляем. */
-.v2-hero__media img {
+.v2-hero__media :deep(img) {
     aspect-ratio: 1023 / 800;
     object-fit: cover;
     object-position: 50% 100%;
@@ -472,7 +475,7 @@
         position: relative;
     }
 
-    .v2-hero__media img {
+    .v2-hero__media :deep(img) {
         max-height: 900px;
     }
 
@@ -650,9 +653,18 @@
     margin: clamp(28px, 4vw, 48px) calc(-1 * var(--v2-pad)) 0;
 }
 
-.v2-engineered__media img {
+.v2-engineered__media :deep(img) {
     aspect-ratio: 3 / 2;
     object-fit: cover;
+}
+
+/* До 599px показываются мобильные кадры (V2Picture) со своими пропорциями —
+   их не обрезаем под десктопные. */
+@media (max-width: 599px) {
+    .v2-hero__media :deep(img),
+    .v2-engineered__media :deep(img) {
+        aspect-ratio: auto;
+    }
 }
 
 /* Края рендера растворяются в фоне секции: собственный фон картинки

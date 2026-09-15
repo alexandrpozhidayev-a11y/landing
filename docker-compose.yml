@@ -10,6 +10,15 @@ services:
       - "127.0.0.1:3004:3000"
     environment:
       NODE_ENV: production
+      # Форма «Let’s talk» на v2 -> письмо на info@ через Microsoft Graph.
+      # Значения — в файле .env рядом с этим docker-compose.yml (в git не попадает,
+      # образец — .env.example). Пока пусто, форма отвечает «не удалось отправить»
+      # и предлагает написать на info@ напрямую.
+      NUXT_CONTACT_TENANT_ID: ${CONTACT_TENANT_ID:-}
+      NUXT_CONTACT_CLIENT_ID: ${CONTACT_CLIENT_ID:-}
+      NUXT_CONTACT_CLIENT_SECRET: ${CONTACT_CLIENT_SECRET:-}
+      NUXT_CONTACT_SENDER: ${CONTACT_SENDER:-}
+      NUXT_CONTACT_TO: ${CONTACT_TO:-info@dc-valley.com}
 
   # Админка (Laravel, папка admin/) — https://dc-valley.com/admin
   # nginx на хосте проксирует /admin/ -> 127.0.0.1:3005 (deploy/nginx.prod.conf).

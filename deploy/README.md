@@ -58,6 +58,31 @@ docker run --rm -v dcv_admin-storage:/data -v /root:/backup alpine   tar czf /ba
 `/v2` (черновик новой главной) открывается только по прямой ссылке:
 ссылок на неё с сайта нет, в `<head>` стоит `noindex, nofollow`.
 
+## Форма «Let’s talk» на /v2 (письма на info@)
+
+Кнопки Contact us / Let’s talk / Contact на `/v2` открывают модалку; заявка
+уходит `POST /api/contact` в контейнере `web`, а оттуда письмом на
+`info@dc-valley.com` через **Microsoft Graph** (почта домена в Microsoft 365,
+SPF разрешает отправку только с серверов Microsoft). Reply-To — адрес
+посетителя, «Ответить» в Outlook пишет сразу ему.
+
+Доступы даёт администратор Microsoft 365: регистрация приложения в Entra ID
+с разрешением `Mail.Send` (Application) и admin consent, ограниченная одним
+ящиком-отправителем. На сервере:
+
+```bash
+cd /var/www/DCV
+cp .env.example .env      # один раз
+nano .env                 # CONTACT_TENANT_ID / CLIENT_ID / CLIENT_SECRET / SENDER
+docker compose up -d web  # пересоздать контейнер с новыми переменными
+```
+
+Пока `.env` не заполнен, форма показывает ошибку отправки и предлагает
+написать на info@ напрямую; в `docker compose logs web` будет
+`[contact] mail not sent: Microsoft Graph mail is not configured`.
+Client Secret имеет срок действия — когда истечёт, выпустить новый и
+обновить `.env`.
+
 ---
 
 Ниже — история: деплой на старом сервере hvitl1 (статика, затем переход на Docker).

@@ -173,6 +173,31 @@
             "vision": "Vision",
             "campus": "Campus",
             "contact": "Contact"
+        },
+        "contact": {
+            "eyebrow": "Start a conversation",
+            "close": "Close",
+            "title": "Let’s talk.",
+            "name": "Name",
+            "namePlaceholder": "Your full name",
+            "email": "Work email",
+            "company": "Company",
+            "companyPlaceholder": "Company or organisation",
+            "project": "Project",
+            "projectPlaceholder": "Tell us what you are planning",
+            "consent": "I agree to be contacted about this enquiry.",
+            "required": "Required fields",
+            "submit": "Send enquiry",
+            "sending": "Sending…",
+            "successTitle": "Thank you.",
+            "successText": "Your enquiry has been sent. We’ll be in touch shortly.",
+            "errors": {
+                "required": "This field is required.",
+                "email": "Enter a valid email address.",
+                "consent": "Please confirm you agree to be contacted.",
+                "send": "We couldn’t send your enquiry. Please try again or write to us at",
+                "rate": "Too many attempts. Please try again in a few minutes."
+            }
         }
     }
 }
