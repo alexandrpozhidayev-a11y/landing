@@ -12,6 +12,8 @@
   "dependencies": {
     "@nuxt/image": "^1.11.0",
     "nuxt": "^3.13.0",
+    "postprocessing": "6.36.4",
+    "three": "0.170.0",
     "vue": "^3.4.0",
     "vue-router": "^4.4.0"
   },

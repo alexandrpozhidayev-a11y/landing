@@ -1,0 +1,453 @@
+/* =========================================================================
+   Data Center Valley — hero block.
+   Принцип: продуктовая съёмка, а не игровой интерфейс. Тихая типографика,
+   один акцент, тонкие технические выноски. Всё под .dcv-hero.
+   ========================================================================= */
+.dcv-hero {
+  --dcv-bg: #0c0d10;
+  --dcv-panel: #0f1014;
+  --dcv-fg: #f2f3f5;
+  --dcv-fg-2: #b3b8c0;
+  --dcv-muted: #767c86;
+  --dcv-line: rgba(255, 255, 255, 0.08);
+  --dcv-accent: #8fdcff;
+  --dcv-sans: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --dcv-display: 'Inter Tight', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --dcv-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  position: relative;
+  width: 100%;
+  background: var(--dcv-bg);
+  color: var(--dcv-fg);
+  font-family: var(--dcv-sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dcv-pin {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(1.6rem, 3vw, 2.6rem) clamp(1.25rem, 5vw, 4.5rem) clamp(1.2rem, 2.5vw, 2rem);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  box-sizing: border-box;
+}
+
+/* ---- верхняя строка ------------------------------------------------------ */
+.dcv-eyebrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--dcv-muted);
+  letter-spacing: 0.01em;
+}
+.dcv-eyebrow span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.dcv-eyebrow span:first-child::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background: var(--dcv-fg-2);
+}
+
+.dcv-main {
+  display: grid;
+  grid-template-columns: minmax(260px, 400px) 1fr;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
+  padding-top: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* ---- текст --------------------------------------------------------------- */
+.dcv-copy h1 {
+  margin: 0;
+  font-family: var(--dcv-display);
+  font-size: clamp(2.5rem, 4.6vw, 4.3rem);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--dcv-fg);
+  text-wrap: balance;
+}
+.dcv-copy h1 em {
+  font-style: normal;
+  color: var(--dcv-fg-2);
+}
+.dcv-copy p {
+  margin: 1.4rem 0 0;
+  max-width: 32ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--dcv-fg-2);
+}
+.dcv-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+.dcv-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.1rem;
+  border-radius: 4px;
+  background: var(--dcv-fg);
+  color: #0c0d10;
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.25s;
+}
+.dcv-cta:hover { background: #fff; }
+.dcv-link {
+  font-size: 0.86rem;
+  color: var(--dcv-fg-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--dcv-line);
+  padding-bottom: 1px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.dcv-link:hover { color: var(--dcv-fg); border-color: var(--dcv-fg-2); }
+
+.dcv-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 2.6rem;
+  font-size: 0.74rem;
+  color: var(--dcv-muted);
+}
+.dcv-scroll-hint i {
+  position: relative;
+  width: 1px;
+  height: 2rem;
+  background: var(--dcv-line);
+  overflow: hidden;
+}
+.dcv-scroll-hint i::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -50%;
+  width: 100%;
+  height: 50%;
+  background: var(--dcv-fg-2);
+  animation: dcv-drop 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes dcv-drop {
+  to { top: 100%; }
+}
+
+/* ---- визуальная панель --------------------------------------------------- */
+.dcv-visual {
+  position: relative;
+  height: clamp(420px, 72vh, 820px);
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--dcv-panel);
+  border: 1px solid var(--dcv-line);
+  isolation: isolate;
+}
+.dcv-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* выноски: тонкая линия, полый кружок на объекте, подпись без плашки */
+.dcv-leaders {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+.dcv-leader {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.dcv-leader-dot {
+  fill: rgba(12, 13, 16, 0.6);
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 1;
+  opacity: 0;
+}
+.dcv-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.dcv-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0.15rem 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  color: var(--dcv-fg);
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.dcv-label__text small {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--dcv-fg-2);
+  margin-top: 0.1rem;
+}
+
+/* ---- карта финала: города, задержки, хаб ---------------------------------- */
+.dcv-map {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+.dcv-map > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  /* тёмный ореол: подписи ложатся и на светлую подсветку стран */
+  text-shadow: 0 0 2px rgba(4, 10, 32, 0.95), 0 0 6px rgba(4, 10, 32, 0.85), 0 1px 12px rgba(4, 10, 32, 0.6);
+}
+.dcv-city {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--dcv-fg);
+}
+/* рамка задержки: уголки и крестик, как в макете */
+.dcv-ms {
+  padding: 0.35rem 0.6rem 0.3rem;
+  text-align: center;
+  line-height: 1;
+  color: var(--dcv-fg);
+  background:
+    linear-gradient(currentColor, currentColor) top left / 10px 1.5px,
+    linear-gradient(currentColor, currentColor) top left / 1.5px 10px,
+    linear-gradient(currentColor, currentColor) top right / 10px 1.5px,
+    linear-gradient(currentColor, currentColor) top right / 1.5px 10px,
+    linear-gradient(currentColor, currentColor) bottom left / 10px 1.5px,
+    linear-gradient(currentColor, currentColor) bottom left / 1.5px 10px,
+    linear-gradient(currentColor, currentColor) bottom right / 10px 1.5px,
+    linear-gradient(currentColor, currentColor) bottom right / 1.5px 10px,
+    rgba(8, 14, 34, 0.55);
+  background-repeat: no-repeat;
+}
+.dcv-ms::before {
+  content: '+';
+  position: absolute;
+  left: -0.7rem;
+  top: -0.85rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--dcv-fg-2);
+}
+.dcv-ms b {
+  display: block;
+  font-family: var(--dcv-mono);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.dcv-ms span {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--dcv-fg-2);
+  margin-top: 0.15rem;
+}
+.dcv-hubtag {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.dcv-note {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: clamp(0.66rem, 1vw, 0.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #8ff0ae;
+}
+
+/* ---- HUD: глава и подпись ------------------------------------------------ */
+.dcv-hud {
+  position: absolute;
+  left: 4.5%;
+  bottom: 6%;
+  z-index: 3;
+  max-width: 70%;
+  pointer-events: none;
+}
+.dcv-hud__label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--dcv-muted);
+  margin-bottom: 0.4rem;
+}
+.dcv-hud__label b {
+  font-family: var(--dcv-mono);
+  font-weight: 500;
+  color: var(--dcv-fg-2);
+  letter-spacing: 0.04em;
+}
+.dcv-hud__title {
+  font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--dcv-fg);
+  letter-spacing: -0.01em;
+}
+.dcv-hud__title.is-swap { animation: dcv-swap 0.45s ease-out; }
+@keyframes dcv-swap {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* прогресс — тонкая линия по нижнему краю панели */
+.dcv-rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--dcv-line);
+  z-index: 3;
+}
+.dcv-rail__fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--dcv-fg-2);
+}
+
+/* ---- лоадер -------------------------------------------------------------- */
+.dcv-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  background: var(--dcv-panel);
+  transition: opacity 0.7s ease 0.15s, visibility 0s linear 0.9s;
+}
+.dcv-loader.is-done { opacity: 0; visibility: hidden; }
+.dcv-loader span {
+  font-size: 0.74rem;
+  color: var(--dcv-muted);
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+.dcv-loader span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dcv-fg-2), transparent);
+  animation: dcv-scan 1.4s linear infinite;
+}
+@keyframes dcv-scan {
+  from { transform: translateX(-60%); }
+  to { transform: translateX(60%); }
+}
+
+.dcv-debug {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 9;
+  font: 11px/1.4 var(--dcv-mono);
+  color: #cfe6ff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 6px;
+}
+
+/* ---- подвал блока ---------------------------------------------------------- */
+.dcv-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem clamp(1.25rem, 5vw, 4.5rem) 2rem;
+  font-size: 0.78rem;
+  color: var(--dcv-muted);
+}
+.dcv-footer .dcv-footer__labels { display: flex; gap: clamp(1.2rem, 4vw, 3rem); }
+.dcv-footer .dcv-footer__labels span { color: var(--dcv-fg-2); }
+
+/* ---- фолбэк без WebGL ----------------------------------------------------- */
+.dcv-hero.is-fallback .dcv-visual {
+  background:
+    radial-gradient(60% 50% at 30% 60%, rgba(143, 220, 255, 0.12), transparent 70%),
+    var(--dcv-panel);
+}
+.dcv-hero.is-fallback .dcv-loader { display: none; }
+
+@media (max-width: 860px) {
+  .dcv-pin { padding-top: 4.6rem; padding-bottom: 1rem; }
+  .dcv-main { grid-template-columns: 1fr; gap: 1.1rem; padding-top: 0.8rem; align-items: start; }
+  .dcv-copy h1 { font-size: clamp(2rem, 9vw, 2.7rem); }
+  .dcv-copy p { margin-top: 0.8rem; font-size: 0.92rem; line-height: 1.45; }
+  .dcv-actions { margin-top: 1rem; }
+  .dcv-scroll-hint { display: none; }
+  .dcv-visual { height: clamp(300px, 46svh, 520px); }
+  .dcv-footer .dcv-footer__labels { display: none; }
+  .dcv-label { font-size: 0.66rem; }
+  .dcv-label__text small { display: none; }
+  .dcv-hud__title { font-size: 0.85rem; }
+  .dcv-eyebrow span:last-child { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dcv-scroll-hint i::after { animation: none; }
+  .dcv-hud__title.is-swap { animation: none; }
+}
+
+/* ---- звук, орбита мышью ---------------------------------------------------- */
+.dcv-sound {
+  margin-left: 0.9rem;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--dcv-line);
+  border-radius: 3px;
+  background: none;
+  color: var(--dcv-fg-2);
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s;
+}
+.dcv-sound:hover { color: var(--dcv-fg); border-color: var(--dcv-fg-2); }
+.dcv-sound[aria-pressed='true'] { color: var(--dcv-fg); border-color: var(--dcv-fg-2); }
+.dcv-sound[aria-pressed='true']::before { content: '● '; color: var(--dcv-accent); }
+
+.dcv-visual.is-orbit { cursor: grab; }
+.dcv-visual.is-orbit:active { cursor: grabbing; }
