@@ -237,6 +237,15 @@
 }
 
 /* ============================================================
+   HERO PROMO (блок со старого сайта) на странице v2
+   ============================================================ */
+
+/* Кнопка не должна липнуть к нижнему краю блока, но и висеть высоко — тоже. */
+.hero-promo__inner {
+    padding-bottom: clamp(36px, 4.5vw, 64px);
+}
+
+/* ============================================================
    ШАПКА
    ============================================================ */
 
@@ -250,6 +259,35 @@
     right: 0;
     z-index: 50;
     background: var(--v2-bg);
+    transition: background 0.25s ease;
+}
+
+/* Над промо-блоком шапка прозрачная и светлая, как на старом сайте;
+   ниже (светлые секции) — снова обычная. Класс ставит pages/v2.vue по прокрутке. */
+.v2-header.is-over-hero {
+    background: transparent;
+}
+
+.v2-header.is-over-hero .v2-logo,
+.v2-header.is-over-hero .v2-header__link {
+    color: #FFFFFF;
+}
+
+.v2-header.is-over-hero .v2-header__link {
+    opacity: 0.75;
+}
+
+.v2-header.is-over-hero .v2-header__link:hover,
+.v2-header.is-over-hero .v2-header__link.is-active {
+    opacity: 1;
+}
+
+.v2-header.is-over-hero .v2-header__sep {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.v2-header.is-over-hero .v2-header__inner::after {
+    background: transparent;
 }
 
 /* Якоря (#energy и т.п.) не прячутся под фиксированной шапкой. */
@@ -647,60 +685,85 @@
     z-index: 1;
 }
 
-/* Мобильный: картинка между текстом и подписями, на всю ширину экрана. */
-.v2-engineered__media {
-    position: relative;
-    margin: clamp(28px, 4vw, 48px) calc(-1 * var(--v2-pad)) 0;
-}
-
-.v2-engineered__media :deep(img) {
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-}
-
 /* До 599px показываются мобильные кадры (V2Picture) со своими пропорциями —
    их не обрезаем под десктопные. */
 @media (max-width: 599px) {
-    .v2-hero__media :deep(img),
-    .v2-engineered__media :deep(img) {
+    .v2-hero__media :deep(img) {
         aspect-ratio: auto;
     }
 }
 
-/* Края рендера растворяются в фоне секции: собственный фон картинки
-   чуть светлее #0C0C0C, без этого виден прямоугольник. */
-.v2-engineered__media::after {
+/* Трек секции с 3D-сценой (V2Hero3d): секция залипает, распорка после неё — длина
+   ленты сцены (780% высоты экрана, как в оригинале). Распорка есть только при
+   работающем JS (.v2-js) и убирается, если WebGL2 нет (.is-static). */
+.v2-engineered-track {
+    position: relative;
+    background: var(--v2-dark);
+}
+
+.v2-engineered-track > .v2-engineered {
+    position: sticky;
+    top: 0;
+}
+
+/* Верхняя растяжка — у трека, а не у залипающей секции: при входе выглядит так же,
+   а пока секция стоит, уезжает вверх вместе с началом трека, а не висит под шапкой. */
+.v2-engineered-track > .v2-engineered::before {
+    content: none;
+}
+
+.v2-engineered-track::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    height: clamp(60px, 7vw, 100px);
+    background: linear-gradient(to bottom, var(--v2-bg), rgba(232, 232, 227, 0));
     pointer-events: none;
-    background:
-        linear-gradient(to right, var(--v2-dark), rgba(12, 12, 12, 0) 26%),
-        linear-gradient(to left, var(--v2-dark), rgba(12, 12, 12, 0) 14%),
-        linear-gradient(to bottom, var(--v2-dark), rgba(12, 12, 12, 0) 18%),
-        linear-gradient(to top, var(--v2-dark), rgba(12, 12, 12, 0) 14%);
+}
+
+.v2-engineered-track__spacer {
+    display: none;
+}
+
+.v2-js .v2-engineered-track:not(.is-static) > .v2-engineered-track__spacer {
+    display: block;
+    height: 780vh;
+    height: 780svh;
+}
+
+/* Мобильный: панель сцены между текстом и подписями, на всю ширину экрана. */
+.v2-engineered__media {
+    position: relative;
+    height: clamp(340px, 62svh, 560px);
+    margin: clamp(28px, 4vw, 48px) calc(-1 * var(--v2-pad)) 0;
 }
 
 @media (min-width: 900px) {
     .v2-engineered {
+        min-height: calc(100vh - var(--v2-header-h));
+        min-height: calc(100svh - var(--v2-header-h));
         padding-bottom: calc(var(--v2-fade-h) + 40px);
     }
 
-    /* Контент тянется до низа картинки — подписи встают у нижнего края платы.
-       = верх картинки (конец растяжки) + её высота (ширина / 1.5) - верхний отступ секции */
+    /* Подписи — у нижнего края экрана, пока секция залипла. */
     .v2-engineered__inner {
         justify-content: space-between;
-        min-height: calc(clamp(60px, 7vw, 100px) + min(100vw, 1440px) / 1.5 - clamp(72px, 11vw, 160px));
+        min-height: calc(100svh - var(--v2-header-h) - clamp(72px, 11vw, 160px) - var(--v2-fade-h) - 40px);
     }
 
-    /* Слой под текстом на всю ширину контейнера (вместе с полями),
-       верх — сразу под верхней растяжкой секции. */
+    /* Панель сцены — справа, от верха секции на высоту экрана под шапкой;
+       левый край растворяется в фоне под заголовком (виньетка в V2Hero3d). */
     .v2-engineered__media {
         position: absolute;
         z-index: 0;
-        top: calc(clamp(60px, 7vw, 100px) - clamp(72px, 11vw, 160px));
-        left: 0;
-        width: 100%;
+        top: calc(-1 * clamp(72px, 11vw, 160px));
+        right: 0;
+        width: 64%;
+        height: calc(100vh - var(--v2-header-h));
+        height: calc(100svh - var(--v2-header-h));
         margin: 0;
     }
 }
@@ -1115,6 +1178,20 @@
    06 — A CLOSER LOOK (тёмная)
    ============================================================ */
 
+/* Видео вместо фото. Ширину ограничиваем: исходник 848x464, и на всю ширину
+   контейнера (1344px) его пришлось бы растянуть в полтора раза — заметно мылит.
+   Если появится ролик в 1080p, ограничение можно снять. */
+.v2-film__video {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    margin: 0 auto;
+    aspect-ratio: 848 / 464;
+    object-fit: cover;
+    background: var(--v2-dark);
+}
+
 .v2-film__caption {
     display: grid;
     grid-template-columns: 1fr;
@@ -1218,6 +1295,29 @@
     .v2-footer__right {
         text-align: right;
     }
+}
+
+.v2-footer__socials {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0;
+}
+
+@media (min-width: 760px) {
+    .v2-footer__socials {
+        justify-content: flex-end;
+    }
+}
+
+.v2-footer__socials :deep(a) {
+    display: inline-flex;
+    color: inherit;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.v2-footer__socials :deep(a:hover) {
+    opacity: 1;
 }
 
 .v2-footer__links a {

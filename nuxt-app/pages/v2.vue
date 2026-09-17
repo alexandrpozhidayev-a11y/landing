@@ -284,8 +284,40 @@ function onRevealScroll() {
   if (!revealRaf) revealRaf = requestAnimationFrame(revealAtPageEnd)
 }
 
+// Видео в секции 06 — тот же ролик, что на первом экране (файл берётся из кэша).
+// Играет, только когда блок на экране: иначе браузер зря декодирует кадры.
+const filmVideo = ref<HTMLVideoElement | null>(null)
+let filmObserver: IntersectionObserver | null = null
+
+function setupFilmVideo() {
+  const video = filmVideo.value
+  if (!video) return
+  filmObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) video.play().catch(() => {})
+      else video.pause()
+    }
+  }, { rootMargin: '200px' })
+  filmObserver.observe(video)
+}
+
+// Шапка над промо-блоком — прозрачная и светлая (как на старом сайте), ниже — обычная.
+const overHero = ref(true)
+const heroEl = ref<HTMLElement | null>(null)
+
+function onHeaderScroll() {
+  const hero = heroEl.value
+  if (!hero) return
+  const headerH = Number.parseFloat(getComputedStyle(pageRoot.value!).getPropertyValue('--v2-header-h')) || 0
+  overHero.value = hero.getBoundingClientRect().bottom > headerH
+}
+
 onMounted(() => {
   setupReveal()
+  setupFilmVideo()
+  window.addEventListener('scroll', onHeaderScroll, { passive: true })
+  window.addEventListener('resize', onHeaderScroll)
+  onHeaderScroll()
   if (!peopleTrack.value) return
   peopleObserver = new ResizeObserver(() => { syncPeopleLoop() })
   peopleObserver.observe(peopleTrack.value)
@@ -293,7 +325,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   revealObserver?.disconnect()
+  filmObserver?.disconnect()
   window.removeEventListener('scroll', onRevealScroll)
+  window.removeEventListener('scroll', onHeaderScroll)
+  window.removeEventListener('resize', onHeaderScroll)
   cancelAnimationFrame(revealRaf)
   peopleObserver?.disconnect()
   clearTimeout(settleTimer)
@@ -303,7 +338,7 @@ onBeforeUnmount(() => {
 <template>
   <div ref="pageRoot" class="v2">
     <!-- ШАПКА -->
-    <header class="v2-header">
+    <header class="v2-header" :class="{ 'is-over-hero': overHero }">
       <div class="v2-container v2-header__inner">
         <NuxtLink :to="localePath('/')" class="v2-logo">
           <svg class="v2-logo__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
@@ -332,12 +367,39 @@ onBeforeUnmount(() => {
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO — промо-блок Digital Bridge Kazakhstan 2026 со старого сайта (pages/index.vue).
+         Разметка и стили общие (.hero-promo в assets/css/style.css), тексты — home.heroPromo.*.
+         Отступы по бокам — v2-container, чтобы текст встал по сетке остальных секций. -->
+    <section ref="heroEl" class="hero-promo" id="platform">
+      <!-- Фон декоративный: до загрузки видео показывается poster (первый кадр ролика). -->
+      <video
+        class="hero-promo__bg"
+        src="/asset/v2/hero.mp4"
+        poster="/asset/v2/hero-poster.jpg"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      ></video>
+      <div class="hero-promo__overlay" aria-hidden="true"></div>
+      <div class="v2-container hero-promo__inner">
+        <h1 class="hero-promo__title" v-html="t('home.heroPromo.title')"></h1>
+        <p class="hero-promo__text">{{ t('home.heroPromo.text') }}</p>
+        <div class="hero-promo__actions">
+          <a href="https://digitalbridge.ai/ru/#tickets" target="_blank" rel="noopener" class="btn btn--accent">{{ t('home.heroPromo.cta') }}</a>
+          <span class="hero-promo__date">{{ t('home.heroPromo.date') }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Прежний первый экран (фото здания + панель цифр). Оставлен на будущее:
+         если понадобится вернуть, раскомментировать и убрать блок выше. -->
+    <!--
     <section class="v2-hero">
       <div class="v2-hero__stage">
-        <!-- Картинка от линии шапки до правого края экрана -->
+        Картинка от линии шапки до правого края экрана; LCP, грузилась сразу с preload.
         <figure class="v2-hero__media">
-          <!-- LCP: грузится сразу, с preload высокого приоритета -->
           <V2Picture
             src="/asset/v2/hero.png"
             :width="1020"
@@ -358,7 +420,7 @@ onBeforeUnmount(() => {
             <p class="v2-lead v2-hero__lead"><Lines :text="t('v2.hero.lead')" /></p>
           </div>
 
-          <!-- Показатели проекта: панель лежит на низу картинки -->
+          Показатели проекта: панель лежит на низу картинки.
           <div class="v2-hero__stats">
             <div v-for="stat in stats" :key="stat.label" class="v2-stat">
               <p class="v2-label v2-stat__label">{{ stat.label }}</p>
@@ -371,6 +433,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </section>
+    -->
 
     <!-- 01 — ENERGY STRATEGY -->
     <section class="v2-section" id="energy">
@@ -397,8 +460,11 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 02 — ENGINEERED FOR WHAT COMES NEXT -->
-    <section class="v2-section v2-dark v2-fade-top v2-fade-bottom v2-engineered">
+    <!-- 02 — ENGINEERED FOR WHAT COMES NEXT.
+         3D-сцена (V2Hero3d) привязана к прокрутке: секция залипает, пока идёт лента,
+         длину ленты задаёт распорка после секции. -->
+    <div class="v2-engineered-track" data-dcv-track>
+    <section class="v2-section v2-dark v2-fade-top v2-fade-bottom v2-engineered" data-dcv-sticky>
       <div class="v2-container v2-engineered__inner">
         <div class="v2-engineered__copy">
           <p class="v2-label v2-reveal"><span class="v2-label__num">02</span> / {{ t('v2.engineered.label') }}</p>
@@ -406,9 +472,12 @@ onBeforeUnmount(() => {
           <p class="v2-lead v2-reveal v2-engineered__lead"><Lines :text="t('v2.engineered.lead')" /></p>
         </div>
 
-        <!-- На десктопе — слой под текстом почти на всю секцию, заголовок наезжает на плату -->
+        <!-- 3D-сцена: на десктопе — справа под текстом на высоту экрана, на телефоне — между
+             текстом и подписями. Фото платы — заставка, пока сцена грузится, и вариант без WebGL2. -->
         <figure class="v2-engineered__media">
-          <V2Picture src="/asset/v2/2.png" :width="1440" :height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" mobile-src="/asset/v2/mobile/2.png" :mobile-width="342" :mobile-height="360" :alt="t('v2.engineered.imageAlt')" />
+          <V2Hero3d>
+            <V2Picture src="/asset/v2/2.png" :width="1440" :height="960" sizes="xs:100vw sm:100vw md:100vw lg:1440px" mobile-src="/asset/v2/mobile/2.png" :mobile-width="342" :mobile-height="360" :alt="t('v2.engineered.imageAlt')" />
+          </V2Hero3d>
         </figure>
 
         <div class="v2-engineered__bottom">
@@ -420,6 +489,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </section>
+      <div class="v2-engineered-track__spacer" aria-hidden="true" />
+    </div>
 
     <!-- 03 — A PLACE TO SCALE -->
     <section class="v2-section" id="campus">
@@ -586,7 +657,17 @@ onBeforeUnmount(() => {
         <!-- TODO: кнопка «PLAY THE FILM» пока часть изображения; при появлении ролика
              заменить <figure> на видеоплеер и вынести кнопку в разметку. -->
         <figure class="v2-figure">
-          <V2Picture src="/asset/v2/6block.png" :width="1344" :height="756" sizes="xs:100vw sm:100vw md:100vw lg:1344px" mobile-src="/asset/v2/mobile/6block.png" :mobile-width="342" :mobile-height="240" :alt="t('v2.film.imageAlt')" />
+          <video
+            ref="filmVideo"
+            class="v2-film__video"
+            src="/asset/v2/hero.mp4"
+            poster="/asset/v2/film.jpg"
+            muted
+            loop
+            playsinline
+            preload="none"
+            :aria-label="t('v2.film.imageAlt')"
+          ></video>
           <figcaption class="v2-film__caption v2-reveal">
             <span class="v2-label">{{ t('v2.film.caption1') }}</span>
             <span class="v2-label">{{ t('v2.film.caption2') }}</span>
@@ -643,6 +724,12 @@ onBeforeUnmount(() => {
               <a href="#campus">{{ t('v2.footer.campus') }}</a> /
               <a :href="contactMail" @click="openContact">{{ t('v2.footer.contact') }}</a>
             </p>
+
+            <!-- Официальные аккаунты — тот же список, что и в подвале основного сайта -->
+            <div class="v2-footer__socials">
+              <SocialIcons :size="18" />
+            </div>
+
             <p class="v2-label">&copy; Data Center Valley</p>
           </div>
         </div>
@@ -657,7 +744,10 @@ onBeforeUnmount(() => {
 
 <style>
 /* Не scoped: фон страницы за пределами контента (bounce-зона скролла). */
+/* overflow-x: clip вместо hidden из style.css: hidden может сделать body контейнером
+   прокрутки, и тогда не работает position: sticky (залипание секции с 3D-сценой). */
 body.v2-body {
   background: #E8E8E3;
+  overflow-x: clip;
 }
 </style>
