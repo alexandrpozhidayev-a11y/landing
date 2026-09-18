@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ layout: 'v2' })
+
 // Одна новость из админки: /news/<slug> (тексты на языке страницы, если перевода
 // нет — английский, это решает API админки). Данные — через /api/news/:slug.
 const { t, locale } = useI18n()
@@ -27,12 +29,10 @@ if (error.value || !data.value) {
 
 const post = computed(() => data.value!.data)
 
-// Дата как на старом сайте — ДД.ММ.ГГГГ на всех языках (в en «09/11/2026» читается двояко).
 const date = computed(() => {
   const value = post.value.published_at
   if (!value) return ''
-  const [y, m, d] = value.slice(0, 10).split('-')
-  return `${d}.${m}.${y}`
+  return new Intl.DateTimeFormat(locale.value, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(value))
 })
 
 // Полный текст: абзацы — по пустой строке, переносы внутри абзаца сохраняем (white-space: pre-line).

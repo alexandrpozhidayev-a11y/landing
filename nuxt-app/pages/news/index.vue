@@ -1,5 +1,34 @@
 <script setup lang="ts">
-const { t } = useI18n()
+definePageMeta({ layout: 'v2' })
+
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
+
+interface NewsItem {
+  slug: string
+  title: string
+  excerpt: string | null
+  image: string | null
+  published_at: string | null
+  is_featured: boolean
+}
+
+const { data } = await useFetch<{ data: NewsItem[] }>('/api/news', {
+  query: { locale },
+  watch: [locale],
+  default: () => ({ data: [] })
+})
+
+const items = computed(() => data.value?.data ?? [])
+const featured = computed(() => items.value.find(item => item.is_featured) ?? items.value[0])
+const rows = computed(() => items.value.filter(item => item !== featured.value).slice(0, 3))
+const more = computed(() => items.value.filter(item => item !== featured.value).slice(3))
+
+function newsDate(value: string | null) {
+  if (!value) return ''
+  const [year, month, day] = value.slice(0, 10).split('-')
+  return `${day}.${month}.${year}`
+}
 </script>
 
 <template>
@@ -10,51 +39,38 @@ const { t } = useI18n()
       <div class="container">
         <h1 class="news-page__title">{{ t('news_page.title') }}</h1>
 
-        <div class="news__card">
+        <div v-if="featured" class="news__card">
           <NewsFeatured
-            image="https://picsum.photos/seed/dcv-news-0/700/460"
-            :date="t('home.news.featured.date')"
-            :title="t('home.news.featured.title')"
-            :text="t('home.news.featured.text')"
+            :image="featured.image"
+            :date="newsDate(featured.published_at)"
+            :title="featured.title"
+            :text="featured.excerpt ?? ''"
             :button-text="t('home.news.allNews')"
+            :to="localePath(`/news/${featured.slug}`)"
           />
           <NewsRow
-            image="https://picsum.photos/seed/dcv-news-1/300/220"
-            :date="t('home.news.rows.0.date')"
-            :title="t('home.news.rows.0.title')"
-            :text="t('home.news.rows.0.text')"
-          />
-          <NewsRow
-            image="https://picsum.photos/seed/dcv-news-2/300/220"
-            :date="t('home.news.rows.1.date')"
-            :title="t('home.news.rows.1.title')"
-            :text="t('home.news.rows.1.text')"
-          />
-          <NewsRow
-            image="https://picsum.photos/seed/dcv-news-3/300/220"
-            :date="t('home.news.rows.2.date')"
-            :title="t('home.news.rows.2.title')"
-            :text="t('home.news.rows.2.text')"
+            v-for="item in rows"
+            :key="item.slug"
+            :image="item.image"
+            :date="newsDate(item.published_at)"
+            :title="item.title"
+            :text="item.excerpt ?? ''"
+            :to="localePath(`/news/${item.slug}`)"
           />
 
-          <div class="news-page__more-grid">
+          <div v-if="more.length" class="news-page__more-grid">
             <NewsCompact
-              v-for="n in 3"
-              :key="n"
-              :image="`https://picsum.photos/seed/dcv-news-${n + 3}/360/220`"
-              :date="t(`news_page.more.${n - 1}.date`)"
-              :title="t(`news_page.more.${n - 1}.title`)"
+              v-for="item in more"
+              :key="item.slug"
+              :image="item.image ?? ''"
+              :date="newsDate(item.published_at)"
+              :title="item.title"
+              :to="localePath(`/news/${item.slug}`)"
             />
           </div>
         </div>
       </div>
     </section>
 
-    <SectionCta
-      :title="t('home.cta.title')"
-      :note="t('home.cta.note')"
-      :text="t('home.cta.text')"
-      :button-text="t('home.cta.button')"
-    />
   </div>
 </template>
