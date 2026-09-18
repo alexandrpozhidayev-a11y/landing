@@ -31,10 +31,12 @@ onUnmounted(() => {
 })
 const overlay = computed(() => isHome.value && !scrolled.value)
 
+// Главная теперь — дизайн v2; страницы About и Services сняты (legacy-pages/),
+// поэтому ведём на главную и её финальный блок #contact (услуги + «Let’s talk»).
 const navLinks = computed(() => [
-  { label: t('nav.platform'), to: localePath('/about') },
+  { label: t('nav.platform'), to: localePath('/') },
   { label: t('nav.campus'), to: localePath('/') + '#campus' },
-  { label: t('nav.solutions'), to: localePath('/services') },
+  { label: t('nav.solutions'), to: localePath('/') + '#contact' },
   // Team скрыт до наполнения контентом (в карточках пока «Фамилия/Имя/Отчество»).
   // Вернуть — раскомментировать здесь и в AppFooter.vue.
   // { label: t('nav.team'), to: localePath('/team') },
@@ -67,7 +69,7 @@ const navLinks = computed(() => [
             :class="{ 'is-active': loc.code === locale }"
           >{{ loc.code.toUpperCase() }}</NuxtLink>
         </div>
-        <NuxtLink class="btn btn--primary btn--sm" :to="localePath('/about') + '#contact'">{{ t('nav.requestMeeting') }}</NuxtLink>
+        <NuxtLink class="btn btn--primary btn--sm" :to="localePath('/') + '#contact'">{{ t('nav.requestMeeting') }}</NuxtLink>
         <button aria-label="Toggle menu" class="menu-btn" :class="{ active: mobileOpen }" @click="toggleMobile">
           <span></span>
           <span></span>

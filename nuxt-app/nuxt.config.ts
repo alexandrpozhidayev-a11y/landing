@@ -1,4 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+// Страницы прежнего дизайна, снятые с сайта (файлы — в legacy-pages/). Их адреса
+// и черновой /v2 постоянным редиректом ведут на главную, чтобы старые ссылки
+// и закладки не упирались в 404.
+const hiddenPages = ['about', 'services', 'ai', 'faq', 'v2']
+const hiddenRedirects = Object.fromEntries(['', '/en', '/kk', '/ru'].flatMap(prefix =>
+  hiddenPages.map(page => [`${prefix}/${page}`, { redirect: { to: prefix || '/', statusCode: 301 } }])))
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-01',
   ssr: true,
@@ -13,7 +21,7 @@ export default defineNuxtConfig({
   // ipxStatic — варианты генерируются ОДИН раз при сборке (пререндер страниц),
   // рабочий сервер отдаёт готовые файлы из .output/public/_ipx и ничего не
   // пережимает на лету. Годится, пока все страницы с NuxtPicture пререндерятся
-  // (сейчас это только /v2 — см. nitro.prerender.routes).
+  // (сейчас это главная — см. nitro.prerender.routes).
   // sizes у картинок — только в виде "экран:размер" (ключ = нижняя граница, как в
   // Tailwind); запись без ключа (просто "100vw") модуль разбирает неверно.
   image: {
@@ -27,7 +35,7 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl: 'https://dc-valley.com',
     // Порядок этого массива = порядок переключателя языков в шапке.
-    // v2/*.json — тексты страницы /v2 (ключи v2.*), отдельно от основного сайта;
+    // v2/*.json — тексты главной (дизайн v2, ключи v2.*), отдельно от старых страниц;
     // сливаются с основным файлом локали.
     locales: [
       { code: 'en', language: 'en-US', name: 'English', files: ['en.json', 'v2/en.json'] },
@@ -74,6 +82,7 @@ export default defineNuxtConfig({
   // Кэш в браузере: картинки из _ipx и /asset — неделя (имена без хеша, поэтому
   // не «навсегда»), шрифты v2 не меняются — год.
   routeRules: {
+    ...hiddenRedirects,
     '/_ipx/**': { headers: { 'cache-control': 'public, max-age=604800' } },
     '/asset/**': { headers: { 'cache-control': 'public, max-age=604800' } },
     '/asset/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
@@ -82,9 +91,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      // /v2 — черновик новой главной на согласование. На него никто не ссылается,
-      // поэтому crawlLinks его не найдёт — перечисляем явно.
-      routes: ['/en', '/kk', '/ru', '/en/v2', '/kk/v2', '/ru/v2']
+      // Главная (дизайн v2) на трёх языках; остальное crawlLinks находит по ссылкам.
+      routes: ['/en', '/kk', '/ru']
     }
   }
 })

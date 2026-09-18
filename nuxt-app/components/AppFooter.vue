@@ -23,15 +23,16 @@ function scrollTop() {
 
       <nav class="footer__col">
         <h4>{{ t('footer.solutions.title') }}</h4>
-        <NuxtLink :to="localePath('/services')">{{ t('footer.solutions.colocation') }}</NuxtLink>
-        <NuxtLink :to="localePath('/services')">{{ t('footer.solutions.buildToSuit') }}</NuxtLink>
-        <NuxtLink :to="localePath('/services')">{{ t('footer.solutions.greenfield') }}</NuxtLink>
-        <NuxtLink :to="localePath('/services')">{{ t('footer.solutions.partnerships') }}</NuxtLink>
+        <!-- Страница Services снята — услуги перечислены в финальном блоке главной (#contact) -->
+        <NuxtLink :to="localePath('/') + '#contact'">{{ t('footer.solutions.colocation') }}</NuxtLink>
+        <NuxtLink :to="localePath('/') + '#contact'">{{ t('footer.solutions.buildToSuit') }}</NuxtLink>
+        <NuxtLink :to="localePath('/') + '#contact'">{{ t('footer.solutions.greenfield') }}</NuxtLink>
+        <NuxtLink :to="localePath('/') + '#contact'">{{ t('footer.solutions.partnerships') }}</NuxtLink>
       </nav>
 
       <nav class="footer__col">
         <h4>{{ t('footer.company.title') }}</h4>
-        <NuxtLink :to="localePath('/about')">{{ t('nav.platform') }}</NuxtLink>
+        <NuxtLink :to="localePath('/')">{{ t('nav.platform') }}</NuxtLink>
         <NuxtLink :to="localePath('/') + '#campus'">{{ t('nav.campus') }}</NuxtLink>
         <!-- Team скрыт до наполнения контентом, см. AppHeader.vue -->
         <!-- <NuxtLink :to="localePath('/team')">{{ t('nav.team') }}</NuxtLink> -->
