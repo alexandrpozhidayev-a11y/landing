@@ -566,18 +566,23 @@ export class World {
   }
 
   // [dc-valley.com] Добавлено при встраивании: страница живёт в SPA и пересоздаётся
-  // (смена языка), поэтому сцену нужно уметь остановить — цикл, обработчики —
-  // и сразу отпустить WebGL-контекст (на iOS их считаные штуки).
+  // (смена языка, переход на другую страницу), поэтому сцену нужно уметь остановить —
+  // цикл, обработчики — и отпустить WebGL-контекст (на iOS их считаные штуки).
   destroy() {
     this.destroyed = true
     this.onFrame = null
     this.ro.disconnect()
     window.removeEventListener('pointerup', this.onPointerUp)
-    this.post.composer.dispose()
-    this.floor.rt.dispose()
-    this.renderer.dispose()
-    this.renderer.forceContextLoss()
     this.renderer.domElement.remove()
+    // Прогрев может ещё идти: compileAsync опрашивает программы по таймеру, и если
+    // освободить ресурсы раньше, three.js падает на удалённых программах. warmup
+    // заканчивается сразу после текущего куска (проверка destroyed), тогда и чистим.
+    this.ready.finally(() => {
+      this.post.composer.dispose()
+      this.floor.rt.dispose()
+      this.renderer.dispose()
+      this.renderer.forceContextLoss()
+    })
   }
 
   // Мировая точка объекта → координаты внутри панели (px)
