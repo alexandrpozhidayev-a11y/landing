@@ -59,6 +59,9 @@ export default defineNuxtConfig({
   // Значения задаются только на сервере через env (NUXT_CONTACT_TENANT_ID и т.д.,
   // см. docker-compose.yml и .env.example), в репозитории пусто.
   runtimeConfig: {
+    // API админки (новости). Всегда боевая админка — и на сервере, и локально,
+    // чтобы на сайте были настоящие новости. Переопределить: env NUXT_ADMIN_API.
+    adminApi: 'https://dc-valley.com/admin/api',
     contact: {
       tenantId: '',
       clientId: '',

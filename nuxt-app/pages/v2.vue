@@ -117,6 +117,35 @@ const people = [...basePeople, ...testPeople]
 const services = computed(() => (['colocation', 'buildToSuit', 'greenfield', 'partnerships'] as const)
   .map(id => t(`v2.next.services.${id}`)))
 
+// Новости из админки (через /api/news). Страница пререндерится при сборке, когда
+// админки рядом нет, поэтому грузим на клиенте; блок появляется, когда пришли данные.
+interface NewsItem {
+  slug: string
+  title: string
+  excerpt: string | null
+  image: string | null
+  published_at: string | null
+  is_featured: boolean
+}
+
+const { data: newsData } = useFetch<{ data: NewsItem[] }>('/api/news', {
+  query: { locale },
+  server: false,
+  lazy: true,
+  default: () => ({ data: [] })
+})
+
+const newsItems = computed(() => newsData.value?.data ?? [])
+const newsFeatured = computed(() => newsItems.value.find(n => n.is_featured) ?? newsItems.value[0])
+const newsRest = computed(() => newsItems.value.filter(n => n !== newsFeatured.value).slice(0, 3))
+
+// Дата как на старом сайте — ДД.ММ.ГГГГ на всех языках (в en «09/11/2026» читается двояко).
+function newsDate(value: string | null) {
+  if (!value) return ''
+  const [y, m, d] = value.slice(0, 10).split('-')
+  return `${d}.${m}.${y}`
+}
+
 // Contact us / Let’s talk / Contact открывают модалку с формой (V2ContactModal,
 // письмо уходит на info@ через /api/contact). mailto — запасной путь, пока
 // страница не ожила (JS ещё не загрузился или выключен).
@@ -505,7 +534,7 @@ onBeforeUnmount(() => {
 
         <!-- Плашки «PHASE ONE / 191.8 HA» и «EXPANSION / ~1,300 HA» вшиты в изображение -->
         <figure class="v2-figure">
-          <V2Picture src="/asset/v2/3.png" :width="1440" :height="520" sizes="xs:100vw sm:100vw md:100vw lg:1344px" mobile-src="/asset/v2/mobile/3.png" :mobile-width="342" :mobile-height="280" :alt="t('v2.place.imageAlt')" />
+          <V2Picture src="/asset/v2/3.jpg" :width="1280" :height="694" sizes="xs:100vw sm:100vw md:100vw lg:1280px" mobile-src="/asset/v2/3.jpg" :mobile-width="1280" :mobile-height="694" :alt="t('v2.place.imageAlt')" />
         </figure>
 
         <div class="v2-place__note">
@@ -676,12 +705,47 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 07 — YOUR NEXT MOVE + подвал -->
+    <!-- 07 — NEWS. Блок со старого сайта (разметка и стили .news__card из assets/css/style.css),
+         данные — из админки: главная новость крупно и ещё до трёх строками, каждая ведёт на
+         свою страницу /news/<slug>. Пока новостей нет (или админка недоступна) — блока нет. -->
+    <section v-if="newsFeatured" class="v2-section v2-dark v2-news" id="news">
+      <div class="v2-container">
+        <div class="v2-section__head">
+          <p class="v2-label"><span class="v2-label__num">07</span> / {{ t('home.news.title') }}</p>
+          <div class="v2-news__head">
+            <h2 class="v2-display v2-display--lg">{{ t('home.news.title') }}.</h2>
+            <NuxtLink :to="localePath('/news')" class="v2-news__all">{{ t('home.news.allNews') }} <span aria-hidden="true">&#8599;</span></NuxtLink>
+          </div>
+        </div>
+
+        <div class="news__card">
+          <NewsFeatured
+            :image="newsFeatured.image"
+            :date="newsDate(newsFeatured.published_at)"
+            :title="newsFeatured.title"
+            :text="newsFeatured.excerpt ?? ''"
+            :button-text="t('home.news.seeMore')"
+            :to="localePath(`/news/${newsFeatured.slug}`)"
+          />
+          <NewsRow
+            v-for="item in newsRest"
+            :key="item.slug"
+            :image="item.image"
+            :date="newsDate(item.published_at)"
+            :title="item.title"
+            :text="item.excerpt ?? ''"
+            :to="localePath(`/news/${item.slug}`)"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 — YOUR NEXT MOVE + подвал -->
     <section class="v2-next v2-fade-top v2-fade-top--dark" id="contact">
       <div class="v2-container" style="position: relative; z-index: 2;">
         <div class="v2-next__top">
           <div>
-            <p class="v2-label v2-reveal"><span class="v2-label__num">07</span> / {{ t('v2.next.label') }}</p>
+            <p class="v2-label v2-reveal"><span class="v2-label__num">08</span> / {{ t('v2.next.label') }}</p>
             <h2 class="v2-display v2-reveal v2-display--xl v2-next__title"><Lines :text="t('v2.next.title')" /></h2>
           </div>
 

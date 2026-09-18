@@ -246,6 +246,78 @@
 }
 
 /* ============================================================
+   07 — NEWS (блок со старого сайта внутри тёмной секции v2)
+   ============================================================ */
+
+/* Карточка новостей светлая, а секция тёмная: возвращаем внутри неё обычный
+   цвет текста, иначе заголовки остаются белыми на белом. */
+.v2-news .news__card {
+    color: var(--v2-ink);
+    margin-top: 0;
+}
+
+.v2-news .news__card h3,
+.v2-news .news__card h4,
+.v2-news .news__card p {
+    color: inherit;
+}
+
+.v2-news .news__date {
+    color: var(--v2-muted);
+}
+
+/* Общее правило v2 для картинок (.v2 img: width 100%, height auto) перебивает размеры
+   из блока новостей старого сайта: обложка крупной новости растягивалась на всю
+   карточку и выталкивала текст. Возвращаем размеры из style.css. */
+.v2-news :deep(.news__featured img) {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.v2-news :deep(.news__row img) {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .v2-news :deep(.news__featured img) {
+        flex: none;
+        width: 42%;
+        height: auto;
+        min-height: 280px;
+    }
+
+    .v2-news :deep(.news__row img) {
+        height: 120px;
+    }
+}
+
+.v2-news__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 32px;
+}
+
+.v2-news__all {
+    font-family: var(--v2-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #E4E4E0;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--v2-dark-line);
+}
+
+.v2-news__all:hover {
+    border-bottom-color: #E4E4E0;
+}
+
+/* ============================================================
    ШАПКА
    ============================================================ */
 
@@ -381,7 +453,7 @@
         gap: 10px;
     }
 
-    .v2-header__nav .v2-header__link:not([data-locale]),
+    /* Разделитель убираем, но ссылку Team оставляем — она нужна и на телефоне. */
     .v2-header__sep {
         display: none;
     }
