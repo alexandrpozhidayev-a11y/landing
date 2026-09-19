@@ -188,6 +188,14 @@ export function label(text, w = 512, h = 96, font = 'bold 44px "Inter", "Helveti
   ctx.font = font
   ctx.textBaseline = 'middle'
   ctx.letterSpacing = '6px'
+  // ужимаем шрифт, пока строка не влезет в канвас: ширина зависит от того, какой шрифт
+  // нашёлся в системе, и без этого хвост обрезается («…VALL»)
+  const max = w - 16
+  let size = parseFloat(font.match(/(\d+(?:\.\d+)?)px/)[1])
+  while (size > 8 && ctx.measureText(text).width > max) {
+    size -= 1
+    ctx.font = font.replace(/\d+(?:\.\d+)?px/, `${size}px`)
+  }
   ctx.fillText(text, 8, h / 2)
   return tex(c, { repeat: false, srgb: true })
 }
