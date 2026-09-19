@@ -38,7 +38,7 @@ export class MapLabels {
       add('dcv-city', l.text, CITIES[l.at], km, o.dx, o.dy, o.align)
       if (l.ms && !narrow) add('dcv-ms', `<b>${l.ms}</b><span>ms</span>`, CITIES[l.at], km + 150, l.mdx, l.mdy, 'center')
     }
-    add('dcv-hubtag', HUB.name.replace(' ', '<br>'), HUB.geo, -1, 30, -24, 'left-middle')
+    add('dcv-hubtag', HUB.name.replace(/ (?=\S+$)/, '<br>'), HUB.geo, -1, 30, -24, 'left-middle')
     add('dcv-note', 'Trans-Caspian<br>fiber optic', mid(CITIES.aktau, CITIES.sumgait), reach.sumgait, 34, 30, 'left')
   }
 

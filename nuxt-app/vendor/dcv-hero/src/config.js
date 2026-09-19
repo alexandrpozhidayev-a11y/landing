@@ -62,7 +62,7 @@ export const STAGES = [
   { at: 0.7, label: 'Row', title: 'Hot-aisle containment, 18 MW per row' },
   { at: 0.84, label: 'Hall', title: 'Thousands of racks in a single data hall' },
   { at: 1.03, label: 'Campus', title: 'Data Center Valley from above' },
-  { at: 1.22, label: 'Hub', title: 'Eurasia Compute Hub: low-latency routes to Europe' },
+  { at: 1.22, label: 'Hub', title: 'Data Center Valley: low-latency routes to Europe' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -80,7 +80,7 @@ export const SITE = {
 //  Карта мира. Хаб — Экибастуз (Павлодарская обл.); координаты [долгота, широта].
 // ---------------------------------------------------------------------------
 export const EARTH_R = 6371000
-export const HUB = { name: 'Eurasia Compute Hub', geo: [75.32, 51.72] }
+export const HUB = { name: 'Data Center Valley', geo: [75.32, 51.72] }
 
 export const CITIES = {
   hub: HUB.geo,
@@ -98,16 +98,17 @@ export const CITIES = {
 }
 
 // Трассы — цепочки точек от хаба; kind: 'fiber' синяя, 'caspian' зелёная (морской кабель).
-// bend — плавный боковой изгиб в долях длины (минус — к северу на западных трассах): прямая Уральск → Стокгольм
-// прошла бы в 36 км от Москвы и читалась бы как «через Москву»
+// bend — плавный боковой изгиб в долях длины (минус — к северу на западных трассах).
+// Через Уральск идёт только Москва; остальная Европа — через Сумгаит (Транскаспийский кабель).
+// Порядок важен: трасса из точки описывается после той, что до неё доходит.
 export const ROUTES = [
   { path: ['hub', 'jct', 'uralsk'], kind: 'fiber' },
   { path: ['uralsk', 'moscow'], kind: 'fiber' },
-  { path: ['uralsk', 'stockholm'], kind: 'fiber', bend: -0.13 },
-  { path: ['uralsk', 'frankfurt'], kind: 'fiber' },
   { path: ['jct', 'caspian', 'aktau'], kind: 'fiber' },
   { path: ['aktau', 'sumgait'], kind: 'caspian' },
   { path: ['sumgait', 'istanbul'], kind: 'fiber' },
+  { path: ['sumgait', 'frankfurt'], kind: 'fiber', bend: -0.06 },
+  { path: ['sumgait', 'stockholm'], kind: 'fiber', bend: 0.1 },
   { path: ['hub', 'urumqi', 'xian'], kind: 'fiber', fadeEnd: true },
 ]
 
