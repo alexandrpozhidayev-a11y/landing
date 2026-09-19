@@ -211,6 +211,22 @@ onBeforeUnmount(() => {
         linear-gradient(to top, var(--v2-dark), rgba(12, 12, 12, 0) 8%);
 }
 
+/* Десктоп: заголовок секции наезжает на левую часть панели и на невысоких экранах
+   доходит почти до её низа — подпись стадии прижимаем к низу справа, чтобы не налезала. */
+@media (min-width: 900px) {
+    .v2-hero3d .dcv-hud {
+        left: auto;
+        right: 4.5%;
+        bottom: 22px;
+        max-width: 42%;
+        text-align: right;
+    }
+
+    .v2-hero3d .dcv-hud__label {
+        justify-content: flex-end;
+    }
+}
+
 .v2-hero3d .dcv-hud,
 .v2-hero3d .dcv-rail {
     transition: opacity 0.6s ease;
