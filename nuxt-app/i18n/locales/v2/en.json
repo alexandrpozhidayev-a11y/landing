@@ -60,11 +60,6 @@
             "title": "Every\ndetail.\nGreater\npossibility.",
             "lead": "Infrastructure for the next generation\nof high-density computing.",
             "imageAlt": "Exploded view of a liquid-cooled compute module",
-            "meta": {
-                "density": "High-density compute",
-                "cooling": "Liquid-cooling concept",
-                "modular": "Modular architecture"
-            },
             "caption": "Conceptual visualization"
         },
         "place": {
@@ -155,7 +150,9 @@
             "title": "From power.\nTo possibility.",
             "imageAlt": "Light horses running across the steppe — concept film still",
             "caption1": "Inside the infrastructure / concept film",
-            "caption2": "Concept film — architecture & compute"
+            "caption2": "Concept film — architecture & compute",
+            "play": "Play the film",
+            "pause": "Pause the film"
         },
         "next": {
             "label": "Your next move",

@@ -28,6 +28,13 @@ const KEYS = [
 // рвётся с места), а одним движением: дистанция по логарифму, направление — сферически.
 const AERIAL = { p: 1.16, pos: [-420, 360, 540], tgt: [40, 0, -60], fov: 38 } // площадка 3/4 сверху
 
+// [dc-valley.com] Кадры выставлены под широкую панель (примерно 3:2). Когда панель уже —
+// узкая колонка на десктопе, телефон, отдаление страницы — горизонтальный обзор при том же
+// вертикальном fov сужается, и сцена вылезает за края. Компенсируем дистанцией: камеру
+// отодвигаем ровно настолько, чтобы ширина кадра осталась прежней.
+const BASE_ASPECT = 1.35
+const MAX_WIDEN = 2.4
+
 // Полёт на орбиту и кадр карты
 const SPACE = { from: AERIAL.p, to: 1.36 }
 const FRAME = { geo: [46.5, 49.5], halfWidth: 3400e3, tilt: 0.36, fov: 34 } // центр кадра, полуширина по горизонтали, наклон к югу (рад)
@@ -127,6 +134,14 @@ export class CameraRig {
       this.posCurve.getPoint(k.u, this.pos)
       this.tgtCurve.getPoint(k.u, this.tgt)
       this.up.set(0, 1, 0)
+    }
+
+    // [dc-valley.com] Узкая панель — отодвигаем камеру вдоль её же оси. Кадр карты (spacePose)
+    // уже считает дистанцию от аспекта в frameDist(), второй раз его не трогаем.
+    if (p <= SPACE.from && this.aspect < BASE_ASPECT) {
+      const widen = Math.min(BASE_ASPECT / Math.max(this.aspect, 0.2), MAX_WIDEN)
+      this._d.subVectors(this.pos, this.tgt)
+      this.pos.copy(this.tgt).addScaledVector(this._d, widen)
     }
 
     // параллакс от курсора — с инерцией

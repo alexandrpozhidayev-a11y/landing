@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { h, type FunctionalComponent } from 'vue'
-
 // Главная страница сайта — дизайн «v2» (макет "DCV / Final for approval / Desktop").
 // Раньше жила черновиком на /v2; прежняя главная и страницы About / Services / AI / FAQ
 // убраны в legacy-pages/ (старые адреса редиректят сюда, см. routeRules в nuxt.config.ts).
@@ -22,11 +20,6 @@ definePageMeta({
 const { t, locales, locale } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-
-// Строка перевода с "\n" -> текст с <br> (без v-html).
-const Lines: FunctionalComponent<{ text: string }> = props =>
-  props.text.split('\n').flatMap((line, i) => (i ? [h('br'), line] : [line]))
-Lines.props = ['text']
 
 useHead(() => ({
   title: t('v2.meta.title'),
@@ -55,9 +48,6 @@ const energySteps = computed(() => (['connect', 'build', 'expand'] as const).map
   title: t(`v2.energy.steps.${id}.title`),
   text: t(`v2.energy.steps.${id}.text`)
 })))
-
-const engineeredMeta = computed(() => (['density', 'cooling', 'modular'] as const)
-  .map((id, i) => `${num(i)} — ${t(`v2.engineered.meta.${id}`)}`))
 
 const placeFacts = computed(() => (['phase', 'expansion', 'energy'] as const).map((id, i) => ({
   label: `${num(i)} / ${t(`v2.place.facts.${id}.label`)}`,
@@ -111,9 +101,6 @@ const testPeople = [
 ]
 
 const people = [...basePeople, ...testPeople]
-
-const services = computed(() => (['colocation', 'buildToSuit', 'greenfield', 'partnerships'] as const)
-  .map(id => t(`v2.next.services.${id}`)))
 
 // Новости из админки (через /api/news). Страница пререндерится при сборке, когда
 // админки рядом нет, поэтому грузим на клиенте; блок появляется, когда пришли данные.
@@ -311,17 +298,42 @@ function onRevealScroll() {
   if (!revealRaf) revealRaf = requestAnimationFrame(revealAtPageEnd)
 }
 
-// Видео в секции 06 — тот же ролик, что на первом экране (файл берётся из кэша).
-// Играет, только когда блок на экране: иначе браузер зря декодирует кадры.
+// Видео в секции 06 — концепт-фильм (asset/v2/video.mp4), отдельный файл от промо-ролика
+// на первом экране. Играет, только когда блок на экране: иначе браузер зря декодирует кадры.
 const filmVideo = ref<HTMLVideoElement | null>(null)
 let filmObserver: IntersectionObserver | null = null
+const filmPlaying = ref(false)
+const filmMuted = ref(true)
+const filmDuration = ref(0)
+// Пауза по кнопке — чтобы наблюдатель не запустил ролик снова при прокрутке.
+const filmStopped = ref(false)
+
+const filmTime = computed(() => {
+  const total = Math.round(filmDuration.value)
+  if (!total) return '--:--'
+  return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`
+})
+
+function toggleFilm() {
+  const video = filmVideo.value
+  if (!video) return
+  if (video.paused || video.muted) {
+    video.muted = false
+    filmMuted.value = false
+    filmStopped.value = false
+    video.play().catch(() => {})
+  } else {
+    filmStopped.value = true
+    video.pause()
+  }
+}
 
 function setupFilmVideo() {
   const video = filmVideo.value
   if (!video) return
   filmObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      if (entry.isIntersecting) video.play().catch(() => {})
+      if (entry.isIntersecting && !filmStopped.value) video.play().catch(() => {})
       else video.pause()
     }
   }, { rootMargin: '200px' })
@@ -508,10 +520,6 @@ onBeforeUnmount(() => {
         </figure>
 
         <div class="v2-engineered__bottom">
-          <div class="v2-engineered__meta">
-            <p v-for="item in engineeredMeta" :key="item" class="v2-label v2-reveal">{{ item }}</p>
-          </div>
-
           <p class="v2-label v2-reveal v2-engineered__caption">{{ t('v2.engineered.caption') }}</p>
         </div>
       </div>
@@ -674,27 +682,43 @@ onBeforeUnmount(() => {
     </section>
 
     <!-- 06 — A CLOSER LOOK -->
-    <section class="v2-section v2-dark v2-fade-top">
+    <!-- Тёмная секция: если следом идут новости (светлые, как меню), снизу растворяем её
+         в светлый фон; без новостей дальше сразу оранжевый финал со своим переходом. -->
+    <section class="v2-section v2-dark v2-fade-top" :class="{ 'v2-fade-bottom': newsFeatured }">
       <div class="v2-container">
         <div class="v2-section__head">
           <p class="v2-label v2-reveal"><span class="v2-label__num">06</span> / {{ t('v2.film.label') }}</p>
           <h2 class="v2-display v2-reveal v2-display--lg"><Lines :text="t('v2.film.title')" /></h2>
         </div>
 
-        <!-- TODO: кнопка «PLAY THE FILM» пока часть изображения; при появлении ролика
-             заменить <figure> на видеоплеер и вынести кнопку в разметку. -->
         <figure class="v2-figure">
-          <video
-            ref="filmVideo"
-            class="v2-film__video"
-            src="/asset/v2/hero.mp4"
-            poster="/asset/v2/film.jpg"
-            muted
-            loop
-            playsinline
-            preload="none"
-            :aria-label="t('v2.film.imageAlt')"
-          ></video>
+          <!-- preload="none": сервер отдаёт файл целиком (докачки по кускам нет), поэтому при
+               "metadata" браузер тянул все 8.5 МБ ещё на первом экране. Теперь ролик грузится,
+               только когда блок подходит к экрану; до этого длительность на кнопке неизвестна
+               и там стоит «--:--», но кнопку в этот момент ещё не видно. -->
+          <div class="v2-film">
+            <video
+              ref="filmVideo"
+              class="v2-film__video"
+              src="/asset/v2/video.mp4"
+              poster="/asset/v2/film.jpg"
+              muted
+              loop
+              playsinline
+              preload="none"
+              :aria-label="t('v2.film.imageAlt')"
+              @loadedmetadata="filmDuration = $event.target.duration"
+              @play="filmPlaying = true"
+              @pause="filmPlaying = false"
+            ></video>
+            <!-- Кнопка из макета: ролик крутится без звука как превью, по клику —
+                 со звуком; повторный клик ставит на паузу. -->
+            <button type="button" class="v2-film__play" @click="toggleFilm">
+              <span>{{ filmPlaying && !filmMuted ? t('v2.film.pause') : t('v2.film.play') }}</span>
+              <span class="v2-film__dot" aria-hidden="true">&bull;</span>
+              <span>{{ filmTime }}</span>
+            </button>
+          </div>
           <figcaption class="v2-film__caption v2-reveal">
             <span class="v2-label">{{ t('v2.film.caption1') }}</span>
             <span class="v2-label">{{ t('v2.film.caption2') }}</span>
@@ -706,7 +730,7 @@ onBeforeUnmount(() => {
     <!-- 07 — NEWS. Блок со старого сайта (разметка и стили .news__card из assets/css/style.css),
          данные — из админки: главная новость крупно и ещё до трёх строками, каждая ведёт на
          свою страницу /news/<slug>. Пока новостей нет (или админка недоступна) — блока нет. -->
-    <section v-if="newsFeatured" class="v2-section v2-dark v2-news" id="news">
+    <section v-if="newsFeatured" class="v2-section v2-news" id="news">
       <div class="v2-container">
         <div class="v2-section__head">
           <p class="v2-label"><span class="v2-label__num">07</span> / {{ t('home.news.title') }}</p>
@@ -738,65 +762,9 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <!-- 08 — YOUR NEXT MOVE + подвал -->
-    <section class="v2-next v2-fade-top v2-fade-top--dark" id="contact">
-      <div class="v2-container" style="position: relative; z-index: 2;">
-        <div class="v2-next__top">
-          <div>
-            <p class="v2-label v2-reveal"><span class="v2-label__num">08</span> / {{ t('v2.next.label') }}</p>
-            <h2 class="v2-display v2-reveal v2-display--xl v2-next__title"><Lines :text="t('v2.next.title')" /></h2>
-          </div>
-
-          <svg class="v2-next__arrow v2-reveal" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="7" aria-hidden="true">
-            <path d="M14 86 L86 14" />
-            <path d="M30 14 H86 V70" />
-          </svg>
-        </div>
-
-        <div class="v2-next__body">
-          <div>
-            <p class="v2-next__lead v2-reveal"><Lines :text="t('v2.next.lead')" /></p>
-            <a :href="contactMail" class="v2-btn v2-btn--ink v2-reveal" @click="openContact">{{ t('v2.next.cta') }} <span aria-hidden="true">&#8599;</span></a>
-          </div>
-
-          <div class="v2-next__services">
-            <span v-for="service in services" :key="service" class="v2-label v2-reveal">{{ service }}</span>
-          </div>
-        </div>
-
-        <hr class="v2-next__rule">
-
-        <div class="v2-footer v2-reveal">
-          <NuxtLink :to="localePath('/')" class="v2-logo">
-            <svg class="v2-logo__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="3" />
-              <polygon points="7,3.5 33,3.5 20,25" fill="currentColor" />
-            </svg>
-            <span class="v2-logo__text">Data Center<br>Valley<i class="v2-logo__dot">.</i></span>
-          </NuxtLink>
-
-          <p class="v2-label">
-            Data Center Valley<br>
-            {{ t('v2.location') }}
-          </p>
-
-          <div class="v2-footer__right v2-footer__links">
-            <p class="v2-label">
-              <a href="#energy">{{ t('v2.footer.vision') }}</a> /
-              <a href="#campus">{{ t('v2.footer.campus') }}</a> /
-              <a :href="contactMail" @click="openContact">{{ t('v2.footer.contact') }}</a>
-            </p>
-
-            <!-- Официальные аккаунты — тот же список, что и в подвале основного сайта -->
-            <div class="v2-footer__socials">
-              <SocialIcons :size="18" />
-            </div>
-
-            <p class="v2-label">&copy; Data Center Valley</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 08 — YOUR NEXT MOVE + подвал (тот же компонент, что на внутренних страницах).
+         Переход сверху — из фона предыдущей секции: светлой (новости) или тёмной (фильм). -->
+    <V2NextFooter reveal :fade-dark="!newsFeatured" @contact="openContact" />
 
     <V2ContactModal ref="contactModal" />
   </div>

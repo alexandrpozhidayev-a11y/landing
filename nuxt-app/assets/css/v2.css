@@ -308,13 +308,13 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    color: #E4E4E0;
+    color: var(--v2-ink);
     padding-bottom: 2px;
-    border-bottom: 1px solid var(--v2-dark-line);
+    border-bottom: 1px solid var(--v2-line);
 }
 
 .v2-news__all:hover {
-    border-bottom-color: #E4E4E0;
+    border-bottom-color: var(--v2-ink);
 }
 
 /* ============================================================
@@ -836,6 +836,10 @@
         width: 64%;
         height: calc(100vh - var(--v2-header-h));
         height: calc(100svh - var(--v2-header-h));
+        /* На высоких экранах (и при отдалении страницы) экран выше содержимого секции:
+           без ограничения панель заходит на нижний переход к светлой секции и перекрывает
+           его тёмным прямоугольником. Низ панели — по низу контейнера. */
+        max-height: calc(100% + clamp(72px, 11vw, 160px));
         margin: 0;
     }
 }
@@ -851,26 +855,9 @@
     color: #E4E4E0;
 }
 
-.v2-engineered__meta {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: clamp(40px, 5vw, 72px);
-}
-
-@media (min-width: 760px) {
-    .v2-engineered__meta {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Как в макете: пункты — светлые, подпись — тусклая, обе на тёмном фоне. */
-.v2-engineered .v2-engineered__meta .v2-label {
-    color: #CFCFC9;
-}
-
+/* Подпись под сценой — тусклая, на тёмном фоне. */
 .v2-engineered .v2-engineered__caption {
-    margin-top: clamp(28px, 3.5vw, 44px);
+    margin-top: clamp(40px, 5vw, 72px);
     color: #5F5F5A;
 }
 
@@ -1253,15 +1240,54 @@
 /* Видео вместо фото. Ширину ограничиваем: исходник 848x464, и на всю ширину
    контейнера (1344px) его пришлось бы растянуть в полтора раза — заметно мылит.
    Если появится ролик в 1080p, ограничение можно снять. */
+.v2-film {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
 .v2-film__video {
     display: block;
     width: 100%;
-    max-width: 960px;
     height: auto;
-    margin: 0 auto;
     aspect-ratio: 848 / 464;
     object-fit: cover;
     background: var(--v2-dark);
+}
+
+/* Кнопка запуска поверх кадра — слева снизу, как в макете. */
+.v2-film__play {
+    position: absolute;
+    left: clamp(12px, 2vw, 24px);
+    bottom: clamp(12px, 2vw, 24px);
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    border: 0;
+    background: rgba(12, 12, 12, 0.55);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-family: var(--v2-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.v2-film__play:hover {
+    background: rgba(12, 12, 12, 0.8);
+}
+
+.v2-film__play:focus-visible {
+    outline: 2px solid var(--v2-orange);
+    outline-offset: 2px;
+}
+
+.v2-film__dot {
+    color: var(--v2-orange);
 }
 
 .v2-film__caption {
