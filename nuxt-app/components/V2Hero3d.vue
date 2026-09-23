@@ -104,8 +104,10 @@ onMounted(() => {
   window.addEventListener('scroll', update, { passive: true })
 
   // Сцена готова к показу не сразу: код + компиляция шейдеров занимают несколько секунд.
-  // Поэтому начинаем за два экрана до секции и после полной загрузки страницы, чтобы
-  // не отнимать сеть и процессор у первого экрана.
+  // Поэтому начинаем заранее — но не за два экрана: секция идёт второй, и при таком запасе
+  // бандл сцены (~1 МБ) грузился уже на первом экране, отнимая сеть у промо-блока.
+  // Один экран запаса: к моменту, когда секция доходит до экрана, сцена обычно готова,
+  // а пока не готова — виден постер.
   const start = () => {
     loadObserver = new IntersectionObserver((entries) => {
       if (!entries.some(entry => entry.isIntersecting)) return
@@ -114,7 +116,7 @@ onMounted(() => {
         console.warn('[dcv-hero] load failed', err)
         collapse()
       })
-    }, { rootMargin: '200% 0px' })
+    }, { rootMargin: '100% 0px' })
     loadObserver.observe(track!)
   }
 

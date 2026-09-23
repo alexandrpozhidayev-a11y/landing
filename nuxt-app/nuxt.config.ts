@@ -93,6 +93,21 @@ export default defineNuxtConfig({
       crawlLinks: true,
       // Главная (дизайн v2) на трёх языках; остальное crawlLinks находит по ссылкам.
       routes: ['/en', '/kk', '/ru']
+    },
+    // Рядом с каждым файлом в .output/public кладём .gz и .br: nginx отдаёт их
+    // напрямую (gzip_static/brotli_static), не пережимая на каждый запрос.
+    compressPublicAssets: { gzip: true, brotli: true }
+  },
+
+  hooks: {
+    // Nuxt по умолчанию ставит <link rel="prefetch"> на динамические чанки, и самый
+    // тяжёлый из них — код 3D-сцены (~1 МБ, three.js) — уезжал к посетителю уже на первом
+    // экране, даже если тот не долистал до секции. Сцена и так грузится сама, когда блок
+    // подходит к экрану (V2Hero3d), поэтому заранее её тянуть не нужно.
+    'build:manifest'(manifest) {
+      for (const entry of Object.values(manifest)) {
+        if (entry.isDynamicEntry) entry.prefetch = false
+      }
     }
   }
 })
